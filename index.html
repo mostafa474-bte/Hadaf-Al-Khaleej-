@@ -1786,8 +1786,8 @@
             function update() {
                 const now = new Date();
                 
-                const ksaOptions = { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-                document.getElementById('ksaClock').innerText = 'السعودية 🇸🇦: ' + new Intl.DateTimeFormat('ar-SA', ksaOptions).format(now);
+                const egyptOptions = { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+                document.getElementById('egyptClock').innerText = 'مصر (EG): ' + new Intl.DateTimeFormat('ar-EG', egyptOptions).format(now);
 
                 const uaeOptions = { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
                 document.getElementById('ksaClock').innerText = 'الإمارات 🇦🇪: ' + new Intl.DateTimeFormat('ar-AE', uaeOptions).format(now);
