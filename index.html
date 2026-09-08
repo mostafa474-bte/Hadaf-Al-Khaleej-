@@ -1,0 +1,2048 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منظومة تحصيل هدف الخليج - Mostafa Waleed</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* شريط الترويسة العلوية */
+        .top-banner {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+
+        .top-banner .hadith-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .top-banner .salawat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            color: #fef08a;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        #rotatingHadith {
+            transition: opacity 0.3s ease-in-out;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .clocks-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .clock-container {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            color: #38edf6;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            white-space: nowrap;
+        }
+
+        .mini-analog-clock {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #38edf6;
+            border-radius: 50%;
+            position: relative;
+            background: rgba(15, 23, 42, 0.6);
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+        }
+
+        .mini-analog-clock .mini-center-dot {
+            width: 4px;
+            height: 4px;
+            background: #38edf6;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .mini-hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: 50% 100%;
+            border-radius: 2px;
+        }
+
+        .mini-hour { width: 2px; height: 8px; background: #ffffff; margin-left: -1px; }
+        .mini-minute { width: 1.5px; height: 11px; background: #38edf6; margin-left: -0.75px; }
+        .mini-second { width: 1px; height: 13px; background: #f43f5e; margin-left: -0.5px; }
+
+        /* شاشة الحماية بكلمة السر / الرمز */
+        #auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-box {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 420px;
+            width: 100%;
+            border: 2px solid #0284c7;
+        }
+
+        .auth-box h2 { color: #0369a1; margin-bottom: 10px; font-size: 1.5rem; }
+        .auth-box p { color: #64748b; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5; }
+
+        .auth-box input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-bottom: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .auth-box input[type="text"]:focus { border-color: #0284c7; }
+
+        .auth-box button {
+            width: 100%;
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .auth-box button:hover { background: #0369a1; }
+
+        .error-msg {
+            color: #dc2626;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+
+        body {
+            background: linear-gradient(rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.70)),
+                        url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #0f172a;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        #main-content { display: none; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 3px solid #0284c7;
+            padding: 15px 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #0369a1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flag-icon {
+            width: 26px;
+            height: 18px;
+            border-radius: 3px;
+            object-fit: cover;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-tag {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid #bbf7d0;
+        }
+
+        .designer-tag {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 1px solid #bae6fd;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .controls-bar {
+            max-width: 1200px;
+            margin: 25px auto 10px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: #ffffff;
+            color: #0284c7;
+            border: 2px solid #0284c7;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+        }
+
+        .tab-btn.special-btn {
+            background: #059669;
+            border-color: #059669;
+            color: #ffffff;
+        }
+
+        .tab-btn.special-btn:hover, .tab-btn.special-btn.active { background: #047857; }
+
+        .tab-btn.tools-btn {
+            background: #7c3aed;
+            border-color: #7c3aed;
+            color: #ffffff;
+        }
+
+        .tab-btn.tools-btn:hover, .tab-btn.tools-btn.active { background: #6d28d9; }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .script-group { display: none; }
+        .script-group.active { display: block; animation: fadeIn 0.4s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-card {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            border: 1px solid #cbd5e1;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #0284c7;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        .page-title { font-size: 1.35rem; color: #0369a1; }
+
+        .badge-ar {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .badge-en {
+            background: #dbeafe;
+            color: #1d4ed8;
+            padding: 5px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .script-box {
+            background: linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)), 
+                        url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
+            border-right: 6px solid #15803d;
+            border-top: 1px solid #bbf7d0;
+            border-bottom: 1px solid #bbf7d0;
+            border-left: 1px solid #bbf7d0;
+            padding: 22px;
+            margin: 15px 0;
+            border-radius: 0 12px 12px 0;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            color: #052e16;
+            box-shadow: 0 4px 12px rgba(22, 101, 52, 0.08);
+        }
+
+        .script-box.en {
+            border-right: 1px solid #bbf7d0;
+            border-left: 6px solid #15803d;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .highlight { color: #b45309; font-weight: bold; }
+        .danger { color: #dc2626; font-weight: bold; }
+        .success { color: #15803d; font-weight: bold; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: right;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1rem;
+        }
+
+        th { background: #e0f2fe; color: #0369a1; }
+
+        .go-btn {
+            background-color: #0284c7;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .go-btn:hover { background-color: #0369a1; }
+
+        .card-footer {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .tool-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .tool-box h3 { color: #0369a1; margin-bottom: 15px; font-size: 1.1rem; }
+
+        .input-group { margin-bottom: 12px; }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #475569;
+            margin-bottom: 5px;
+        }
+
+        .input-group input, .input-group textarea, .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        .calc-result-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .calc-result-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        .calc-result-row:last-child {
+            margin-bottom: 0;
+            padding-top: 6px;
+            border-top: 1px dashed #bae6fd;
+        }
+
+        .calc-val { font-weight: bold; color: #0369a1; }
+
+        .tool-btn {
+            width: 100%;
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .tool-btn:hover { background: #0369a1; }
+        .tool-btn.green { background: #16a34a; }
+        .tool-btn.green:hover { background: #15803d; }
+
+        .followup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+            direction: ltr;
+        }
+
+        .followup-card {
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+            border: 2px solid;
+        }
+
+        .followup-card:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+        .followup-text { font-weight: 700; font-size: 0.95rem; }
+
+        .copy-btn {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .copy-btn:hover { background: #0369a1; }
+
+        .color-active { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
+        .color-final-exit { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+        .color-suspended { color: #ea580c; border-color: #ffedd5; background: #fff7ed; }
+        .color-absconded { color: #9333ea; border-color: #f3e8ff; background: #faf5ff; }
+        .color-nothing { color: #64748b; border-color: #e2e8f0; background: #f8fafc; }
+        .color-not-found-cust { color: #e11d48; border-color: #ffe4e6; background: #fff1f2; }
+        .color-not-found-comp { color: #be123c; border-color: #ffe4e6; background: #fff1f2; }
+        .color-found-comp { color: #0284c7; border-color: #bae6fd; background: #f0f9ff; }
+        .color-found-cust { color: #0d9488; border-color: #99f6e4; background: #f0fdfa; }
+        .color-tracing { color: #d97706; border-color: #fef3c7; background: #fffbeb; }
+        .color-followup { color: #2563eb; border-color: #bfdbfe; background: #eff6ff; }
+        .color-email-reminder { color: #4f46e5; border-color: #c7d2fe; background: #eef2ff; }
+
+        .dhikr-bar {
+            background: #fef3c7;
+            border: 1px solid #fde68a;
+            color: #92400e;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .target-card {
+            background: #ffffff;
+            border: 2px solid #0284c7;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 15px rgba(2, 132, 199, 0.1);
+        }
+
+        .target-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .target-grid { grid-template-columns: 1fr; }
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 12px;
+            height: 24px;
+            overflow: hidden;
+            margin: 10px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+            border-radius: 12px;
+        }
+
+        .chart-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .donut-chart {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: conic-gradient(#16a34a 0deg, #e2e8f0 0deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .donut-chart::before {
+            content: "";
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #f8fafc;
+            border-radius: 50%;
+        }
+
+        .chart-text {
+            position: relative;
+            z-index: 5;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #0369a1;
+        }
+
+        .history-list {
+            list-style: none;
+            max-height: 120px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 8px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #475569;
+            padding: 4px 0;
+        }
+
+        .prayer-bar {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 4px solid #38edf6;
+        }
+
+        .prayer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .prayer-times-inline {
+            display: flex;
+            gap: 8px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .prayer-item { background: rgba(255, 255, 255, 0.1); padding: 3px 8px; border-radius: 6px; }
+
+        #takbeer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.92);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .takbeer-box { animation: pulseText 1.5s infinite alternate; }
+
+        .takbeer-text {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fef08a;
+            text-shadow: 0 0 20px rgba(254, 240, 138, 0.6);
+            margin-bottom: 15px;
+        }
+
+        .takbeer-sub { font-size: 1.5rem; color: #38edf6; }
+
+        @keyframes pulseText {
+            from { transform: scale(0.95); }
+            to { transform: scale(1.05); }
+        }
+
+        .system-notes-list {
+            list-style: none;
+            margin-top: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .system-note-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-right: 4px solid #0284c7;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+        }
+
+        .system-note-item .del-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .system-note-item .del-btn:hover { background: #b91c1c; }
+
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #15803d;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.3s, fadeout 0.3s 1.7s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+
+        /* --- تصميم قسم اسأل رشيد (الذكاء الاصطناعي) --- */
+        .rasheed-container {
+            background: #f8fafc;
+            border: 2px solid #7c3aed;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.1);
+        }
+
+        .rasheed-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #cbd5e1;
+        }
+
+        .rasheed-title {
+            color: #6d28d9;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rasheed-chat-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .chat-msg {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chat-msg.bot {
+            background: #f3e8ff;
+            color: #581c87;
+            align-self: flex-start;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-msg.user {
+            background: #0284c7;
+            color: white;
+            align-self: flex-end;
+            border-bottom-left-radius: 2px;
+        }
+
+        .rasheed-quick-btn {
+            background: #ede9fe;
+            color: #6d28d9;
+            border: 1px solid #ddd6fe;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rasheed-quick-btn:hover {
+            background: #7c3aed;
+            color: white;
+        }
+
+        @media print {
+            .top-banner, #auth-overlay, .controls-bar, .logout-btn, #takbeer-overlay { display: none !important; }
+            #main-content { display: block !important; }
+            body { background: white !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شاشة تكبيرات الصلاة "الله أكبر" -->
+    <div id="takbeer-overlay">
+        <div class="takbeer-box">
+            <div class="takbeer-text">الله أكبر</div>
+            <div class="takbeer-sub" id="prayerNameNotice">حان الآن موعد أذان الصلاة 🕌</div>
+        </div>
+    </div>
+
+    <!-- الشريط العلوي الشريف والتوقيت والساعات -->
+    <div class="top-banner">
+        <div class="hadith-section">
+            <span class="salawat">✨ صلِّ على محمد ﷺ ✨</span>
+            <span id="rotatingHadith">قال رسول الله ﷺ: « أَدِّ الأَمَانَةَ إِلَى مَنِ إِئْتَمَنَكَ وَلا تَخُنْ مَنْ خَانَكَ »</span>
+        </div>
+        
+        <div class="clocks-wrapper">
+            <div class="mini-analog-clock" title="ساعة العقارب">
+                <div class="mini-center-dot"></div>
+                <div class="mini-hand mini-hour" id="topAnalogHour"></div>
+                <div class="mini-hand mini-minute" id="topAnalogMin"></div>
+                <div class="mini-hand mini-second" id="topAnalogSec"></div>
+            </div>
+            
+            <div class="clock-container" id="ksaClock">توقيت السعودية 🇸🇦: --:--:--</div>
+            <div class="clock-container" id="egyptClock">مصر 🇪🇬: --:--:--</div>
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل الدخول برمز الموظف الشخصي -->
+    <div id="auth-overlay">
+        <div class="auth-box">
+            <h2>🔑 دخول الموظف</h2>
+            <p>أدخل كودك الخاص لبدء الجلسة.<br><small style="color: #0284c7;">(يتم تسجيل وحفظ جميع بياناتك والتارجت الخاص بك برقمك تلقائياً لتدخل به دائماً)</small></p>
+            <input type="text" id="passInput" placeholder="أدخل كود الموظف..." onkeypress="handleKeyPress(event)">
+            <button onclick="checkUserAuth()">دخول النظام وحفظ الجلسة</button>
+            <div id="errorMsg" class="error-msg">يرجى إدخال رمز صحيح!</div>
+        </div>
+    </div>
+
+    <!-- محتوى الموقع الرئيسي -->
+    <div id="main-content">
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    منظومة تحصيل هدف الخليج
+                    <img class="flag-icon" src="https://flagcdn.com/w40/eg.png" alt="علم مصر">
+                </div>
+                <div class="header-actions">
+                    <div class="user-tag" id="userDisplayTag">👤 كود الموظف: --</div>
+                    <button class="logout-btn" onclick="logoutUser()">تبديل الموظف</button>
+                    <div class="designer-tag">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls-bar">
+            <button class="tab-btn active" onclick="switchTab('personal', event)">💳 قسم بنك SNB (القرض الشخصي)</button>
+            <button class="tab-btn" onclick="switchTab('credit', event)">🏛️ قسم بطاقة الكريديت كارد</button>
+            <button class="tab-btn" onclick="switchTab('auto', event)">🚗 قسم تمويل وقرض السيارة</button>
+            <button class="tab-btn tools-btn" onclick="switchTab('tools', event)">⚡ أدوات التحصيل الذكية والتارجت</button>
+            <button class="tab-btn" onclick="switchTab('followup', event)">📋 Follow Up (متابعة وتحديثات)</button>
+            <button class="tab-btn special-btn" onclick="switchTab('externallinks', event)">🔗 روابط مواقع الاستعلام</button>
+        </div>
+
+        <div class="container">
+
+            <div class="prayer-bar">
+                <div class="prayer-row">
+                    <span>🕌 مواعيد الصلاة اليوم (توقيت القاهرة 🇪🇬):</span>
+                    <div class="prayer-times-inline">
+                        <span class="prayer-item">الفجر: 05:14</span>
+                        <span class="prayer-item">الظهر: 12:55</span>
+                        <span class="prayer-item">العصر: 04:24</span>
+                        <span class="prayer-item">المغرب: 07:09</span>
+                        <span class="prayer-item">العشاء: 08:25</span>
+                    </div>
+                </div>
+                <div class="prayer-row" style="border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 5px;">
+                    <span>🕌 مواعيد الصلاة (توقيت الإمارات 🇦🇪):</span>
+                    <div class="prayer-times-inline">
+                        <span class="prayer-item">الفجر: 04:50</span>
+                        <span class="prayer-item">الظهر: 12:23</span>
+                        <span class="prayer-item">العصر: 03:50</span>
+                        <span class="prayer-item">المغرب: 06:36</span>
+                        <span class="prayer-item">العشاء: 08:06</span>
+                    </div>
+                    <button onclick="triggerTakbeer('تجريبي')" style="background: rgba(255,255,255,0.2); border: 1px solid #fff; color: #fff; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">اختبار الأذان 🔊</button>
+                </div>
+            </div>
+
+            <div class="dhikr-bar">
+                🌿 "اللَّهُمَّ اكْفِنِي بِحَلاَلِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ" | استعن بالله ولا تعجز.
+            </div>
+
+            <!-- 1. القرض الشخصي -->
+            <div id="personal" class="script-group active">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 1: التقديم والافتتاحية الرسمية (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - القرض الشخصي</span>
+                    </div>
+                    <div class="script-box">
+                        "السلام عليكم ورحمة الله وبركاته، أهلاً بك أستاذ [اسم العميل]، أتمنى تكون بخير وصحة يا رب. مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج لخدمات التحصيل</span>، بتواصل مع سيادتك اليوم نيابة عن بنك <span class="highlight">البنك الأهلي السعودي SNB</span>.<br>
+                        اتصالي بحضرتك اليوم بخصوص ملف التمويل الشخصي والمديونية المستحقة على حسابكم بقيمة إجمالية تبلغ <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+                        نحن في البنك مهتمون جداً بمتابعة حسابك واستقرار وضعك المالي، لذلك نحب نتعرف منك بشكل مباشر على أسباب عدم السداد حتى هذه اللحظة، وهل هناك أي صعوبات أو ظروف مالية واجهتك لنتمكن من المساعدة في حلها؟"
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 2: امتصاص الغضب وعرض الخصم المؤقت (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الثانية</span>
+                    </div>
+                    <div class="script-box">
+                        "أنا مقدر ومستوعب تماماً الظروف التي مررت بها يا أستاذنا العزيز، ودوري هنا ليس فقط المطالبة بل الوقوف في صفك وإيجاد مخرج مالي مريح ينهي هذه المديونية بالكامل.<br>
+                        بما إن لديك النية الجادة في إغلاق هذا الملف، أنا <span class="highlight">لن أعدك بوعود جازمة فورية، لكنني سأرفع طلب استثناء خاص للإدارة العليا بالبنك</span> لنحاول الحصول على <span class="success">أوفر خصم بنسبة مئوية ممتازة</span> على إجمالي المبلغ المستحق.<br>
+                        <span class="danger">لكن هناك نقطة جوهرية يجب أن نتفق عليها:</span> موافقة الخصم حين تخرج من البنك تصدر <span class="danger">لمدة 24 ساعة فقط (يوم واحد)</span>، ولن تتكرر. يجب أن يتوفر المبلغ المتفق عليه جاهزاً معك اليوم لندفعه فور صدور الموافقة. هل السيولة المالية متوفرة معك اليوم لنبدأ بالإجراءات فوراً؟"
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 3: قنوات وطرق السداد الرسمية (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الثالثة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>قناة السداد</th>
+                                <th>خطوات الشرح للعميل التفصيلية</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 4: عواقب عدم السداد والرفض (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الرابعة</span>
+                    </div>
+                    <div class="script-box">
+                        "أستاذي الفاضل، حرصاً مني على مصلحتك وتفادياً لأي أضرار مالية، واجب عليّ توضيح العواقب القانونية والائتمانية الصارمة في حال الرفض أو المماطلة:<br>
+                        1. <span class="danger">تدهور السجل الائتماني (I-Score):</span> سيتم تسريع تدهور تقييمك الائتماني مما يمنعك مستقبلاً من التعامل مع كافة القطاعات المصرفية.<br>
+                        2. <span class="danger">الإدراج الرسمي في الشركة السعودية للمعلومات الائتمانية (سمة - SIMAH):</span> يوضع اسمك كعميل متعثر، مما يوقف أي معاملات مالية أو شراء بالتقسيط في المملكة.<br>
+                        3. <span class="danger">تحويل الملف للقسم القانوني (Legal Status):</span> سيتم رفع دعوى قضائية وإصدار أحكام تنفيذية قد تشمل إيقاف الخدمات والحسابات البنكية."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 5: التسهيلات والمخالصة بعد السداد (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الخامسة</span>
+                    </div>
+                    <div class="script-box">
+                        "في المقابل يا أستاذي، بمجرد تمام السداد وحسم الملف اليوم، ستستفيد بالعديد من التسهيلات الشاملة:<br>
+                        1. <span class="success">إصدار خطاب مخالصة الذمة المالية:</span> سنقوم فوراً ببدء إجراءات استخراج وثيقة مخالصة ذمة معتمدة وموثوقة من بنك SNB تُثبت سداد كافة التزاماتك.<br>
+                        2. <span class="success">تحديث وتطهير السجل في (سمة):</span> رفع اسمك فوراً من قوائم المتعثرين وتعديل وضعك الائتماني ليعود سليماً.<br>
+                        3. <span class="success">استعادة الأهلية المصرفية:</span> يمكنك التقديم مجدداً وبشكل طبيعي جداً على قروض، تمويلات، أو بطاقات ائتمانية جديدة من البنك."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 6: Debt Identification & Greeting (SNB Personal Loan)</h2>
+                        <span class="badge-en">English - Page 6</span>
+                    </div>
+                    <div class="script-box en">
+                        "Good day Mr. [Customer Name], I hope you are doing well. My name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej Collection Agency</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
+                        I am reaching out to you today concerning your <span class="highlight">Personal Loan Account</span>, which has an overdue total balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+                        We are keen to support you and understand the reasons behind the payment delay so we can offer suitable settlement solutions."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 7: Empathy & Discount Offer (SNB Personal Loan)</h2>
+                        <span class="badge-en">English - Page 7</span>
+                    </div>
+                    <div class="script-box en">
+                        "I completely understand the financial difficulties you have faced, and my objective is to help you fully settle this debt safely.<br>
+                        Since you have a serious intention to clear your account, <span class="highlight">I will submit an exceptional request to management</span> to secure a <span class="success">special percentage discount</span> on your balance.<br>
+                        <span class="danger">Crucial Note:</span> Bank discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. You must ensure the agreed funds are fully available today. Are you ready to proceed with payment upon approval?"
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 8: Consequences & Clearance Settlement (SNB Personal Loan)</h2>
+                        <span class="badge-en">English - Page 8</span>
+                    </div>
+                    <div class="script-box en">
+                        "If you choose not to settle today, your <span class="danger">I-Score rating</span> will drop significantly, your name will be officially reported as defaulted in <span class="danger">SIMAH</span>, and legal action will be initiated.<br>
+                        However, upon immediate settlement, we will issue your official <span class="success">Clearance Letter</span>, clear your record from SIMAH, and restore your full eligibility for future financial products."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+            </div>
+
+            <!-- 2. الكريديت كارد -->
+            <div id="credit" class="script-group">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 1: التقديم وتحديد مديونية الكريديت كارد (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الأولى</span>
+                    </div>
+                    <div class="script-box">
+                        "مساء الخير أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br>
+                        تواصلنا اليوم يختص بحساب <span class="highlight">بطاقة الائتمان (الكريديت كارد)</span> الخاصة بك، حيث يوجد رصيد مستحق لم يتم سداده بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+                        نود الاستفسار عن سبب التوقف عن سداد الرصيد الكلي، ومساعدتك في إعادة تنظيم وتسوية البطاقة بشكل نهائي."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 2: عرض خصم تسوية البطاقة بشرط الجاهزية (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الثانية</span>
+                    </div>
+                    <div class="script-box">
+                        "أقدر تماماً التغيرات المالية التي جعلتك تتأخر عن السداد. دوري اليوم أن أقدم لك حلاً جذرياً لإغلاق البطاقة تماماً وإسقاط جزء من الفوائد.<br>
+                        <span class="highlight">سأطلب لك موافقة استثنائية لإلغاء نسبة مئوية من المديونية</span> شريطة أن تكون جاهزاً بالسداد اليوم.<br>
+                        <span class="danger">تنبيه هام:</span> موافقات خصومات الكريديت كارد تكون صالحة <span class="danger">ليوم واحد فقط</span> وتلغى تلقائياً بعد منتصف الليل. هل المبلغ المتفق عليه جاهز في حسابك لنرفع الطلب الآن؟"
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 3: طرق سداد مستحقات الكريديت كارد</h2>
+                        <span class="badge-ar">عربي - الورقة الثالثة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>طريقة الدفع</th>
+                                <th>التفاصيل والإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 4: مخاطر تجاهل سداد بطاقة الائتمان (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الرابعة</span>
+                    </div>
+                    <div class="script-box">
+                        "تأخير سداد الكريديت كارد يتسبب في تبعات مالية وقانونية مشددة:<br>
+                        1. <span class="danger">حظر التعامل الائتماني:</span> حظر كلي لإصدار أي بطاقات جديدة أو تمويلات في المملكة.<br>
+                        2. <span class="danger">البلاغ في سمة (SIMAH):</span> تسجيل الحساب كبطاقة متعثرة وتدهور مؤشر الـ I-Score.<br>
+                        3. <span class="danger">الملاحقة القضائية:</span> إحالة الملف إلى المحكمة التنفيذية وتحويل الحساب إلى عميل ليجل (Legal)."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 5: فوائد تسوية وإلغاء بطاقة الائتمان (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الخامسة</span>
+                    </div>
+                    <div class="script-box">
+                        "عند قيامك بالسداد اليوم عبر العرض المتاح:<br>
+                        1. سنقوم بإغلاق البطاقة نهائياً وإصدار <span class="success">خطاب مخالصة ذمة مالية</span> معتمد من بنك SNB.<br>
+                        2. <span class="success">تعديل التقرير الائتماني في سمة</span> وإزالة اسمك من قوائم التعثر.<br>
+                        3. حمايتك من تراكم الرسوم والفوائد التأخيرية واكتساب ثقة البنك مجدداً."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 6: Credit Card Debt Identification & Greeting (SNB)</h2>
+                        <span class="badge-en">English - Page 6</span>
+                    </div>
+                    <div class="script-box en">
+                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
+                        I am calling regarding your <span class="highlight">Credit Card Account</span> with an overdue balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+                        We want to discuss the reasons for non-payment and offer you a structured settlement."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 7: Credit Card Discount & Validity Offer (SNB)</h2>
+                        <span class="badge-en">English - Page 7</span>
+                    </div>
+                    <div class="script-box en">
+                        "I understand your current situation. I can request a <span class="success">special percentage discount</span> to settle your total credit card balance.<br>
+                        <span class="danger">Important Notice:</span> This approval is strictly valid for <span class="danger">ONE DAY ONLY</span>. Please confirm if your funds are available today so we can apply."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 8: Credit Card Settlement & Legal Warning (SNB)</h2>
+                        <span class="badge-en">English - Page 8</span>
+                    </div>
+                    <div class="script-box en">
+                        "Failing to settle today will result in updating your record as defaulted in <span class="danger">SIMAH</span> and transferring your file to Legal. Settle today to receive your official <span class="success">Clearance Letter</span> and restore your credit rating."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+            </div>
+
+            <!-- 3. تمويل السيارة -->
+            <div id="auto" class="script-group">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 1: التقديم والمديونية لتمويل السيارة (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الأولى</span>
+                    </div>
+                    <div class="script-box">
+                        "السلام عليكم أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br>
+                        اتصالي بحضرتك بخصوص عقد <span class="highlight">تمويل وقرض السيارة</span>، والمديونية المتأخرة بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+                        نرغب في التأكد من أسباب التأخير وتجنب الوصول لمراحل سحب المركبة أو اتخاذ إجراءات قانونية."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 2: عرض خصم تسوية عقد السيارة والموافقة السريعة (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الثانية</span>
+                    </div>
+                    <div class="script-box">
+                        "مقدرين تماماً ظروفك. يمكننا مساعدتك بتقديم طلب <span class="success">خصم استثنائي على الأرباح والرسوم المتبقية</span> لتمويل السيارة.<br>
+                        <span class="danger">تنبيه حاسم:</span> العرض ينزل من البنك <span class="danger">صالح لمدة يوم واحد فقط</span>. يجب سداد المبلغ كاملاً اليوم بعد الخصم لتثبيت الملكية. هل المبلغ جاهز معك الآن؟"
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 3: قنوات وطرق سداد تمويل وقرض السيارة</h2>
+                        <span class="badge-ar">عربي - الورقة الثالثة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>قناة وطريقة الدفع</th>
+                                <th>التفاصيل والإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 4: إجراءات وسحب المركبة عند عدم السداد (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الرابعة</span>
+                    </div>
+                    <div class="script-box">
+                        "في حال عدم السداد أو إلغاء العرض:<br>
+                        1. <span class="danger">إصدار أمر سحب المركبة:</span> البدء المباشر في إجراءات التعقب واسترداد السيارة.<br>
+                        2. <span class="danger">الإدراج في سمة (SIMAH):</span> حظر السجل الائتماني ومنع التعامل المصرفي.<br>
+                        3. <span class="danger">تحويل الملف للقضاء:</span> المطالبة القضائية بكامل أصل المبلغ والرسوم."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">ورقة 5: فك الحظر والمخالصة بعد سداد تمويل السيارة (بنك SNB)</h2>
+                        <span class="badge-ar">عربي - الورقة الخامسة</span>
+                    </div>
+                    <div class="script-box">
+                        "عند السداد اليوم بالتخفيض المتاح:<br>
+                        1. سنصدر <span class="success">خطاب مخالصة مالية وفك الحظر</span> عن المركبة لنقل ملكيتها بالكامل باسمك من بنك SNB.<br>
+                        2. <span class="success">تعديل وضعك في سمة</span> وإغلاق الملف بشكل قانوني نهائي."
+                    </div>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 6: Auto Loan Debt Identification & Greeting (SNB)</h2>
+                        <span class="badge-en">English - Page 6</span>
+                    </div>
+                    <div class="script-box en">
+                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
+                        I am contacting you regarding your overdue <span class="highlight">Auto Loan Account</span> with a total outstanding balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+                        We want to help you avoid vehicle repossession by offering a settlement solution."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 7: Auto Loan Discount & Repossession Warning (SNB)</h2>
+                        <span class="badge-en">English - Page 7</span>
+                    </div>
+                    <div class="script-box en">
+                        "We can submit an exceptional application for a <span class="success">discount on remaining profit charges</span>.<br>
+                        <span class="danger">Please Note:</span> Discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. Non-settlement will result in issuing a vehicle repossession order and reporting to <span class="danger">SIMAH</span>."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">Page 8: Vehicle Release & Clearance (SNB)</h2>
+                        <span class="badge-en">English - Page 8</span>
+                    </div>
+                    <div class="script-box en">
+                        "Upon full payment today, we will issue your official <span class="success">Clearance & Vehicle Release Letter</span>, allowing you to transfer total ownership and clear your SIMAH credit score."
+                    </div>
+                    <div class="card-footer">Developed by: Mostafa Waleed</div>
+                </div>
+            </div>
+
+            <!-- 4. أدوات التحصيل الذكية المحدثة والذكاء الاصطناعي -->
+            <div id="tools" class="script-group">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">⚡ أدوات العمل الذكية وشريط التارجت للمحصل</h2>
+                        <span class="badge-ar">أدوات حصرية ومحاسبة</span>
+                    </div>
+
+                    <!-- قسم الذكاء الاصطناعي - اسأل رشيد -->
+                    <div class="rasheed-container">
+                        <div class="rasheed-header">
+                            <div class="rasheed-title">🤖 المساعد الذكي التحصيلي: اسأل رشيد</div>
+                            <span style="font-size: 0.8rem; background: #7c3aed; color: white; padding: 2px 8px; border-radius: 6px;">AI Assistant</span>
+                        </div>
+                        
+                        <div class="rasheed-chat-box" id="rasheedChatBox">
+                            <div class="chat-msg bot">
+                                أهلاً بك يا بطل! أنا **رشيد** مساعدك الذكي في التحصيل. كيف أستطيع مساعدتك في الرد على العميل الآن؟ يمكنك الاختيار من الأسئلة السريعة أدناه أو كتابة استفسارك:
+                            </div>
+                        </div>
+
+                        <!-- أزرار سريعة للسكريبتات والردود -->
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يرفض السداد ويقول ليس لدي مال')">💡 رفض السداد للفقر</button>
+                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يطالب بخصم أعلى من المتاح')">📉 طلب خصم غير متاح</button>
+                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يهدد بتقديم شكوى')">⚠️ العميل يهدد بشكوى</button>
+                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('كيف أقنعه بالسداد اليوم وليس غداً؟')">⏳ حسم السداد اليوم</button>
+                        </div>
+
+                        <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 0;">
+                            <input type="text" id="rasheedInput" placeholder="اكتب اعتراض العميل أو السؤال لرشيد..." onkeydown="if(event.key==='Enter') sendToRasheed()">
+                            <button class="tool-btn" style="width: 140px; margin-top: 0; background: #7c3aed;" onclick="sendToRasheed()">إرسال لرشيد</button>
+                        </div>
+                    </div>
+
+                    <!-- قسم التارجت المباشر الخاص بالموظف -->
+                    <div class="target-card" style="margin-top: 25px;">
+                        <h3 style="color: #0369a1; margin-bottom: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                            🎯 شريط إنجاز الهدف (التارجت الشخصي بكود الموظف)
+                            <span id="targetStatusText" style="font-size: 0.9rem; color: #16a34a;">المتبقي: 0 ريال</span>
+                        </h3>
+
+                        <div class="target-grid">
+                            <div>
+                                <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                                    <div style="flex: 1; min-width: 140px;">
+                                        <label style="font-size: 0.8rem; font-weight: bold;">تحديد التارجت (الهدف):</label>
+                                        <input type="number" id="targetInput" placeholder="مبلغ التارجت..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                                    </div>
+                                    <div style="flex: 1; min-width: 140px;">
+                                        <label style="font-size: 0.8rem; font-weight: bold;">إضافة تحصيل جديد:</label>
+                                        <input type="number" id="collectedInput" placeholder="المبلغ المحصل..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
+                                    </div>
+                                </div>
+
+                                <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+                                    <button class="tool-btn" style="margin: 0; padding: 8px; flex: 1;" onclick="saveUserTarget()">حفظ الهدف</button>
+                                    <button class="tool-btn green" style="margin: 0; padding: 8px; flex: 1;" onclick="addCollection()">خصم وتحصيل</button>
+                                    <button class="tool-btn" style="margin: 0; padding: 8px; background: #64748b; flex: 1;" onclick="resetTargetData()">تصفير التارجت</button>
+                                </div>
+
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                                </div>
+
+                                <div style="font-size: 0.85rem; color: #64748b;">
+                                    سجل التحصيل المباشر للكود الخاص بك:
+                                    <ul class="history-list" id="historyList"></ul>
+                                </div>
+                            </div>
+
+                            <div class="chart-box">
+                                <div class="donut-chart" id="donutChart">
+                                    <span class="chart-text" id="chartPercentText">0%</span>
+                                </div>
+                                <span style="font-size: 0.85rem; font-weight: bold; margin-top: 8px; color: #475569;">نسبة المحصل</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tools-grid">
+                        <div class="tool-box">
+                            <h3>🧮 حاسبة الخصم المباشر</h3>
+                            <div class="input-group">
+                                <label>إجمالي المديونية (ريال):</label>
+                                <input type="number" id="calcTotal" placeholder="مثال: 62038">
+                            </div>
+                            <div class="input-group">
+                                <label>المبلغ المراد دفعه بعد الخصم (ريال):</label>
+                                <input type="number" id="calcPay" placeholder="مثال: 45000">
+                            </div>
+                            <button class="tool-btn" onclick="calculateDiscount()">احسب مبلغ الخصم والنسبة</button>
+                            
+                            <div class="calc-result-box">
+                                <div class="calc-result-row">
+                                    <span>المبلغ المعفي (الخصم):</span>
+                                    <span class="calc-val" id="resSaved">0.00 ريال</span>
+                                </div>
+                                <div class="calc-result-row">
+                                    <span>نسبة الخصم المئوية:</span>
+                                    <span class="calc-val" id="resPercent">0 %</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tool-box">
+                            <h3>📊 حاسبة تقسيط المديونية</h3>
+                            <div class="input-group">
+                                <label>المبلغ المراد تقسيطه (ريال):</label>
+                                <input type="number" id="planTotal" placeholder="مثال: 50000">
+                            </div>
+                            <div class="input-group">
+                                <label>عدد الأشهر المطلوبة:</label>
+                                <input type="number" id="planMonths" placeholder="مثال: 12">
+                            </div>
+                            <button class="tool-btn" onclick="calculatePlan()">حساب القسط الشهري</button>
+                            
+                            <div class="calc-result-box">
+                                <div class="calc-result-row">
+                                    <span>القسط الشهري التقريبي:</span>
+                                    <span class="calc-val" id="resMonthly">0.00 ريال</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tool-box">
+                            <h3>💬 فتح المحادثة المباشرة (واتساب)</h3>
+                            <div class="input-group">
+                                <label>رقم العميل (مع المفتاح الدولي):</label>
+                                <input type="text" id="waPhoneDirect" placeholder="966500000000">
+                            </div>
+                            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">سيتم فتح شات العميل مباشرة لتكتب له ما تشاء دون فرض أي نص.</p>
+                            <button class="tool-btn green" onclick="openDirectWhatsApp()">الدخول لمحادثة العميل</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <div class="tool-box">
+                            <h3>📝 سجل ملاحظات المكالمة الحالية</h3>
+                            <div class="input-group">
+                                <textarea id="quickNotes" rows="3" placeholder="اكتب ملاحظاتك عن العميل هنا..." oninput="autoSaveNotes()"></textarea>
+                            </div>
+                            <button class="tool-btn" onclick="copyNotes()">نسخ الملاحظات للنظام</button>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <div class="tool-box" style="border: 2px solid #0284c7; background: #f0f9ff;">
+                            <h3 style="color: #0369a1;">📌 قائمة ملاحظاتك المحفوظة بكودك (System Notes)</h3>
+                            <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">ملاحظات مفصلة تظل محفوظة بكودك ولا تُمحى إلا برغبتك:</p>
+                            <div class="input-group" style="display: flex; gap: 10px;">
+                                <input type="text" id="systemNoteInput" placeholder="اكتب ملاحظة لإضافتها للقائمة..." onkeydown="if(event.key==='Enter') addSystemNote()">
+                                <button class="tool-btn" style="width: 140px; margin-top: 0;" onclick="addSystemNote()">حفظ بالقائمة</button>
+                            </div>
+                            <ul class="system-notes-list" id="systemNotesUl"></ul>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px;">
+                        <h3 style="color: #0369a1; margin-bottom: 10px;">📅 مواعيد المتابعة اليومية (Callbacks)</h3>
+                        <div class="tools-grid" style="grid-template-columns: 1fr 2fr auto; align-items: end;">
+                            <div class="input-group">
+                                <label>اسم العميل / الرقم:</label>
+                                <input type="text" id="cbName" placeholder="أحمد - 050xxxx">
+                            </div>
+                            <div class="input-group">
+                                <label>موعد الاتصال والطلب:</label>
+                                <input type="text" id="cbTime" placeholder="الساعة 4 عصراً - سداد 10 آلاف">
+                            </div>
+                            <button class="tool-btn" style="height: 42px; margin-bottom: 12px;" onclick="addCallback()">إضافة القائمة</button>
+                        </div>
+
+                        <table id="callbackTable">
+                            <thead>
+                                <tr>
+                                    <th>العميل</th>
+                                    <th>تفاصيل الموعد</th>
+                                    <th style="text-align: center;">إجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+            </div>
+
+            <!-- 5. قسم Follow Up -->
+            <div id="followup" class="script-group">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">قائمة التحديثات والنصوص الجاهزة (Follow Up Notes)</h2>
+                        <span class="badge-en">Copy & Paste Ready</span>
+                    </div>
+                    <p style="margin-bottom: 20px; font-weight: bold; color: #475569;">اضغط على زر (Copy) بجانب الجملة التي تريد نسخها فوراً لاستخدامها في النظام:</p>
+                    
+                    <div class="followup-grid">
+                        <div class="followup-card color-active">
+                            <span class="followup-text">MOL....Active</span>
+                            <button class="copy-btn" onclick="copyText('MOL....Active')">Copy</button>
+                        </div>
+                        <div class="followup-card color-final-exit">
+                            <span class="followup-text">Mol.......Final Exit</span>
+                            <button class="copy-btn" onclick="copyText('Mol.......Final Exit')">Copy</button>
+                        </div>
+                        <div class="followup-card color-suspended">
+                            <span class="followup-text">Mol.....Suspended</span>
+                            <button class="copy-btn" onclick="copyText('Mol.....Suspended')">Copy</button>
+                        </div>
+                        <div class="followup-card color-absconded">
+                            <span class="followup-text">Mol...........Absconded</span>
+                            <button class="copy-btn" onclick="copyText('Mol...........Absconded')">Copy</button>
+                        </div>
+                        <div class="followup-card color-nothing">
+                            <span class="followup-text">Mol......Nothing</span>
+                            <button class="copy-btn" onclick="copyText('Mol......Nothing')">Copy</button>
+                        </div>
+                        <div class="followup-card color-not-found-cust">
+                            <span class="followup-text">Didn't find email or website customer</span>
+                            <button class="copy-btn" onclick="copyText('Didn\'t find email or website customer')">Copy</button>
+                        </div>
+                        <div class="followup-card color-not-found-comp">
+                            <span class="followup-text">Didn't find number or email or website Company</span>
+                            <button class="copy-btn" onclick="copyText('Didn\'t find number or email or website Company')">Copy</button>
+                        </div>
+                        <div class="followup-card color-found-comp">
+                            <span class="followup-text">Find email company and website</span>
+                            <button class="copy-btn" onclick="copyText('Find email company and website')">Copy</button>
+                        </div>
+                        <div class="followup-card color-found-cust">
+                            <span class="followup-text">Find email customer and website</span>
+                            <button class="copy-btn" onclick="copyText('Find email customer and website')">Copy</button>
+                        </div>
+                        <div class="followup-card color-tracing">
+                            <span class="followup-text">Under Tracing</span>
+                            <button class="copy-btn" onclick="copyText('Under Tracing')">Copy</button>
+                        </div>
+                        <div class="followup-card color-followup">
+                            <span class="followup-text">Follow up</span>
+                            <button class="copy-btn" onclick="copyText('Follow up')">Copy</button>
+                        </div>
+                        <div class="followup-card color-email-reminder">
+                            <span class="followup-text">Sent Email reminder</span>
+                            <button class="copy-btn" onclick="copyText('Sent Email reminder')">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+            </div>
+
+            <!-- 6. قسم روابط مواقع الاستعلام -->
+            <div id="externallinks" class="script-group">
+                <div class="page-card">
+                    <div class="page-header">
+                        <h2 class="page-title">دليل مواقع البحث والاستعلام الخارجية</h2>
+                        <span class="badge-ar">روابط مباشرة</span>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم الموقع</th>
+                                <th>الغرض والاستخدام</th>
+                                <th style="text-align: center;">الانتقال</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Truecaller</strong></td>
+                                <td>البحث والتقصي عن طريق رقم الهاتف.</td>
+                                <td style="text-align: center;"><a href="https://www.truecaller.com/ar-na/reverse-phone-number-lookup" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>RocketReach</strong></td>
+                                <td>الربط بحساب LinkedIn لاستخراج الأرقام والإيميلات.</td>
+                                <td style="text-align: center;"><a href="https://rocketreach.co/person?link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Ffouad-abdulhamid-2191363b&start=1&pageSize=10" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>SignalHire</strong></td>
+                                <td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
+                                <td style="text-align: center;"><a href="https://www.signalhire.com/search/people" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>ContactOut</strong></td>
+                                <td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
+                                <td style="text-align: center;"><a href="https://contactout.com/login" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>الهيئة السعودية للتخصصات الصحية</strong></td>
+                                <td>الاستعلام عن العميل برقم الهوية (إذا كان دكتور).</td>
+                                <td style="text-align: center;"><a href="https://scfhs.org.sa/en/E-Services/regvaliddescription" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>وزارة التجارة (البيانات التجارية)</strong></td>
+                                <td>الاستعلام برقم الهوية لمعرفة هل للعميل شركة أم لا.</td>
+                                <td style="text-align: center;"><a href="https://mc.gov.sa/ar/eservices/Pages/Commercial-data.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>خدمات مكتب العمل (نقل الخدمات)</strong></td>
+                                <td>معرفة الشركة التي يعمل بها أو طلب نقل لشركة أخرى برقم الهوية.</td>
+                                <td style="text-align: center;"><a href="https://es.hrsd.gov.sa/Services/Inquiry/LaborOfficeServicesInquiry.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>استعلام وافد (وزارة الموارد البشرية)</strong></td>
+                                <td>الاستعلام برقم الهوية لمعرفة هل هو متواجد داخل المملكة أم خارجها.</td>
+                                <td style="text-align: center;"><a href="https://es.hrsd.gov.sa/services/inquiry/nonsaudiempinquiry.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mails.so</strong></td>
+                                <td>التحقق من حالة البريد الإلكتروني (هل هو Active أم لا).</td>
+                                <td style="text-align: center;"><a href="https://mails.so/login" target="_blank" class="go-btn">دخول الموقع</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toast">تم النسخ بنجاح!</div>
+
+    <script>
+        let currentUserCode = "";
+        let userData = {
+            target: 0,
+            collected: 0,
+            history: [],
+            systemNotes: [],
+            quickNotes: ""
+        };
+
+        window.onload = function() {
+            startClocks();
+            startRotatingHadith();
+
+            const savedUser = localStorage.getItem("lastActiveUserCode");
+            if (savedUser) {
+                loginUser(savedUser);
+            }
+        };
+
+        function checkUserAuth() {
+            const input = document.getElementById("passInput").value.trim();
+            const errorMsg = document.getElementById("errorMsg");
+            
+            if (input.length >= 2) {
+                localStorage.setItem("lastActiveUserCode", input);
+                loginUser(input);
+            } else {
+                errorMsg.innerText = "يرجى إدخال كود الموظف الخاص بك!";
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function loginUser(code) {
+            currentUserCode = code;
+            document.getElementById("auth-overlay").style.display = "none";
+            document.getElementById("main-content").style.display = "block";
+            document.getElementById("userDisplayTag").innerText = "👤 كود الموظف: " + currentUserCode;
+            loadUserData();
+        }
+
+        function logoutUser() {
+            localStorage.removeItem("lastActiveUserCode");
+            location.reload();
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === "Enter") checkUserAuth();
+        }
+
+        function loadUserData() {
+            const stored = localStorage.getItem("hkh_userData_" + currentUserCode);
+            if (stored) {
+                userData = JSON.parse(stored);
+            } else {
+                userData = {
+                    target: 0,
+                    collected: 0,
+                    history: [],
+                    systemNotes: [],
+                    quickNotes: ""
+                };
+            }
+            updateTargetUI();
+            renderSystemNotes();
+            document.getElementById("quickNotes").value = userData.quickNotes || "";
+        }
+
+        function saveUserData() {
+            localStorage.setItem("hkh_userData_" + currentUserCode, JSON.stringify(userData));
+        }
+
+        function saveUserTarget() {
+            const val = parseFloat(document.getElementById("targetInput").value);
+            if (isNaN(val) || val <= 0) {
+                alert("يرجى إدخال مبلغ تارجت صحيح!");
+                return;
+            }
+            userData.target = val;
+            saveUserData();
+            updateTargetUI();
+            showToast("تم حفظ التارجت بنجاح لكودك!");
+        }
+
+        function addCollection() {
+            const val = parseFloat(document.getElementById("collectedInput").value);
+            if (isNaN(val) || val <= 0) {
+                alert("يرجى إدخال مبلغ تحصيل صحيح!");
+                return;
+            }
+            userData.collected += val;
+            const nowStr = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+            userData.history.unshift({ amount: val, time: nowStr });
+            
+            document.getElementById("collectedInput").value = "";
+            saveUserData();
+            updateTargetUI();
+            showToast("تم إضافة المبلغ وتحصيله!");
+        }
+
+        function resetTargetData() {
+            if (confirm("هل أنت متأكد من تصفير وإعادة ضبط البيانات الخاصة بكودك؟")) {
+                userData.target = 0;
+                userData.collected = 0;
+                userData.history = [];
+                saveUserData();
+                updateTargetUI();
+            }
+        }
+
+        function updateTargetUI() {
+            const target = userData.target || 0;
+            const collected = userData.collected || 0;
+            const remaining = Math.max(0, target - collected);
+            const percent = target > 0 ? Math.min(100, (collected / target) * 100) : 0;
+
+            document.getElementById("targetInput").value = target > 0 ? target : "";
+            document.getElementById("targetStatusText").innerText = `المتبقي: ${remaining.toLocaleString('ar-EG')} ريال (المحصل: ${collected.toLocaleString('ar-EG')})`;
+            
+            document.getElementById("progressBarFill").style.width = percent + "%";
+
+            const donut = document.getElementById("donutChart");
+            const deg = (percent / 100) * 360;
+            donut.style.background = `conic-gradient(#16a34a ${deg}deg, #e2e8f0 ${deg}deg)`;
+            document.getElementById("chartPercentText").innerText = percent.toFixed(1) + "%";
+
+            const hList = document.getElementById("historyList");
+            hList.innerHTML = "";
+            if (userData.history.length === 0) {
+                hList.innerHTML = '<li style="color: #94a3b8; padding: 4px 0;">لا توجد عمليات تحصيل مسجلة بعد لهذا الكود</li>';
+            } else {
+                userData.history.forEach(item => {
+                    const li = document.createElement("li");
+                    li.className = "history-item";
+                    li.innerHTML = `<span>➕ تحصيل: <strong>${item.amount.toLocaleString()} ريال</strong></span><span>⏰ ${item.time}</span>`;
+                    hList.appendChild(li);
+                });
+            }
+        }
+
+        function startClocks() {
+            function update() {
+                const now = new Date();
+                
+                const ksaOptions = { timeZone: 'Asia/Riyadh', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+                document.getElementById('ksaClock').innerText = 'السعودية 🇸🇦: ' + new Intl.DateTimeFormat('ar-SA', ksaOptions).format(now);
+
+                const egyptOptions = { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+                document.getElementById('egyptClock').innerText = 'مصر 🇪🇬: ' + new Intl.DateTimeFormat('ar-EG', egyptOptions).format(now);
+
+                const sec = now.getSeconds();
+                const min = now.getMinutes();
+                const hr = now.getHours();
+
+                const secDeg = (sec / 60) * 360;
+                const minDeg = ((min + sec / 60) / 60) * 360;
+                const hrDeg = (((hr % 12) + min / 60) / 12) * 360;
+
+                document.getElementById('topAnalogSec').style.transform = `rotate(${secDeg}deg)`;
+                document.getElementById('topAnalogMin').style.transform = `rotate(${minDeg}deg)`;
+                document.getElementById('topAnalogHour').style.transform = `rotate(${hrDeg}deg)`;
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        function triggerTakbeer(prayerName) {
+            const overlay = document.getElementById("takbeer-overlay");
+            document.getElementById("prayerNameNotice").innerText = `حان الآن موعد أذان صلاة ${prayerName} 🕌`;
+            overlay.style.display = "flex";
+            
+            setTimeout(() => {
+                overlay.style.display = "none";
+            }, 6000);
+        }
+
+        const hadithsList = [
+            "قال رسول الله ﷺ: « أَدِّ الأَمَانَةَ إِلَى مَنِ إِئْتَمَنَكَ وَلا تَخُنْ مَنْ خَانَكَ »",
+            "قال رسول الله ﷺ: « إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى »",
+            "قال رسول الله ﷺ: « الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ »",
+            "قال رسول الله ﷺ: « لا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ »",
+            "قال رسول الله ﷺ: « مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ »",
+            "قال رسول الله ﷺ: « تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ لَكَ صَدَقَةٌ »"
+        ];
+        let hadithIndex = 0;
+
+        function startRotatingHadith() {
+            const el = document.getElementById("rotatingHadith");
+            setInterval(() => {
+                hadithIndex = (hadithIndex + 1) % hadithsList.length;
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.innerText = hadithsList[hadithIndex];
+                    el.style.opacity = 1;
+                }, 300);
+            }, 7000);
+        }
+
+        function renderSystemNotes() {
+            const ul = document.getElementById('systemNotesUl');
+            if(!ul) return;
+            ul.innerHTML = '';
+
+            const notes = userData.systemNotes || [];
+            if (notes.length === 0) {
+                ul.innerHTML = '<li style="color: #64748b; font-size: 0.85rem; text-align: center; padding: 6px;">لا توجد ملاحظات محفوظة حالياً بكودك</li>';
+                return;
+            }
+
+            notes.forEach((note, index) => {
+                const li = document.createElement('li');
+                li.className = 'system-note-item';
+                li.innerHTML = `
+                    <span>${note}</span>
+                    <button class="del-btn" onclick="deleteSystemNote(${index})">حذف</button>
+                `;
+                ul.appendChild(li);
+            });
+        }
+
+        function addSystemNote() {
+            const input = document.getElementById('systemNoteInput');
+            const txt = input.value.trim();
+            if (txt !== '') {
+                if (!userData.systemNotes) userData.systemNotes = [];
+                userData.systemNotes.push(txt);
+                saveUserData();
+                input.value = '';
+                renderSystemNotes();
+            }
+        }
+
+        function deleteSystemNote(index) {
+            userData.systemNotes.splice(index, 1);
+            saveUserData();
+            renderSystemNotes();
+        }
+
+        function autoSaveNotes() {
+            userData.quickNotes = document.getElementById("quickNotes").value;
+            saveUserData();
+        }
+
+        function copyNotes() {
+            const notes = document.getElementById("quickNotes").value;
+            if(!notes) return;
+            copyText(notes);
+        }
+
+        function switchTab(tabId, evt) {
+            const groups = document.querySelectorAll('.script-group');
+            groups.forEach(group => group.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            if(evt) evt.currentTarget.classList.add('active');
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("تم النسخ بنجاح: " + text);
+            }).catch(err => {
+                alert("تعذر النسخ تلقائياً، يمكنك تحديد النص ونسخه يدوياً.");
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById("toast");
+            toast.innerText = msg;
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 2000);
+        }
+
+        function calculateDiscount() {
+            const total = parseFloat(document.getElementById("calcTotal").value);
+            const pay = parseFloat(document.getElementById("calcPay").value);
+
+            if (isNaN(total) || isNaN(pay) || total <= 0) {
+                alert("يرجى إدخال المبالغ بشكل صحيح");
+                return;
+            }
+
+            if (pay > total) {
+                alert("المبلغ المراد دفعه لا يمكن أن يكون أكبر من إجمالي المديونية!");
+                return;
+            }
+
+            const savedAmount = total - pay;
+            const percent = (savedAmount / total) * 100;
+
+            document.getElementById("resSaved").innerText = savedAmount.toFixed(2) + " ريال";
+            document.getElementById("resPercent").innerText = percent.toFixed(1) + " %";
+        }
+
+        function calculatePlan() {
+            const total = parseFloat(document.getElementById("planTotal").value);
+            const months = parseInt(document.getElementById("planMonths").value);
+
+            if (isNaN(total) || isNaN(months) || months <= 0) {
+                alert("يرجى إدخال البيانات بشكل صحيح");
+                return;
+            }
+
+            const monthly = total / months;
+            document.getElementById("resMonthly").innerText = monthly.toFixed(2) + " ريال/شهر";
+        }
+
+        function openDirectWhatsApp() {
+            const phone = document.getElementById("waPhoneDirect").value.replace(/[^0-9]/g, '');
+            if (!phone) {
+                alert("يرجى إدخال رقم الهاتف");
+                return;
+            }
+            const url = `https://wa.me/${phone}`;
+            window.open(url, '_blank');
+        }
+
+        function addCallback() {
+            const name = document.getElementById("cbName").value;
+            const time = document.getElementById("cbTime").value;
+            if(!name || !time) {
+                alert("يرجى إدخال البيانات");
+                return;
+            }
+            const table = document.getElementById("callbackTable").getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow();
+            newRow.innerHTML = `<td>${name}</td><td>${time}</td><td style="text-align: center;"><button onclick="this.parentElement.parentElement.remove()" style="background:#dc2626; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer;">حذف</button></td>`;
+            document.getElementById("cbName").value = '';
+            document.getElementById("cbTime").value = '';
+        }
+
+        /* --- 8. محرك الذكاء الاصطناعي (اسأل رشيد) --- */
+        function askRasheedQuick(text) {
+            document.getElementById("rasheedInput").value = text;
+            sendToRasheed();
+        }
+
+        function sendToRasheed() {
+            const input = document.getElementById("rasheedInput");
+            const query = input.value.trim();
+            if (!query) return;
+
+            const chatBox = document.getElementById("rasheedChatBox");
+
+            // رسالة المستخدم
+            const userMsg = document.createElement("div");
+            userMsg.className = "chat-msg user";
+            userMsg.innerText = query;
+            chatBox.appendChild(userMsg);
+
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // توليد الرد من رشيد
+            setTimeout(() => {
+                const botMsg = document.createElement("div");
+                botMsg.className = "chat-msg bot";
+                botMsg.innerText = getRasheedReply(query);
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+        }
+
+        function getRasheedReply(q) {
+            q = q.toLowerCase();
+            if (q.includes("رفض") || q.includes("ليس لدي") || q.includes("ما عندي")) {
+                return "قل له: أستاذي العزيز، مقدر ظروفك تماماً ولكن تراكم المديونية سيسبب إدراج اسمك في سمة وتجميد خدماتك. دعنا نضع حلاً استثنائياً اليوم بدفع جزء بسيط لتجميد أي إجراء قانوني ضدك.";
+            } else if (q.includes("خصم") || q.includes("نسبة")) {
+                return "قل له: موافقة الخصم تخرج بطلب خاص بشرط السداد الفوري خلال 24 ساعة فقط. هل المبلغ جاهز لديك اليوم حتى أرفع الطلب للإدارة فوراً؟";
+            } else if (q.includes("شكوى") || q.includes("تهديد")) {
+                return "قل له: أستاذنا نحن نهدف لمساعدتك وحل ملفك ودياً قبل أي تصعيد قانوني من البنك، والهدف من الاتصال هو المصلحة المشتركة وتفادي الآثار الائتمانية.";
+            } else if (q.includes("اليوم") || q.includes("غدا") || q.includes("تأجيل")) {
+                return "قل له: العرض الحالي متاح اليوم فقط حتى الساعة 12 ليلاً من البنك ولا نضمن تجديده غداً. حسم الموضوع اليوم هو الضمان الوحيد للخصم.";
+            } else {
+                return "💡 نصيحة رشيد: حاول أن تبدأ دائماً بامتصاص غضب العميل وربط الخصم بشرط الجاهزية للسداد اليوم، وتذكيره دائماً بتفادي حظر سمة I-Score.";
+            }
+        }
+    </script>
+<script>
+    const bgImages = [
+        "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')",
+        "url('https://images.unsplash.com/photo-1519681393784-d120267933ba')",
+        "url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05')"
+    ];
+
+    let currentIndex = 0;
+
+    function changePageBackground() {
+        document.body.style.backgroundImage = bgImages[currentIndex];
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.transition = "background-image 1s ease-in-out";
+        
+        currentIndex = (currentIndex + 1) % bgImages.length;
+    }
+
+    setInterval(changePageBackground, 300000);
+    changePageBackground();
+</script>
+
+</body>
+</html>
