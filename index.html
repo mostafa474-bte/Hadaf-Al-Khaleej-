@@ -1786,11 +1786,11 @@
             function update() {
                 const now = new Date();
                 
-               const egyptOptions = { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-document.getElementById('egyptClock').innerText = 'مصر (EG): ' + new Intl.DateTimeFormat('ar-EG', egyptOptions).format(now);
+    const egyptOptions = { timeZone: 'Africa/Cairo', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+document.getElementById('egyptClock').innerText = 'Egypt (EG): ' + new Intl.DateTimeFormat('en-US', egyptOptions).format(now);
 
 const uaeOptions = { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-document.getElementById('ksaClock').innerText = 'الإمارات (AE): ' + new Intl.DateTimeFormat('ar-AE', uaeOptions).format(now);
+document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTimeFormat('en-US', uaeOptions).format(now);
 
                 const sec = now.getSeconds();
                 const min = now.getMinutes();
