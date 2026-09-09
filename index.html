@@ -2072,13 +2072,26 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
     </div>
 
     <button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
-<div style="display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap;">
-    <button type="button" onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
-        ايميل لعميل لو عنده كرتين
-    </button>
-    <button type="button" onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
-        اميل تذكيري
-    </button>
+<div style="background: #f7fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 10px 0;">
+    <div style="font-weight: bold; margin-bottom: 8px; color: #2b6cb0;">بيانات الحساب الثاني (لو العميل عنده كرتين):</div>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 200px;">
+            <label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Account Number:</label>
+            <input type="text" id="genAccount2" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="رقم الحساب الثاني">
+        </div>
+        <div style="flex: 1; min-width: 200px;">
+            <label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Balance (SAR):</label>
+            <input type="text" id="genBalance2" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="مبلغ الحساب الثاني">
+        </div>
+    </div>
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="button" onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+            ايميل لعميل لو عنده كرتين
+        </button>
+        <button type="button" onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+            اميل تذكيري
+        </button>
+    </div>
 </div>
     <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
     <textarea id="genResult" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;" readonly></textarea>
@@ -2155,21 +2168,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('activeIds').innerText = activeSessions.join(', ');
     }
 });
-    function generateTwoCardsEmail() {
-    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Hamid Fayez Aroub";
-    let iqama = document.getElementById('genIqama') ? document.getElementById('genIqama').value : "2153098815";
+function generateTwoCardsEmail() {
+    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Customer";
+    if(name) {
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    let iqama = document.getElementById('genIqama') ? document.getElementById('genIqama').value : "";
     
+    let acc1 = document.getElementById('genAccount') ? document.getElementById('genAccount').value.trim() : "";
+    let bal1Str = document.getElementById('genBalance') ? document.getElementById('genBalance').value.trim() : "0";
+    
+    let acc2 = document.getElementById('genAccount2') ? document.getElementById('genAccount2').value.trim() : "";
+    let bal2Str = document.getElementById('genBalance2') ? document.getElementById('genBalance2').value.trim() : "0";
+    
+    let bal1 = parseFloat(bal1Str) || 0;
+    let bal2 = parseFloat(bal2Str) || 0;
+    let total = bal1 + bal2;
+
     let emailText = `Name: MR. ${name}
 
 Iqama (Work Residency) No.: ${iqama}
-Account Number :   5688096778 outstanding balance : 27,822.15 SAR
+Account Number :   ${acc1} outstanding balance : ${bal1Str} SAR
 
-Account Number :   5751623238 outstanding balance : 13,562.25 SAR
+Account Number :   ${acc2} outstanding balance : ${bal2Str} SAR
 
-Total Outstanding    : 41,384.4 SAR
+Total Outstanding    : ${total} SAR
 Dear MR. ${name}
 We are writing to inform you that you have an
-outstanding balance of 41,384.4 SAR with Saudi National Bank. Please note
+outstanding balance of ${total} SAR with Saudi National Bank. Please note
 that The National Commercial Bank (NCB) has merged with Samba Financial Group
 and has become the Saudi National Bank (SNB).
 
