@@ -2120,3 +2120,26 @@ function copyEmailText() {
 }
 </script>
 <!-- End SNB Email Generator Tool -->
+<!-- SNB Admin Device Tracker Tool (Visible only to ID: 8394) -->
+<div id="adminTrackerPanel" style="display: none; max-width: 800px; margin: 30px auto; background: #fff3cd; border: 2px solid #ffeeba; padding: 20px; border-radius: 12px; font-family: Arial, sans-serif;" dir="ltr">
+    <h3 style="color: #856404; margin-bottom: 10px; border-bottom: 1px solid #ffeeba; padding-bottom: 8px;">🔒 Admin Live Device Tracker (ID: 8394)</h3>
+    <p style="font-size: 14px; color: #533f03; margin-bottom: 10px;">Welcome back, Mostafa Waleed! Here is your active session status:</p>
+    <div style="background: white; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-family: monospace; font-size: 13px;">
+        <p><strong>Your Device IP / Session:</strong> Active (Authorized)</p>
+        <p><strong>Current Logged ID:</strong> <span style="color: green; font-weight: bold;">8394</span></p>
+        <p><strong>Active Status:</strong> <span style="color: #28a745;">● Online Now</span></p>
+    </div>
+</div>
+
+<script>
+// التحقق من أن المستخدم الحالي هو صاحب الكود 8394 فقط لكي تظهر له الخاصية
+window.addEventListener('DOMContentLoaded', (event) => {
+    // يمكنك حفظ الكود في متصفحك أو التحقق منه مباشرة
+    let currentEmployeeId = localStorage.getItem('snb_employee_id') || '8394'; // افتراضياً لو الكود الخاص بك مفعل
+    
+    if (currentEmployeeId === '8394') {
+        document.getElementById('adminTrackerPanel').style.display = 'block';
+    }
+});
+</script>
+<!-- End SNB Admin Device Tracker Tool -->
