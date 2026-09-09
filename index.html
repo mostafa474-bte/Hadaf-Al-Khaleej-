@@ -2048,3 +2048,75 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 
 </body>
 </html>
+<!-- SNB Email Generator Tool -->
+<div style="max-width: 800px; margin: 30px auto; background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: Arial, sans-serif;" dir="ltr">
+    <h3 style="color: #00334e; border-bottom: 2px solid #005c8a; padding-bottom: 10px; margin-bottom: 20px; text-align: left;">SNB Collection Email Generator</h3>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Client Name:</label>
+            <input type="text" id="genName" placeholder="e.g. Ahmed Ali" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Iqama / Residency No:</label>
+            <input type="text" id="genIqama" placeholder="e.g. 2xxxxxxxxxx" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Account Number:</label>
+            <input type="text" id="genAccount" placeholder="e.g. SNB-0000000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+        </div>
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Outstanding Balance (SAR):</label>
+            <input type="text" id="genBalance" placeholder="e.g. 5,000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
+        </div>
+    </div>
+
+    <button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
+
+    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
+    <textarea id="genResult" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;" readonly></textarea>
+
+    <button onclick="copyEmailText()" style="background: #28a745; color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">Copy Email to Clipboard</button>
+</div>
+
+<script>
+function generateEmailText() {
+    let name = document.getElementById('genName').value.trim();
+    if(name) {
+        // تحويل الاسم لأول حروف كبيرة تلقائياً وضبطه بالصيغة المطلوبة
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+    }
+    let iqama = document.getElementById('genIqama').value;
+    let account = document.getElementById('genAccount').value;
+    let balance = document.getElementById('genBalance').value;
+
+    let emailText = `Name: MR. ${name}
+\nIqama (Work Residency) No.: ${iqama}
+Account Number : ${account}
+Outstanding balance : ${balance} SAR
+\n\nDear MR. ${name},
+\nWe are writing to inform you that you have an outstanding balance of SAR ${balance} with Saudi National Bank. Please note that The National Commercial Bank (NCB) has merged with Samba Financial Group and has become the Saudi National Bank (SNB).
+\nBe note that your file on critical situation due to non-payment your debts and in case we not find your positive respond ASAP your file will transfer to legal department to start legal actions inside KSA , home country and GCC Countries
+\nIn case you willing to pay your debts we can support you with the special discount and special offer from the bank to settle your debts and close this matter permanently and take your clearance letter , clear your name from SAMA and clear any legal case or court case if found ..
+\nPlease revert to us with your direct contact number to discuss this matter amicably or contact us on 00201557119829 (Call and What’s up) / 0097165148719 (Call) for easy conversation ..
+\nNote : attached is our authority letter
+\nAppreciate your quick cooperate .
+\n\nKind Regards, 
+Moustafa Nassar
+Team leader - Bank collection - Recoveries
+– Retail Banking
+Tahseel - Hadaf Al Khaleej Debt Collection & Legal Consultants
+Sharjah - Head Office | Dubai | Abu Dhabi | Egypt | Qatar | Jordan | India | Lebanon | UK | 
+Please consider the environment before printing this e-mail.`;
+
+    document.getElementById('genResult').value = emailText;
+}
+
+function copyEmailText() {
+    let copyText = document.getElementById('genResult');
+    copyText.select();
+    document.execCommand('copy');
+    alert('Email copied successfully! You can now paste it directly.');
+}
+</script>
+<!-- End SNB Email Generator Tool -->
