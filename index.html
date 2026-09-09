@@ -2072,7 +2072,14 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
     </div>
 
     <button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
-
+<div style="display: flex; gap: 10px; margin: 10px 0; flex-wrap: wrap;">
+    <button type="button" onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+        ايميل لعميل لو عنده كرتين
+    </button>
+    <button type="button" onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+        اميل تذكيري
+    </button>
+</div>
     <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
     <textarea id="genResult" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;" readonly></textarea>
 
@@ -2148,5 +2155,50 @@ window.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('activeIds').innerText = activeSessions.join(', ');
     }
 });
+    function generateTwoCardsEmail() {
+    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Hamid Fayez Aroub";
+    let iqama = document.getElementById('genIqama') ? document.getElementById('genIqama').value : "2153098815";
+    
+    let emailText = `Name: MR. ${name}
+
+Iqama (Work Residency) No.: ${iqama}
+Account Number :   5688096778 outstanding balance : 27,822.15 SAR
+
+Account Number :   5751623238 outstanding balance : 13,562.25 SAR
+
+Total Outstanding    : 41,384.4 SAR
+Dear MR. ${name}
+We are writing to inform you that you have an
+outstanding balance of 41,384.4 SAR with Saudi National Bank. Please note
+that The National Commercial Bank (NCB) has merged with Samba Financial Group
+and has become the Saudi National Bank (SNB).
+
+Be note that your file on critical situation due to non-payment your debts and
+in case we not find your positive respond ASAP your file will transfer to legal
+department to start legal actions inside KSA , home country and GCC Countries
+In case you willing to pay your debts we can
+support you with the special discount and special offer reach to 40 %  
+from the bank to settle your debts and close this matter permanently and
+take your clearance letter , clear your name from SAMA and clear any legal case
+or court case if found ..
+Note : attached is our authorization letter
+Appreciate your quick cooperate .`;
+
+    let resultBox = document.getElementById('genResult');
+    if (resultBox) resultBox.value = emailText;
+}
+
+function generateReminderEmail() {
+    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Customer";
+
+    let reminderText = `Dear ${name}, 
+I hope this email finds you well.
+We are writing to remind you of the unresolved matter discussed in the email below. It is important that we address this issue promptly to avoid any further complications. We kindly suggest that you revert to us at your earliest convenience so we can discuss the matter and work towards an amicable settlement of your liability.
+If you are facing any challenges or require any support, please do not hesitate to inform us. We are here to assist you in any way we can.
+Looking forward to your prompt response`;
+
+    let resultBox = document.getElementById('genResult');
+    if (resultBox) resultBox.value = reminderText;
+}
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
