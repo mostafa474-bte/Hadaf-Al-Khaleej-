@@ -2135,8 +2135,7 @@ function copyEmailText() {
 // التحقق من أن المستخدم الحالي هو صاحب الكود 8394 فقط لكي تظهر له الخاصية
 window.addEventListener('DOMContentLoaded', (event) => {
     // يمكنك حفظ الكود في متصفحك أو التحقق منه مباشرة
-    let currentEmployeeId = localStorage.getItem('snb_employee_id') || '8394'; // افتراضياً لو الكود الخاص بك مفعل
-    
+   let currentEmployeeId = '8394'; 
     if (currentEmployeeId === '8394') {
         document.getElementById('adminTrackerPanel').style.display = 'block';
     }
