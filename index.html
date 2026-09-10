@@ -2234,25 +2234,41 @@ Looking forward to your prompt response`;
     <meta charset="UTF-8">
     <title>Hadaf Al-Khaleej</title>
     <style>
-        /* تأثير النبض وإضاءة الخلفية الحمراء الخاصة بفيروس أمبريلا */
-        @keyframes pulseGlow {
+        /* تأثير النبض للإطار الأحمر على الأطراف (مثل الإنذار أو الفيروس) */
+        @keyframes borderPulse {
           0% {
-            background-color: #050000;
+            box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.4);
           }
           50% {
-            background-color: #2b0000;
-            box-shadow: inset 0 0 150px rgba(255, 0, 0, 0.5);
+            box-shadow: inset 0 0 100px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
+            border-color: rgba(255, 0, 0, 1);
           }
           100% {
-            background-color: #050000;
+            box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.2);
+            border-color: rgba(255, 0, 0, 0.4);
           }
+        }
+
+        /* طبقة الأطراف الحمراء النبضية فوق الموقع بالكامل */
+        body::after {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none; /* يسمح بالنقر على الأزرار والموقع عادي جداً */
+          z-index: 9998;
+          animation: borderPulse 2.5s infinite ease-in-out;
+          border: 4px solid rgba(255, 0, 0, 0.6);
+          box-sizing: border-box;
         }
 
         body {
           margin: 0;
           padding: 0;
           background-color: #050000;
-          animation: pulseGlow 3s infinite ease-in-out;
           font-family: Arial, sans-serif;
           color: #ffffff;
         }
@@ -2260,7 +2276,7 @@ Looking forward to your prompt response`;
 </head>
 <body>
 
-    <!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
+    <!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس -->
     <div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #0a0000 100%); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease;">
         
         <!-- خلفية رموز الماتريكس -->
@@ -2269,7 +2285,7 @@ Looking forward to your prompt response`;
         <!-- محتوى الشاشة في المنتصف -->
         <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); padding: 30px; border-radius: 8px; text-align: center;">
 
-            <!-- CSS رسم هندسي ب) شعار أمبيلا -->
+            <!-- شعار أمبيلا الهندسي -->
             <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
                 <div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
                 <div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
@@ -2314,6 +2330,41 @@ Looking forward to your prompt response`;
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
+            }
+        }
+        let matrixInterval = setInterval(drawMatrix, 35);
+
+        // تشغيل النصوص وتسلسل الدخول //
+        window.addEventListener('DOMContentLoaded', () => {
+            let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT BREACH DETECTED";
+            let i = 0;
+            let speed = 25;
+            let textElement = document.getElementById('terminalText');
+            let barElement = document.getElementById('terminalBar');
+            let terminalBox = document.getElementById('secretTerminal');
+
+            function typewriter() {
+                if (i < text.length) {
+                    textElement.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
+                    i++;
+                    let progress = (i / text.length) * 100;
+                    barElement.style.width = progress + '%';
+                    setTimeout(typewriter, speed);
+                } else {
+                    setTimeout(() => {
+                        terminalBox.style.opacity = '0';
+                        setTimeout(() => {
+                            terminalBox.style.display = 'none';
+                            clearInterval(matrixInterval);
+                        }, 800);
+                    }, 800);
+                }
+            }
+            typewriter();
+        });
+    </script>
+</body>
+</html>
             }
         }
         let matrixInterval = setInterval(drawMatrix, 35);
