@@ -2229,16 +2229,16 @@ Looking forward to your prompt response`;
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
 <!-- شاشة أمان أمبريلا / نظام الحجر الصحي البيولوجي -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #2b0000 0%, #0d0000 60%, #030000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
+<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #450000; color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
     
-    <!-- خطوط جانبية تحذيرية مرعبة (تأثير شبكة معمل أمبريلا) -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,0,0,0.18) 0%, transparent 22%, transparent 78%, rgba(255,0,0,0.18) 100%); pointer-events: none; z-index: 1;"></div>
+    <!-- خطوط جانبية حمراء إنذارية قوية تملأ اليمين واليسار -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,0,0,0.6) 0%, rgba(80,0,0,0.2) 25%, rgba(80,0,0,0.2) 75%, rgba(255,0,0,0.6) 100%); pointer-events: none; z-index: 1;"></div>
     
     <!-- خلفية رموز الماتريكس الخطرة -->
-    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0.3; pointer-events: none;"></canvas>
+    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0.35; pointer-events: none;"></canvas>
 
     <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 3; max-width: 550px; width: 100%; background: rgba(10, 0, 0, 0.92); border: 2px solid #ff0000; padding: 30px; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 0, 0, 0.7); text-align: center;">
+    <div style="position: relative; z-index: 3; max-width: 550px; width: 100%; background: rgba(10, 0, 0, 0.95); border: 2px solid #ff0000; padding: 30px; border-radius: 8px; box-shadow: 0 0 60px rgba(255, 0, 0, 0.9); text-align: center;">
         
         <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
         <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
@@ -2276,7 +2276,7 @@ const drops = [];
 for (let x = 0; x < columns; x++) drops[x] = 1;
 
 function drawMatrix() {
-    ctx.fillStyle = 'rgba(13, 0, 0, 0.08)';
+    ctx.fillStyle = 'rgba(40, 0, 0, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#ff0033';
     ctx.font = fontSize + 'px monospace';
