@@ -2228,90 +2228,127 @@ Looking forward to your prompt response`;
 }
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
-<!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #150000 50%, #050000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
-    
-    <!-- خلفية رموز الماتريكس -->
-    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Hadaf Al-Khaleej</title>
+    <style>
+        /* تأثير النبض وإضاءة الخلفية الحمراء الخاصة بفيروس أمبريلا */
+        @keyframes pulseGlow {
+          0% {
+            background-color: #050000;
+          }
+          50% {
+            background-color: #2b0000;
+            box-shadow: inset 0 0 150px rgba(255, 0, 0, 0.5);
+          }
+          100% {
+            background-color: #050000;
+          }
+        }
 
-    <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #050000;
+          animation: pulseGlow 3s infinite ease-in-out;
+          font-family: Arial, sans-serif;
+          color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
+    <div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #0a0000 100%); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.8s ease;">
         
-        <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
-        <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
-            <div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-            <div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-        </div>
+        <!-- خلفية رموز الماتريكس -->
+        <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
 
-        <!-- اسم الشركة والاختصار -->
-        <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
+        <!-- محتوى الشاشة في المنتصف -->
+        <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; box-shadow: 0 0 30px rgba(255, 0, 0, 0.6); padding: 30px; border-radius: 8px; text-align: center;">
 
-        <!-- نص التحرير والتشغيل -->
-        <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
-        
-        <!-- شريط التحميل -->
-        <div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
-            <div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
+            <!-- CSS رسم هندسي ب) شعار أمبيلا -->
+            <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
+                <div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
+                <div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
+                <div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
+                <div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
+            </div>
+
+            <!-- اسم الشركة والاختصار -->
+            <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
+            <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
+
+            <!-- نص التحرير والتشغيل -->
+            <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66; font-family: monospace; direction: ltr;"></div>
+
+            <!-- شريط التحميل -->
+            <div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
+                <div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-// تأثير مطر الماتريكس في الخلفية
-const canvas = document.getElementById('matrixRain');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    <script>
+        // تأثير مطر الماتريكس في الخلفية //
+        const canvas = document.getElementById('matrixRain');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-const chars = '01UMBRELLaaliceHAZARD9854BIOSYN';
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = [];
-for (let x = 0; x < columns; x++) drops[x] = 1;
+        const chars = '01UMBRELLaaliceHAZARD9854BIOSYN';
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
 
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(21, 0, 0, 0.08)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ff0055';
-    ctx.font = fontSize + 'px monospace';
-    for (let i = 0; i < drops.length; i++) {
-        const text = chars.charAt(Math.floor(Math.random() * chars.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    }
-}
-let matrixInterval = setInterval(drawMatrix, 35);
-
-// تشغيل النصوص وتسلسل الدخول
-window.addEventListener('DOMContentLoaded', () => {
-    let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT PROTOCOL ACTIVE.";
-    let i = 0;
-    let speed = 25;
-    let textElement = document.getElementById('terminalText');
-    let barElement = document.getElementById('terminalBar');
-    let terminalBox = document.getElementById('secretTerminal');
-
-    function typeWriter() {
-        if (i < text.length) {
-            textElement.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
-            i++;
-            let progress = (i / text.length) * 100;
-            barElement.style.width = progress + '%';
-            setTimeout(typeWriter, speed);
-        } else {
-            setTimeout(() => {
-                terminalBox.style.opacity = '0';
-                setTimeout(() => {
-                    terminalBox.style.display = 'none';
-                    clearInterval(matrixInterval);
-                }, 800);
-            }, 800);
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(21, 0, 0, 0.08)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#ff0055';
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
         }
-    }
+        let matrixInterval = setInterval(drawMatrix, 35);
+
+        // تشغيل النصوص وتسلسل الدخول //
+        window.addEventListener('DOMContentLoaded', () => {
+            let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT BREACH DETECTED";
+            let i = 0;
+            let speed = 25;
+            let textElement = document.getElementById('terminalText');
+            let barElement = document.getElementById('terminalBar');
+            let terminalBox = document.getElementById('secretTerminal');
+
+            function typewriter() {
+                if (i < text.length) {
+                    textElement.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
+                    i++;
+                    let progress = (i / text.length) * 100;
+                    barElement.style.width = progress + '%';
+                    setTimeout(typewriter, speed);
+                } else {
+                    setTimeout(() => {
+                        terminalBox.style.opacity = '0';
+                        setTimeout(() => {
+                            terminalBox.style.display = 'none';
+                            clearInterval(matrixInterval);
+                        }, 800);
+                    }, 800);
+                }
+            }
+            typewriter();
+        });
+    </script>
+</body>
+</html>
     setTimeout(typeWriter, 600);
 });
 </script>
