@@ -2228,14 +2228,17 @@ Looking forward to your prompt response`;
 }
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
-<!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #150000 50%, #050000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
+<!-- شاشة أمان أمبريلا / نظام الحجر الصحي البيولوجي -->
+<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #2b0000 0%, #0d0000 60%, #030000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
     
-    <!-- خلفية رموز الماتريكس -->
-    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
+    <!-- خطوط جانبية تحذيرية مرعبة (تأثير شبكة معمل أمبريلا) -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, rgba(255,0,0,0.18) 0%, transparent 22%, transparent 78%, rgba(255,0,0,0.18) 100%); pointer-events: none; z-index: 1;"></div>
+    
+    <!-- خلفية رموز الماتريكس الخطرة -->
+    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; opacity: 0.3; pointer-events: none;"></canvas>
 
     <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
+    <div style="position: relative; z-index: 3; max-width: 550px; width: 100%; background: rgba(10, 0, 0, 0.92); border: 2px solid #ff0000; padding: 30px; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 0, 0, 0.7); text-align: center;">
         
         <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
         <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
@@ -2247,7 +2250,7 @@ Looking forward to your prompt response`;
 
         <!-- اسم الشركة والاختصار -->
         <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
+        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ BIOHAZARD ALERT - RED QUEEN PROTOCOL ]</div>
 
         <!-- نص التحرير والتشغيل -->
         <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
@@ -2266,16 +2269,16 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const chars = '01UMBRELLaaliceHAZARD9854BIOSYN';
+const chars = '01UMBRELLaaliceHAZARD9854T-VIRUS';
 const fontSize = 14;
 const columns = canvas.width / fontSize;
 const drops = [];
 for (let x = 0; x < columns; x++) drops[x] = 1;
 
 function drawMatrix() {
-    ctx.fillStyle = 'rgba(21, 0, 0, 0.08)';
+    ctx.fillStyle = 'rgba(13, 0, 0, 0.08)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ff0055';
+    ctx.fillStyle = '#ff0033';
     ctx.font = fontSize + 'px monospace';
     for (let i = 0; i < drops.length; i++) {
         const text = chars.charAt(Math.floor(Math.random() * chars.length));
@@ -2284,11 +2287,11 @@ function drawMatrix() {
         drops[i]++;
     }
 }
-let matrixInterval = setInterval(drawMatrix, 35);
+let matrixInterval = setInterval(drawMatrix, 30);
 
 // تشغيل النصوص وتسلسل الدخول
 window.addEventListener('DOMContentLoaded', () => {
-    let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT PROTOCOL ACTIVE.";
+    let text = "WARNING: T-VIRUS CONTAINMENT FAILURE...\nACTIVATING RED QUEEN DEFENSE GRID...\nSECURE UMBRELLA MAINFRAME...\nSTATUS: BIOHAZARD LOCKDOWN IN PROGRESS.";
     let i = 0;
     let speed = 25;
     let textElement = document.getElementById('terminalText');
