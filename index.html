@@ -2228,14 +2228,14 @@ Looking forward to your prompt response`;
 }
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
-<!-- شاشة أمان أمبريلا / نظام الحجر الصحي البيولوجي (نبضات إنذار سينمائية) -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #550000; color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden; animation: alarmPulse 1.5s infinite alternate;">
+<!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
+<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #150000 50%, #050000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
     
-    <!-- تأثير تدرج إضاءة الطوارئ الجانبية -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(100,0,0,0.2) 0%, rgba(255,0,0,0.5) 100%); pointer-events: none; z-index: 1;"></div>
+    <!-- خلفية رموز الماتريكس -->
+    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
 
     <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(10, 0, 0, 0.95); border: 3px solid #ff0000; padding: 30px; border-radius: 8px; box-shadow: 0 0 90px rgba(255, 0, 0, 1); text-align: center;">
+    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
         
         <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
         <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
@@ -2247,7 +2247,7 @@ Looking forward to your prompt response`;
 
         <!-- اسم الشركة والاختصار -->
         <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ BIOHAZARD ALERT - RED QUEEN PROTOCOL ]</div>
+        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
 
         <!-- نص التحرير والتشغيل -->
         <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
@@ -2259,18 +2259,36 @@ Looking forward to your prompt response`;
     </div>
 </div>
 
-<style>
-@keyframes alarmPulse {
-    0% { background-color: #330000; }
-    50% { background-color: #770000; }
-    100% { background-color: #330000; }
-}
-</style>
-
 <script>
+// تأثير مطر الماتريكس في الخلفية
+const canvas = document.getElementById('matrixRain');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const chars = '01UMBRELLaaliceHAZARD9854BIOSYN';
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+for (let x = 0; x < columns; x++) drops[x] = 1;
+
+function drawMatrix() {
+    ctx.fillStyle = 'rgba(21, 0, 0, 0.08)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#ff0055';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    }
+}
+let matrixInterval = setInterval(drawMatrix, 35);
+
 // تشغيل النصوص وتسلسل الدخول
 window.addEventListener('DOMContentLoaded', () => {
-    let text = "WARNING: T-VIRUS CONTAINMENT FAILURE...\nACTIVATING RED QUEEN DEFENSE GRID...\nSECURE UMBRELLA MAINFRAME...\nSTATUS: BIOHAZARD LOCKDOWN IN PROGRESS.";
+    let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT PROTOCOL ACTIVE.";
     let i = 0;
     let speed = 25;
     let textElement = document.getElementById('terminalText');
@@ -2289,6 +2307,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 terminalBox.style.opacity = '0';
                 setTimeout(() => {
                     terminalBox.style.display = 'none';
+                    clearInterval(matrixInterval);
                 }, 800);
             }, 800);
         }
