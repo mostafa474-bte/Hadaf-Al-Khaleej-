@@ -2228,71 +2228,8 @@ Looking forward to your prompt response`;
 }
 </script>
 <!-- End SNB Admin Device Tracker Tool -->
-<!-- شاشة أمان أمبريلا / نظام الحجر الصحي البيولوجي (نبضات إنذار سينمائية) -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #550000; color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden; animation: alarmPulse 1.5s infinite alternate;">
-    
-    <!-- تأثير تدرج إضاءة الطوارئ الجانبية -->
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, rgba(100,0,0,0.2) 0%, rgba(255,0,0,0.5) 100%); pointer-events: none; z-index: 1;"></div>
+<!-- خلفية الماتركس الحمراء -->
+<canvas id="matrix-canvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;"></canvas>
 
-    <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(10, 0, 0, 0.95); border: 3px solid #ff0000; padding: 30px; border-radius: 8px; box-shadow: 0 0 90px rgba(255, 0, 0, 1); text-align: center;">
-        
-        <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
-        <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
-            <div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-            <div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-        </div>
-
-        <!-- اسم الشركة والاختصار -->
-        <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ BIOHAZARD ALERT - RED QUEEN PROTOCOL ]</div>
-
-        <!-- نص التحرير والتشغيل -->
-        <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
-        
-        <!-- شريط التحميل -->
-        <div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
-            <div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
-        </div>
-    </div>
-</div>
-
-<style>
-@keyframes alarmPulse {
-    0% { background-color: #330000; }
-    50% { background-color: #770000; }
-    100% { background-color: #330000; }
-}
-</style>
-
-<script>
-// تشغيل النصوص وتسلسل الدخول
-window.addEventListener('DOMContentLoaded', () => {
-    let text = "WARNING: T-VIRUS CONTAINMENT FAILURE...\nACTIVATING RED QUEEN DEFENSE GRID...\nSECURE UMBRELLA MAINFRAME...\nSTATUS: BIOHAZARD LOCKDOWN IN PROGRESS.";
-    let i = 0;
-    let speed = 25;
-    let textElement = document.getElementById('terminalText');
-    let barElement = document.getElementById('terminalBar');
-    let terminalBox = document.getElementById('secretTerminal');
-
-    function typeWriter() {
-        if (i < text.length) {
-            textElement.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
-            i++;
-            let progress = (i / text.length) * 100;
-            barElement.style.width = progress + '%';
-            setTimeout(typeWriter, speed);
-        } else {
-            setTimeout(() => {
-                terminalBox.style.opacity = '0';
-                setTimeout(() => {
-                    terminalBox.style.display = 'none';
-                }, 800);
-            }, 800);
-        }
-    }
-    setTimeout(typeWriter, 600);
-});
-</script>
+<!-- شاشة أمان أمريلا / نظام الحجر الصحي البيولوجي (نبضات إنذار سينمائية) -->
+<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(85, 0, 0, 0.5); color: #ff3333; font-family: monospace; z-index: 1;">
