@@ -921,8 +921,47 @@ body.dark-mode .v2-list li{background:#0f172a}
 
 @media(max-width:900px){.v2-grid{grid-template-columns:repeat(2,1fr)}.v2-two-col{grid-template-columns:1fr}.v2-form-grid{grid-template-columns:repeat(2,1fr)}.v2-form-grid .span-4{grid-column:span 2}.v2-three-col{grid-template-columns:1fr}}
 @media(max-width:560px){.v2-grid{grid-template-columns:1fr}.v2-form-grid{grid-template-columns:1fr}.v2-form-grid .span-2,.v2-form-grid .span-4{grid-column:span 1}.header-actions{width:100%}.v2-top-actions{width:100%}.v2-icon-btn{flex:1}.controls-bar{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}.tab-btn{white-space:nowrap}.v2-search-wrap{margin-top:8px}}
-</style></head>
+</style>
+<style>
+/* ===== V3 Corporate / Umbrella UI ===== */
+:root{--corp-navy:#07111f;--corp-blue:#0b2a46;--corp-cyan:#19c8ff;--corp-red:#e11d2e;--corp-red2:#ff3b30;--corp-gold:#d7b56d;--corp-panel:rgba(10,22,36,.92);--corp-border:rgba(25,200,255,.18)}
+body{background:
+ radial-gradient(circle at 15% 15%,rgba(25,200,255,.10),transparent 28%),
+ radial-gradient(circle at 85% 20%,rgba(225,29,46,.08),transparent 25%),
+ linear-gradient(135deg,rgba(3,10,19,.92),rgba(8,25,42,.94)),
+ url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2200&q=85') center/cover fixed!important;color:#e7eef6!important}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(25,200,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(25,200,255,.035) 1px,transparent 1px);background-size:34px 34px}
+header{background:rgba(5,15,27,.90)!important;border-bottom:1px solid rgba(25,200,255,.35)!important;box-shadow:0 10px 35px rgba(0,0,0,.30)!important}
+.logo{color:#fff!important;letter-spacing:.5px}.logo:before{content:"◈";display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--corp-red);border-radius:10px;color:#fff;background:linear-gradient(135deg,#16080a,#8b0f1b);box-shadow:0 0 16px rgba(225,29,46,.45);font-size:20px}
+.page-card,.v2-card,.tool-box,.target-card{background:rgba(8,20,33,.88)!important;color:#e7eef6!important;border-color:var(--corp-border)!important;box-shadow:0 12px 35px rgba(0,0,0,.22)!important;backdrop-filter:blur(14px)}
+.page-title,.v2-section-title h3,.tool-box h3,.rasheed-title{color:#72dcff!important}.page-header{border-color:rgba(25,200,255,.25)!important}
+.tab-btn{background:rgba(8,20,33,.88)!important;color:#7fe4ff!important;border-color:rgba(25,200,255,.35)!important}.tab-btn.active,.tab-btn:hover{background:linear-gradient(135deg,#0b6f9e,#0b2f4d)!important;color:#fff!important;box-shadow:0 0 22px rgba(25,200,255,.18)!important}.tab-btn.special-btn{background:#7f1620!important;border-color:#a51e2b!important}.tab-btn.tools-btn{background:#4b258d!important;border-color:#6d36c5!important}
+input,textarea,select{background:rgba(3,12,22,.82)!important;color:#eef7ff!important;border-color:#27465e!important}.v2-list li,.chart-box,.calc-result-box{background:rgba(5,16,28,.72)!important;color:#e7eef6!important;border-color:#23415a!important}
+th{background:#0d2943!important;color:#9be9ff!important}td{color:#e5edf5!important;border-color:#21394d!important}table{background:rgba(3,12,22,.68)!important;border-color:#23415a!important}
+.top-banner{background:linear-gradient(90deg,#06101c,#102f48,#06101c)!important;border-bottom:1px solid rgba(25,200,255,.18)}
+.user-tag{background:rgba(22,163,74,.16)!important;color:#86efac!important;border-color:rgba(134,239,172,.25)!important}.designer-tag{background:rgba(25,200,255,.08)!important;color:#9be9ff!important;border-color:rgba(25,200,255,.2)!important}
+.v3-email-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.v3-email-grid .wide{grid-column:span 2}.v3-template-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.v3-template-row button{flex:1;min-width:160px}
+.v3-admin{border:1px solid rgba(225,29,46,.42)!important;background:linear-gradient(135deg,rgba(45,5,10,.88),rgba(8,18,30,.92))!important}.v3-admin-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(225,29,46,.25);padding-bottom:12px;margin-bottom:14px}.v3-live-dot{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:#86efac}.v3-live-dot i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e;display:inline-block}.v3-session{display:grid;grid-template-columns:1.2fr .8fr .8fr auto;gap:8px;align-items:center;padding:10px;border:1px solid #29455b;border-radius:10px;margin-bottom:8px;background:rgba(3,12,22,.8)}.v3-session .danger{background:#b91c1c!important;color:#fff!important;border:0;border-radius:7px;padding:7px 10px;cursor:pointer;font-weight:800}.v3-admin-note{font-size:.78rem;color:#94a3b8;margin-top:10px;line-height:1.6}
+.v3-expiry-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;margin-top:14px}.v3-code-list{margin-top:12px}.v3-code-row{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border:1px solid #29455b;border-radius:8px;margin-bottom:6px}
+/* Umbrella corporate emblem inside header */
+.v3-umbrella-badge{display:flex;align-items:center;gap:9px;margin-right:10px}.v3-umbrella-mark{width:32px;height:32px;display:grid;grid-template-columns:1fr 1fr;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 0 15px rgba(225,29,46,.55);overflow:hidden;border-radius:5px}.v3-umbrella-mark span:nth-child(1),.v3-umbrella-mark span:nth-child(4){background:#fff}.v3-umbrella-mark span:nth-child(2),.v3-umbrella-mark span:nth-child(3){background:#b30f1c}.v3-umbrella-name{font-size:.72rem;letter-spacing:2px;color:#f8fafc;font-weight:900}
+@media(max-width:900px){.v3-email-grid{grid-template-columns:repeat(2,1fr)}.v3-email-grid .wide{grid-column:span 2}.v3-session{grid-template-columns:1fr 1fr}.v3-expiry-grid{grid-template-columns:1fr 1fr}.v3-expiry-grid button{grid-column:span 2}}
+@media(max-width:560px){.v3-email-grid{grid-template-columns:1fr}.v3-email-grid .wide{grid-column:span 1}.v3-expiry-grid{grid-template-columns:1fr}.v3-expiry-grid button{grid-column:span 1}.v3-session{grid-template-columns:1fr}.v3-umbrella-name{display:none}}
+/* Red world-alert intro */
+#v3AlertIntro{position:fixed;inset:0;z-index:100000;background:#030000;display:flex;align-items:center;justify-content:center;overflow:hidden;animation:v3FadeOut 1s ease 7.5s forwards}
+#v3AlertIntro:before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(0deg,rgba(255,0,0,.00) 0 6px,rgba(255,0,0,.06) 7px 8px);animation:v3Scan 1.4s linear infinite}
+.v3-alert-matrix{position:absolute;inset:0;opacity:.23}.v3-alert-core{position:relative;width:min(700px,92vw);padding:34px;border:2px solid #ff2020;background:rgba(18,0,0,.88);box-shadow:0 0 80px rgba(255,0,0,.42),inset 0 0 45px rgba(255,0,0,.10);text-align:center;animation:v3Alarm 1s ease-in-out infinite alternate}
+.v3-alert-emblem{width:76px;height:76px;margin:0 auto 18px;display:grid;grid-template-columns:1fr 1fr;transform:rotate(45deg);border:3px solid #fff;box-shadow:0 0 30px rgba(255,0,0,.8)}.v3-alert-emblem span:nth-child(1),.v3-alert-emblem span:nth-child(4){background:#fff}.v3-alert-emblem span:nth-child(2),.v3-alert-emblem span:nth-child(3){background:#b00000}
+.v3-alert-title{font:900 30px/1.1 Arial,sans-serif;letter-spacing:4px;color:#fff;text-shadow:0 0 18px red}.v3-alert-sub{font:700 12px/1.8 monospace;letter-spacing:3px;color:#ff4b4b;margin:10px 0}.v3-alert-status{font:700 14px/1.8 monospace;color:#ffdfdf;text-align:left;min-height:100px}.v3-alert-bar{height:7px;background:#250000;border:1px solid #ff2a2a;margin-top:18px}.v3-alert-bar>div{height:100%;width:0;background:#ff1f1f;box-shadow:0 0 14px red;animation:v3Load 7s linear forwards}
+@keyframes v3Alarm{from{transform:scale(1);filter:brightness(1)}to{transform:scale(1.015);filter:brightness(1.18)}}@keyframes v3Scan{from{transform:translateY(-5%)}to{transform:translateY(5%)}}@keyframes v3Load{to{width:100%}}@keyframes v3FadeOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+body.v3-alert-active header,body.v3-alert-active .controls-bar,body.v3-alert-active .container{filter:brightness(.8)}
+</style>
+
+</head>
 <body>
+
+<div id="v3AlertIntro"><canvas class="v3-alert-matrix" id="v3AlertMatrix"></canvas><div class="v3-alert-core"><div class="v3-alert-emblem"><span></span><span></span><span></span><span></span></div><div class="v3-alert-title">UMBRELLA // SECURE CORE</div><div class="v3-alert-sub">GLOBAL COLLECTION SYSTEM // CONTAINMENT PROTOCOL</div><div class="v3-alert-status" id="v3AlertStatus"></div><div class="v3-alert-bar"><div></div></div></div></div>
+
 <!-- شاشة تكبيرات الصلاة "الله أكبر" -->
 <div id="takbeer-overlay">
 <div class="takbeer-box">
@@ -965,7 +1004,7 @@ body.dark-mode .v2-list li{background:#0f172a}
                     منظومة تحصيل هدف الخليج
                     <img alt="علم مصر" class="flag-icon" src="https://flagcdn.com/w40/eg.png"/>
 </div>
-<div class="header-actions"><div class="v2-top-actions">
+<div class="header-actions"><div class="v3-umbrella-badge"><div class="v3-umbrella-mark"><span></span><span></span><span></span><span></span></div><span class="v3-umbrella-name">UMBRELLA // HK</span></div><div class="v2-top-actions">
 <button class="v2-icon-btn" onclick="toggleNotifications()">🔔 التنبيهات <span class="v2-notify-count" id="notifyCount" style="display:none">0</span></button>
 <button class="v2-icon-btn" id="themeToggleBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي</button>
 <button class="v2-icon-btn" onclick="exportBackup()">💾 نسخة احتياطية</button>
@@ -1592,6 +1631,43 @@ body.dark-mode .v2-list li{background:#0f172a}
 <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
 </div>
 </div>
+
+<!-- V3: أدوات البريد الموحدة - نسخة واحدة فقط -->
+<div class="page-card" id="unifiedEmailTool" style="margin-top:24px">
+<div class="page-header"><h2 class="page-title">✉️ مركز الإيميلات الموحد</h2><span class="badge-en">ONE EMAIL CENTER</span></div>
+<p class="v2-small" style="margin-bottom:14px">كل قوالب الإيميل في مكان واحد بدل تكرارها داخل صفحات المنتجات.</p>
+<div class="v3-email-grid">
+<div class="v2-field"><label>Client Name</label><input id="v3EmailName" placeholder="Ahmed Ali"></div>
+<div class="v2-field"><label>Iqama / Residency</label><input id="v3EmailIqama" placeholder="2xxxxxxxxxx"></div>
+<div class="v2-field"><label>Account 1</label><input id="v3EmailAcc1" placeholder="SNB-000000"></div>
+<div class="v2-field"><label>Balance 1 (SAR)</label><input id="v3EmailBal1" type="number" placeholder="50000"></div>
+<div class="v2-field"><label>Account 2 (optional)</label><input id="v3EmailAcc2" placeholder="Account 2"></div>
+<div class="v2-field"><label>Balance 2 (SAR)</label><input id="v3EmailBal2" type="number" placeholder="0"></div>
+<div class="v2-field"><label>Template</label><select id="v3EmailTemplate"><option value="standard">Standard collection</option><option value="two">Two accounts</option><option value="reminder">Reminder</option></select></div>
+<div class="v2-field"><label>Subject</label><input id="v3EmailSubject" value="Payment Follow-up - SNB Account"></div>
+</div>
+<div class="v3-template-row">
+<button class="v2-btn" onclick="v3GenerateEmail('standard')">Generate Standard</button>
+<button class="v2-btn purple" onclick="v3GenerateEmail('two')">Generate Two Accounts</button>
+<button class="v2-btn orange" onclick="v3GenerateEmail('reminder')">Generate Reminder</button>
+<button class="v2-btn green" onclick="v3CopyEmail()">Copy Email</button>
+</div>
+<textarea id="v3EmailResult" rows="15" placeholder="Generated email will appear here..."></textarea>
+</div>
+
+<!-- V3: صلاحيات ومراقبة الكود 8394 -->
+<div class="page-card v3-admin" id="v3AdminPanel" style="display:none;margin-top:18px">
+<div class="v3-admin-head"><div><h2 class="page-title" style="color:#ff7777!important">🛡️ مركز الإدارة — 8394</h2><div class="v2-small">مراقبة الجلسات وإدارة صلاحية الأكواد</div></div><span class="v3-live-dot"><i></i> LIVE</span></div>
+<div class="v2-kpi-row">
+<div class="v2-kpi"><div class="v2-stat-title">المستخدمون النشطون</div><div class="v2-stat-value" id="v3ActiveCount">0</div></div>
+<div class="v2-kpi"><div class="v2-stat-title">الجلسات الظاهرة</div><div class="v2-stat-value" id="v3SessionCount">0</div></div>
+<div class="v2-kpi"><div class="v2-stat-title">صلاحية 8394</div><div class="v2-stat-value" style="color:#86efac">ADMIN</div></div>
+</div>
+<div style="margin-top:15px"><div class="v3-admin-head"><strong>👥 الجلسات الحالية</strong><button class="v2-btn gray" onclick="v3RefreshSessions()">تحديث</button></div><div id="v3SessionsList"></div></div>
+<div style="margin-top:18px"><strong>🔐 إضافة / تعديل صلاحية كود</strong><div class="v3-expiry-grid"><div class="v2-field"><label>Employee Code</label><input id="v3CodeInput" placeholder="مثال: 1234"></div><div class="v2-field"><label>Expiry Date</label><input id="v3ExpiryInput" type="date"></div><div class="v2-field"><label>الحالة</label><select id="v3CodeStatus"><option value="active">Active</option><option value="blocked">Blocked</option></select></div><button class="v2-btn" onclick="v3SaveCodePolicy()">حفظ الصلاحية</button></div><div id="v3CodePolicies" class="v3-code-list"></div></div>
+<div class="v3-admin-note">مهم: لأن الموقع الحالي GitHub Pages بدون Backend، المراقبة هنا تعمل بين نوافذ/تبويبات نفس المتصفح فقط. لا يمكن للـ HTML وحده رؤية أجهزة الموظفين الأخرى أو إخراجها عبر الإنترنت. لعمل ذلك فعليًا نحتاج خادم/قاعدة بيانات.</div>
+</div>
+
 <!-- 5. قسم Follow Up -->
 <div class="script-group" id="followup">
 <div class="page-card">
@@ -1649,6 +1725,20 @@ body.dark-mode .v2-list li{background:#0f172a}
 <span class="followup-text">Sent Email reminder</span>
 <button class="copy-btn" onclick="copyText('Sent Email reminder')">Copy</button>
 </div>
+
+<div class="followup-card color-found-cust"><span class="followup-text">Search by name of the customer on google and didn't find anything</span><button class="copy-btn" onclick="copyText('Search by name of the customer on google and didn\'t find anything')">Copy</button></div>
+<div class="followup-card color-found-comp"><span class="followup-text">Search by name of the customer on google and find</span><button class="copy-btn" onclick="copyText('Search by name of the customer on google and find')">Copy</button></div>
+<div class="followup-card color-tracing"><span class="followup-text">Search by name of the customer on linked in and didn't find anything</span><button class="copy-btn" onclick="copyText('Search by name of the customer on linked in and didn\'t find anything')">Copy</button></div>
+<div class="followup-card color-found-cust"><span class="followup-text">Search by name of the customer on linked in and find has website</span><button class="copy-btn" onclick="copyText('Search by name of the customer on linked in and find has website')">Copy</button></div>
+<div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer on True caller and find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and find has name')">Copy</button></div>
+<div class="followup-card color-found-cust"><span class="followup-text">Search by number of the customer on True caller and find has email</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and find has email')">Copy</button></div>
+<div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on True caller and didn't has email or has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and didn\'t has email or has name')">Copy</button></div>
+<div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer on Eyecon and find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on Eyecon and find has name')">Copy</button></div>
+<div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on Eyecon and didn't find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on Eyecon and didn\'t find has name')">Copy</button></div>
+<div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer and find website and numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and find website and numbers')">Copy</button></div>
+<div class="followup-card color-found-cust"><span class="followup-text">Search by email of the customer and find website and numbers</span><button class="copy-btn" onclick="copyText('Search by email of the customer and find website and numbers')">Copy</button></div>
+<div class="followup-card color-not-found-comp"><span class="followup-text">Search by number of the customer and didn't find website or numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and didn\'t find website or numbers')">Copy</button></div>
+<div class="followup-card color-not-found-comp"><span class="followup-text">Search by email of the customer and didn't find website or numbers</span><button class="copy-btn" onclick="copyText('Search by email of the customer and didn\'t find website or numbers')">Copy</button></div>
 </div>
 <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
 </div>
@@ -2257,260 +2347,72 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 
   window.addEventListener('load',()=>{applyTheme(); if(window.currentUserCode){ensureV2Data();renderAllV2();}});
 })();
-</script></body>
+</script>
+<script>
+/* ===== Hadaf Al-Khaleej V3 enhancements ===== */
+(function(){
+  const ADMIN_CODE='8394';
+  const SESSION_KEY='hkh_v3_sessions';
+  const POLICY_KEY='hkh_v3_code_policies';
+  const sid=(crypto&&crypto.randomUUID)?crypto.randomUUID():'s_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  const channel=('BroadcastChannel' in window)?new BroadcastChannel('hkh_v3_presence'):null;
+  const escHtml=(v)=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const today=()=>new Date().toISOString().slice(0,10);
+  function getPolicies(){try{return JSON.parse(localStorage.getItem(POLICY_KEY)||'{}')}catch{return {}}}
+  function savePolicies(x){localStorage.setItem(POLICY_KEY,JSON.stringify(x))}
+  function policyFor(code){return getPolicies()[String(code)]||null}
+  function isAllowed(code){if(code===ADMIN_CODE)return true;const p=policyFor(code);if(!p)return true; if(p.status==='blocked')return false; if(p.expiry && p.expiry<today())return false; return true}
+  function readSessions(){let a=[];try{a=JSON.parse(localStorage.getItem(SESSION_KEY)||'[]')}catch{};const cutoff=Date.now()-15000;return Array.isArray(a)?a.filter(x=>x&&x.lastSeen>cutoff):[]}
+  function writeSessions(a){localStorage.setItem(SESSION_KEY,JSON.stringify(a))}
+  function upsertSession(){if(!window.currentUserCode)return;let a=readSessions().filter(x=>x.sid!==sid);a.push({sid,code:String(window.currentUserCode),openedAt:window.__hkhV3OpenedAt||Date.now(),lastSeen:Date.now()});writeSessions(a);if(channel)channel.postMessage({type:'refresh'})}
+  function removeSession(){let a=readSessions().filter(x=>x.sid!==sid);writeSessions(a);if(channel)channel.postMessage({type:'refresh'})}
+  function kickSession(targetSid){localStorage.setItem('hkh_v3_kick_'+targetSid,String(Date.now())); if(channel)channel.postMessage({type:'kick',sid:targetSid});v3RefreshSessions();}
+  function handleKick(targetSid){if(targetSid!==sid)return; removeSession(); localStorage.removeItem('lastActiveUserCode'); alert('تم إنهاء جلستك بواسطة المسؤول 8394.'); location.reload();}
+  window.v3RefreshSessions=function(){
+    const box=document.getElementById('v3SessionsList'); if(!box)return; const sessions=readSessions();
+    document.getElementById('v3ActiveCount').textContent=new Set(sessions.map(x=>x.code)).size;
+    document.getElementById('v3SessionCount').textContent=sessions.length;
+    if(!sessions.length){box.innerHTML='<div class="v2-empty">لا توجد جلسات نشطة حاليًا</div>';return;}
+    box.innerHTML=sessions.map(x=>`<div class="v3-session"><div><strong>👤 كود ${escHtml(x.code)}</strong><div class="v2-small">جلسة ${escHtml(x.sid.slice(0,8))}</div></div><div><span class="v3-live-dot"><i></i> Online</span></div><div class="v2-small">آخر نشاط: ${new Date(x.lastSeen).toLocaleTimeString('ar-EG')}</div><button class="danger" onclick="v3Kick('${escHtml(x.sid)}')" ${x.sid===sid?'disabled':''}>خروج</button></div>`).join('');
+  };
+  window.v3Kick=kickSession;
+  window.v3SaveCodePolicy=function(){
+    const code=document.getElementById('v3CodeInput').value.trim(); const expiry=document.getElementById('v3ExpiryInput').value; const status=document.getElementById('v3CodeStatus').value;
+    if(!code||code===ADMIN_CODE){alert('أدخل كودًا صالحًا مختلفًا عن 8394.');return;} const p=getPolicies(); p[code]={expiry,status,updatedAt:new Date().toISOString()}; savePolicies(p); v3RenderPolicies(); alert('تم حفظ صلاحية الكود.');
+  };
+  window.v3RenderPolicies=function(){const box=document.getElementById('v3CodePolicies');if(!box)return;const p=getPolicies();const keys=Object.keys(p);box.innerHTML=keys.length?keys.map(k=>{const x=p[k];const expired=x.expiry&&x.expiry<today();return `<div class="v3-code-row"><span><strong>${escHtml(k)}</strong> — ${x.status==='blocked'?'Blocked':'Active'}</span><span class="v2-small">${x.expiry?'ينتهي '+escHtml(x.expiry):(expired?'Expired':'بدون تاريخ انتهاء')} <button class="v2-btn red" style="padding:4px 8px;margin-right:6px" onclick="v3DeletePolicy('${escHtml(k)}')">حذف</button></span></div>`}).join(''):'<div class="v2-empty">لم تتم إضافة سياسات أكواد بعد</div>';};
+  window.v3DeletePolicy=function(code){const p=getPolicies();delete p[code];savePolicies(p);v3RenderPolicies();};
+
+  function v3EmailName(){return document.getElementById('v3EmailName')?.value.trim()||'Customer'}
+  window.v3GenerateEmail=function(type){
+    const name=v3EmailName(), iq=document.getElementById('v3EmailIqama')?.value.trim()||'', a1=document.getElementById('v3EmailAcc1')?.value.trim()||'', a2=document.getElementById('v3EmailAcc2')?.value.trim()||'', b1=Number(document.getElementById('v3EmailBal1')?.value)||0,b2=Number(document.getElementById('v3EmailBal2')?.value)||0,total=b1+b2;
+    let text='';
+    if(type==='reminder') text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up'}\n\nDear Mr. ${name},\n\nI hope you are well. This is a reminder regarding the outstanding matter on your account. Please contact us at your earliest convenience so we can review the available settlement options and next steps.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    else if(type==='two') text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up - SNB Accounts'}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above. Please contact us to discuss the available settlement options and to clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    else text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up - SNB Account'}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your account. Please contact us at your earliest convenience so we can review the available settlement options and next steps.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    document.getElementById('v3EmailResult').value=text;
+  };
+  window.v3CopyEmail=function(){const e=document.getElementById('v3EmailResult');if(!e?.value)return; navigator.clipboard?.writeText(e.value).then(()=>showToast('تم نسخ الإيميل')) .catch(()=>{e.select();document.execCommand('copy');showToast('تم نسخ الإيميل')});};
+
+  // Enforce optional admin-managed expiry/block policies without changing the old login UI.
+  const oldCheck=window.checkUserAuth;
+  window.checkUserAuth=function(){const code=document.getElementById('passInput')?.value.trim()||''; if(!code||code.length<2){oldCheck();return;} if(!isAllowed(code)){const e=document.getElementById('errorMsg');e.textContent='هذا الكود غير صالح أو انتهت صلاحيته.';e.style.display='block';return;} oldCheck(); setTimeout(()=>{upsertSession();if(code===ADMIN_CODE){document.getElementById('v3AdminPanel').style.display='block';v3RenderPolicies();v3RefreshSessions();}},50);};
+  const oldLogin=window.loginUser;
+  window.loginUser=function(code){if(!isAllowed(String(code))){alert('هذا الكود غير صالح أو انتهت صلاحيته.');return;} oldLogin(code);window.__hkhV3OpenedAt=Date.now();upsertSession();if(String(code)===ADMIN_CODE){const p=document.getElementById('v3AdminPanel');if(p)p.style.display='block';v3RenderPolicies();v3RefreshSessions();}else{const p=document.getElementById('v3AdminPanel');if(p)p.style.display='none';}};
+  const oldLogout=window.logoutUser;
+  window.logoutUser=function(){removeSession();oldLogout();};
+  window.addEventListener('beforeunload',removeSession);
+  window.addEventListener('storage',e=>{if(e.key&&e.key.startsWith('hkh_v3_kick_')&&e.key.endsWith(sid))handleKick(sid);if(e.key===SESSION_KEY||e.key===POLICY_KEY)v3RefreshSessions();});
+  if(channel)channel.onmessage=e=>{if(e.data?.type==='kick')handleKick(e.data.sid);if(e.data?.type==='refresh')v3RefreshSessions();};
+  setInterval(()=>{if(window.currentUserCode){upsertSession();if(String(window.currentUserCode)===ADMIN_CODE)v3RefreshSessions();}},5000);
+  setInterval(()=>{const k='hkh_v3_kick_'+sid;if(localStorage.getItem(k))handleKick(sid)},2000);
+  window.addEventListener('load',()=>{setTimeout(()=>{if(window.currentUserCode){upsertSession();if(String(window.currentUserCode)===ADMIN_CODE){document.getElementById('v3AdminPanel').style.display='block';v3RenderPolicies();v3RefreshSessions();}}},150);});
+
+  // Red alert / Matrix intro
+  function initAlert(){const c=document.getElementById('v3AlertMatrix'),status=document.getElementById('v3AlertStatus');if(!c||!status)return;const ctx=c.getContext('2d');function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener('resize',resize);const chars='01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%';let fs=15,d=[];function reset(){d=Array(Math.ceil(c.width/fs)).fill(0).map(()=>Math.random()*c.height/fs)}reset();function draw(){ctx.fillStyle='rgba(0,0,0,.08)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#ff2020';ctx.font=fs+'px monospace';d.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,y*fs);d[i]=(y*fs>c.height&&Math.random()>.975)?0:y+1})}setInterval(draw,35);const lines=['> BOOTING UMBRELLA SECURE CORE...','> VERIFYING COLLECTION CONTROL LAYER...','> MATRIX CHANNEL: ACTIVE','> SESSION CONTROL: READY','> STATUS: SYSTEM ONLINE'];let n=0;function type(){if(n<lines.length){status.innerHTML+=escHtml(lines[n])+'<br>';n++;setTimeout(type,480)}}type();setTimeout(()=>{document.getElementById('v3AlertIntro')?.remove()},9000)}
+  initAlert();
+})();
+</script>
+
+</body>
 </html>
-<!-- SNB Email Generator Tool -->
-<div dir="ltr" style="max-width: 800px; margin: 30px auto; background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
-<h3 style="color: #00334e; border-bottom: 2px solid #005c8a; padding-bottom: 10px; margin-bottom: 20px; text-align: left;">SNB Collection Email Generator</h3>
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-<div>
-<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Client Name:</label>
-<input id="genName" placeholder="e.g. Ahmed Ali" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
-</div>
-<div>
-<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Iqama / Residency No:</label>
-<input id="genIqama" placeholder="e.g. 2xxxxxxxxxx" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
-</div>
-<div>
-<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Account Number:</label>
-<input id="genAccount" placeholder="e.g. SNB-0000000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
-</div>
-<div>
-<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Outstanding Balance (SAR):</label>
-<input id="genBalance" placeholder="e.g. 5,000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
-</div>
-</div>
-<button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
-<div style="background: #f7fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 10px 0;">
-<div style="font-weight: bold; margin-bottom: 8px; color: #2b6cb0;">بيانات الحساب الثاني (لو العميل عنده كرتين):</div>
-<div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-<div style="flex: 1; min-width: 200px;">
-<label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Account Number:</label>
-<input id="genAccount2" placeholder="رقم الحساب الثاني" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" type="text"/>
-</div>
-<div style="flex: 1; min-width: 200px;">
-<label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Balance (SAR):</label>
-<input id="genBalance2" placeholder="مبلغ الحساب الثاني" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" type="text"/>
-</div>
-</div>
-<div style="display: flex; gap: 10px; flex-wrap: wrap;">
-<button onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;" type="button">
-            ايميل لعميل لو عنده كرتين
-        </button>
-<button onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;" type="button">
-            اميل تذكيري
-        </button>
-</div>
-</div>
-<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
-<textarea id="genResult" readonly="" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;"></textarea>
-<button onclick="copyEmailText()" style="background: #28a745; color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">Copy Email to Clipboard</button>
-</div>
-<script>
-function generateEmailText() {
-    let name = document.getElementById('genName').value.trim();
-    if(name) {
-        // تحويل الاسم لأول حروف كبيرة تلقائياً وضبطه بالصيغة المطلوبة
-        name = name.charAt(0).toUpperCase() + name.slice(1);
-    }
-    let iqama = document.getElementById('genIqama').value;
-    let account = document.getElementById('genAccount').value;
-    let balance = document.getElementById('genBalance').value;
-
-    let emailText = `Name: MR. ${name}
-\nIqama (Work Residency) No.: ${iqama}
-Account Number : ${account}
-Outstanding balance : ${balance} SAR
-\n\nDear MR. ${name},
-\nWe are writing to inform you that you have an outstanding balance of SAR ${balance} with Saudi National Bank. Please note that The National Commercial Bank (NCB) has merged with Samba Financial Group and has become the Saudi National Bank (SNB).
-\nBe note that your file on critical situation due to non-payment your debts and in case we not find your positive respond ASAP your file will transfer to legal department to start legal actions inside KSA , home country and GCC Countries
-\nIn case you willing to pay your debts we can support you with the special discount and special offer from the bank to settle your debts and close this matter permanently and take your clearance letter , clear your name from SAMA and clear any legal case or court case if found ..
-\nPlease revert to us with your direct contact number to discuss this matter amicably or contact us on 00201557119829 (Call and What’s up) / 0097165148719 (Call) for easy conversation ..
-\nNote : attached is our authority letter
-\nAppreciate your quick cooperate .
-\n\nKind Regards, 
-Moustafa Nassar
-Team leader - Bank collection - Recoveries
-– Retail Banking
-Tahseel - Hadaf Al Khaleej Debt Collection & Legal Consultants
-Sharjah - Head Office | Dubai | Abu Dhabi | Egypt | Qatar | Jordan | India | Lebanon | UK | 
-Please consider the environment before printing this e-mail.`;
-
-    document.getElementById('genResult').value = emailText;
-}
-
-function copyEmailText() {
-    let copyText = document.getElementById('genResult');
-    copyText.select();
-    document.execCommand('copy');
-    alert('Email copied successfully! You can now paste it directly.');
-}
-</script>
-<!-- End SNB Email Generator Tool -->
-<!-- SNB Admin Live Device Tracker with Count & IDs -->
-<div dir="ltr" id="adminTrackerPanel" style="display: none; max-width: 800px; margin: 30px auto; background: #fff3cd; border: 2px solid #ffeeba; padding: 20px; border-radius: 12px; font-family: Arial, sans-serif;">
-<h3 style="color: #856404; margin-bottom: 10px; border-bottom: 1px solid #ffeeba; padding-bottom: 8px; text-align: left;">🔒 Admin Live Device Tracker (ID: 8394)</h3>
-<p style="font-size: 14px; color: #533f03; margin-bottom: 10px; text-align: left;">Welcome back, Mostafa Waleed! Real-time session monitoring:</p>
-<div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd; font-family: monospace; font-size: 13px; text-align: left;">
-<p style="margin: 5px 0;"><strong>Active Devices Count:</strong> <span id="activeCount" style="color: #d9534f; font-weight: bold;">1</span></p>
-<p style="margin: 5px 0;"><strong>Connected Employee IDs:</strong> <span id="activeIds" style="color: #0275d8; font-weight: bold;">8394</span></p>
-<p style="margin: 5px 0;"><strong>Status:</strong> <span style="color: #28a745;">● Live Monitoring Active</span></p>
-</div>
-</div>
-<script>
-window.addEventListener('DOMContentLoaded', (event) => {
-    let currentEmployeeId = '8394';
-    
-    if (currentEmployeeId === '8394') {
-        document.getElementById('adminTrackerPanel').style.display = 'block';
-        
-        let activeSessions = JSON.parse(localStorage.getItem('snb_active_sessions') || '[]');
-        if (!activeSessions.includes('8394')) {
-            activeSessions.push('8394');
-        }
-        localStorage.setItem('snb_active_sessions', JSON.stringify(activeSessions));
-        
-        document.getElementById('activeCount').innerText = activeSessions.length;
-        document.getElementById('activeIds').innerText = activeSessions.join(', ');
-    }
-});
-function generateTwoCardsEmail() {
-    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Customer";
-    if(name) {
-        name = name.charAt(0).toUpperCase() + name.slice(1);
-    }
-    let iqama = document.getElementById('genIqama') ? document.getElementById('genIqama').value : "";
-    
-    let acc1 = document.getElementById('genAccount') ? document.getElementById('genAccount').value.trim() : "";
-    let bal1Str = document.getElementById('genBalance') ? document.getElementById('genBalance').value.trim() : "0";
-    
-    let acc2 = document.getElementById('genAccount2') ? document.getElementById('genAccount2').value.trim() : "";
-    let bal2Str = document.getElementById('genBalance2') ? document.getElementById('genBalance2').value.trim() : "0";
-    
-    let bal1 = parseFloat(bal1Str) || 0;
-    let bal2 = parseFloat(bal2Str) || 0;
-    let total = bal1 + bal2;
-
-    let emailText = `Name: MR. ${name}
-
-Iqama (Work Residency) No.: ${iqama}
-Account Number :   ${acc1} outstanding balance : ${bal1Str} SAR
-
-Account Number :   ${acc2} outstanding balance : ${bal2Str} SAR
-
-Total Outstanding    : ${total} SAR
-Dear MR. ${name}
-We are writing to inform you that you have an
-outstanding balance of ${total} SAR with Saudi National Bank. Please note
-that The National Commercial Bank (NCB) has merged with Samba Financial Group
-and has become the Saudi National Bank (SNB).
-
-Be note that your file on critical situation due to non-payment your debts and
-in case we not find your positive respond ASAP your file will transfer to legal
-department to start legal actions inside KSA , home country and GCC Countries
-In case you willing to pay your debts we can
-support you with the special discount and special offer reach to 40 %  
-from the bank to settle your debts and close this matter permanently and
-take your clearance letter , clear your name from SAMA and clear any legal case
-or court case if found ..
-Note : attached is our authorization letter
-Appreciate your quick cooperate .`;
-
-    let resultBox = document.getElementById('genResult');
-    if (resultBox) resultBox.value = emailText;
-}
-
-function generateReminderEmail() {
-    let name = document.getElementById('genName') ? document.getElementById('genName').value.trim() : "Customer";
-
-    let reminderText = `Dear ${name}, 
-I hope this email finds you well.
-We are writing to remind you of the unresolved matter discussed in the email below. It is important that we address this issue promptly to avoid any further complications. We kindly suggest that you revert to us at your earliest convenience so we can discuss the matter and work towards an amicable settlement of your liability.
-If you are facing any challenges or require any support, please do not hesitate to inform us. We are here to assist you in any way we can.
-Looking forward to your prompt response`;
-
-    let resultBox = document.getElementById('genResult');
-    if (resultBox) resultBox.value = reminderText;
-}
-</script>
-<!-- End SNB Admin Device Tracker Tool -->
-<!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
-<div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #150000 50%, #050000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
-<!-- خلفية رموز الماتريكس -->
-<canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
-<!-- محتوى الشاشة في المنتصف -->
-<div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
-<!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
-<div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
-<div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-<div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-<div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-<div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-</div>
-<!-- اسم الشركة والاختصار -->
-<div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-<div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
-<!-- نص التحرير والتشغيل -->
-<div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
-<!-- شريط التحميل -->
-<div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
-<div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
-</div>
-</div>
-</div>
-<script>
-// تأثير مطر الماتريكس في الخلفية
-const canvas = document.getElementById('matrixRain');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const chars = '01UMBRELLaaliceHAZARD9854BIOSYN';
-const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = [];
-for (let x = 0; x < columns; x++) drops[x] = 1;
-
-function drawMatrix() {
-    ctx.fillStyle = 'rgba(21, 0, 0, 0.08)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#ff0055';
-    ctx.font = fontSize + 'px monospace';
-    for (let i = 0; i < drops.length; i++) {
-        const text = chars.charAt(Math.floor(Math.random() * chars.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-    }
-}
-let matrixInterval = setInterval(drawMatrix, 35);
-
-// تشغيل النصوص وتسلسل الدخول
-window.addEventListener('DOMContentLoaded', () => {
-    let text = "ACCESSING T-VIRUS MAIN DATABASE...\nVERIFYING PROJECT ALICE CLEARANCE...\nLOADING SECURE RECOVERY SYSTEM...\nSTATUS: CONTAINMENT PROTOCOL ACTIVE.";
-    let i = 0;
-    let speed = 25;
-    let textElement = document.getElementById('terminalText');
-    let barElement = document.getElementById('terminalBar');
-    let terminalBox = document.getElementById('secretTerminal');
-
-    function typeWriter() {
-        if (i < text.length) {
-            textElement.innerHTML += text.charAt(i) === '\n' ? '<br>' : text.charAt(i);
-            i++;
-            let progress = (i / text.length) * 100;
-            barElement.style.width = progress + '%';
-            setTimeout(typeWriter, speed);
-        } else {
-            setTimeout(() => {
-                terminalBox.style.opacity = '0';
-                setTimeout(() => {
-                    terminalBox.style.display = 'none';
-                    clearInterval(matrixInterval);
-                }, 800);
-            }, 800);
-        }
-    }
-    setTimeout(typeWriter, 600);
-});
-</script>
