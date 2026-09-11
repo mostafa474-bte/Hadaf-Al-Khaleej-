@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+
+<html dir="rtl" lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منظومة تحصيل هدف الخليج - Mostafa Waleed</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>منظومة تحصيل هدف الخليج - Mostafa Waleed</title>
+<style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -864,785 +865,864 @@
             body { background: white !important; }
         }
     </style>
-</head>
+<style>
+/* ===== Hadaf Al-Khaleej V2 additions ===== */
+:root {
+  --v2-bg:#f8fafc; --v2-card:#ffffff; --v2-text:#0f172a; --v2-muted:#64748b;
+  --v2-primary:#0284c7; --v2-primary-dark:#0369a1; --v2-border:#e2e8f0;
+  --v2-green:#16a34a; --v2-red:#dc2626; --v2-orange:#ea580c; --v2-purple:#7c3aed;
+}
+body.dark-mode {
+  --v2-bg:#0b1220; --v2-card:#111827; --v2-text:#e5e7eb; --v2-muted:#94a3b8; --v2-border:#334155;
+  background: linear-gradient(rgba(2,6,23,.90),rgba(2,6,23,.90)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background-size:cover; color:var(--v2-text);
+}
+body.dark-mode header, body.dark-mode .page-card, body.dark-mode .tool-box, body.dark-mode .target-card,
+body.dark-mode .v2-card, body.dark-mode .v2-modal-card, body.dark-mode .rasheed-chat-box { background:rgba(17,24,39,.96); color:var(--v2-text); border-color:var(--v2-border); }
+body.dark-mode input, body.dark-mode textarea, body.dark-mode select, body.dark-mode table { background:#0f172a; color:#e5e7eb; border-color:#334155; }
+body.dark-mode th { background:#172554; color:#bfdbfe; }
+body.dark-mode td { border-color:#334155; }
+body.dark-mode .script-box { color:#d1fae5; background:linear-gradient(rgba(17,24,39,.91),rgba(17,24,39,.91)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80') center/cover no-repeat; }
+
+.v2-top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.v2-icon-btn{border:1px solid #bae6fd;background:#f0f9ff;color:#0369a1;border-radius:9px;padding:7px 11px;font-weight:700;cursor:pointer}
+.v2-icon-btn:hover{background:#e0f2fe}.v2-icon-btn.danger{border-color:#fecaca;background:#fef2f2;color:#b91c1c}
+.v2-search-wrap{max-width:1200px;margin:12px auto 0;padding:0 20px;position:relative}
+.v2-global-search{width:100%;padding:11px 44px 11px 14px;border:1px solid #bae6fd;border-radius:12px;background:rgba(255,255,255,.94);font-size:.95rem;outline:none;box-shadow:0 3px 10px rgba(2,132,199,.08)}
+.v2-search-icon{position:absolute;right:34px;top:9px;font-size:1.15rem}
+.v2-search-results{display:none;position:absolute;z-index:1500;right:20px;left:20px;top:48px;background:var(--v2-card);border:1px solid var(--v2-border);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.18);max-height:330px;overflow:auto;padding:8px}
+.v2-search-item{padding:9px 10px;border-bottom:1px solid var(--v2-border);cursor:pointer}.v2-search-item:last-child{border:0}.v2-search-item:hover{background:#f0f9ff;color:#0f172a}
+
+.v2-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:14px 0 22px}
+.v2-card{background:rgba(255,255,255,.95);border:1px solid var(--v2-border);border-radius:14px;padding:17px;box-shadow:0 5px 15px rgba(15,23,42,.06)}
+.v2-stat-title{font-size:.82rem;color:var(--v2-muted);font-weight:700}.v2-stat-value{font-size:1.65rem;font-weight:900;color:#0369a1;margin-top:4px}.v2-stat-sub{font-size:.78rem;color:var(--v2-muted);margin-top:4px}
+.v2-two-col{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.v2-three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.v2-section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.v2-section-title h3{color:#0369a1;font-size:1.05rem}
+.v2-list{list-style:none;display:flex;flex-direction:column;gap:8px}.v2-list li{padding:10px 12px;border:1px solid var(--v2-border);border-radius:10px;background:rgba(248,250,252,.8);display:flex;justify-content:space-between;gap:10px;align-items:center}
+body.dark-mode .v2-list li{background:#0f172a}
+.v2-empty{text-align:center;color:var(--v2-muted);padding:24px 10px}
+.v2-progress{height:12px;background:#e2e8f0;border-radius:999px;overflow:hidden}.v2-progress>div{height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);width:0%;transition:.35s}
+
+.v2-form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.v2-form-grid .span-2{grid-column:span 2}.v2-form-grid .span-4{grid-column:span 4}
+.v2-field label{display:block;font-size:.8rem;font-weight:800;color:var(--v2-muted);margin-bottom:5px}.v2-field input,.v2-field select,.v2-field textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px;outline:none}
+.v2-actions{display:flex;gap:8px;flex-wrap:wrap}.v2-btn{border:0;border-radius:8px;padding:9px 13px;font-weight:800;cursor:pointer;background:#0284c7;color:white}.v2-btn:hover{background:#0369a1}.v2-btn.green{background:#16a34a}.v2-btn.red{background:#dc2626}.v2-btn.gray{background:#64748b}.v2-btn.purple{background:#7c3aed}.v2-btn.orange{background:#ea580c}
+.v2-table-wrap{overflow:auto;border:1px solid var(--v2-border);border-radius:12px}.v2-table-wrap table{margin:0;min-width:980px}.v2-small{font-size:.8rem;color:var(--v2-muted)}
+.v2-badge{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:.75rem;font-weight:800;background:#e2e8f0;color:#334155}.v2-badge.new{background:#dbeafe;color:#1d4ed8}.v2-badge.contacted{background:#fef3c7;color:#92400e}.v2-badge.promise{background:#ede9fe;color:#6d28d9}.v2-badge.follow{background:#cffafe;color:#0e7490}.v2-badge.paid{background:#dcfce7;color:#15803d}.v2-badge.closed{background:#e2e8f0;color:#475569}.v2-badge.overdue{background:#fee2e2;color:#b91c1c}
+
+.v2-notify-panel{position:fixed;top:0;left:-380px;width:360px;max-width:92vw;height:100vh;background:var(--v2-card);z-index:9998;box-shadow:8px 0 30px rgba(0,0,0,.22);padding:18px;transition:left .3s;overflow:auto;color:var(--v2-text)}
+.v2-notify-panel.open{left:0}.v2-notify-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--v2-border);padding-bottom:10px;margin-bottom:10px}
+.v2-notice{padding:11px;border:1px solid var(--v2-border);border-radius:10px;margin-bottom:8px}.v2-notice.overdue{border-right:4px solid #dc2626}.v2-notice.today{border-right:4px solid #ea580c}.v2-notice.info{border-right:4px solid #0284c7}
+.v2-notify-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 5px;border-radius:20px;background:#dc2626;color:#fff;font-size:.72rem;margin-right:4px}
+
+.v2-modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.65);z-index:9999;align-items:center;justify-content:center;padding:20px}.v2-modal.open{display:flex}.v2-modal-card{width:min(760px,96vw);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:20px;border:1px solid #cbd5e1;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+.v2-modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;border-bottom:1px solid var(--v2-border);padding-bottom:10px}
+.v2-kpi-row{display:flex;gap:10px;flex-wrap:wrap}.v2-kpi{flex:1;min-width:150px;background:#f8fafc;border:1px solid var(--v2-border);border-radius:10px;padding:12px}body.dark-mode .v2-kpi{background:#0f172a}
+.v2-chart-bars{display:flex;align-items:end;gap:8px;height:170px;padding-top:15px}.v2-bar-item{flex:1;text-align:center;min-width:28px}.v2-bar{width:100%;background:linear-gradient(#38bdf8,#0284c7);border-radius:7px 7px 2px 2px;min-height:4px}.v2-bar-label{font-size:.7rem;color:var(--v2-muted);margin-top:5px;white-space:nowrap}
+
+@media(max-width:900px){.v2-grid{grid-template-columns:repeat(2,1fr)}.v2-two-col{grid-template-columns:1fr}.v2-form-grid{grid-template-columns:repeat(2,1fr)}.v2-form-grid .span-4{grid-column:span 2}.v2-three-col{grid-template-columns:1fr}}
+@media(max-width:560px){.v2-grid{grid-template-columns:1fr}.v2-form-grid{grid-template-columns:1fr}.v2-form-grid .span-2,.v2-form-grid .span-4{grid-column:span 1}.header-actions{width:100%}.v2-top-actions{width:100%}.v2-icon-btn{flex:1}.controls-bar{justify-content:flex-start;overflow-x:auto;flex-wrap:nowrap;padding-bottom:6px}.tab-btn{white-space:nowrap}.v2-search-wrap{margin-top:8px}}
+</style></head>
 <body>
-
-    <!-- شاشة تكبيرات الصلاة "الله أكبر" -->
-    <div id="takbeer-overlay">
-        <div class="takbeer-box">
-            <div class="takbeer-text">الله أكبر</div>
-            <div class="takbeer-sub" id="prayerNameNotice">حان الآن موعد أذان الصلاة 🕌</div>
-        </div>
-    </div>
-
-    <!-- الشريط العلوي الشريف والتوقيت والساعات -->
-    <div class="top-banner">
-        <div class="hadith-section">
-            <span class="salawat">✨ صلِّ على محمد ﷺ ✨</span>
-            <span id="rotatingHadith">قال رسول الله ﷺ: « أَدِّ الأَمَانَةَ إِلَى مَنِ إِئْتَمَنَكَ وَلا تَخُنْ مَنْ خَانَكَ »</span>
-        </div>
-        
-        <div class="clocks-wrapper">
-            <div class="mini-analog-clock" title="ساعة العقارب">
-                <div class="mini-center-dot"></div>
-                <div class="mini-hand mini-hour" id="topAnalogHour"></div>
-                <div class="mini-hand mini-minute" id="topAnalogMin"></div>
-                <div class="mini-hand mini-second" id="topAnalogSec"></div>
-            </div>
-            
-            <div class="clock-container" id="ksaClock">توقيت السعودية 🇸🇦: --:--:--</div>
-            <div class="clock-container" id="egyptClock">مصر 🇪🇬: --:--:--</div>
-        </div>
-    </div>
-
-    <!-- نافذة تسجيل الدخول برمز الموظف الشخصي -->
-    <div id="auth-overlay">
-        <div class="auth-box">
-            <h2>🔑 دخول الموظف</h2>
-            <p>أدخل كودك الخاص لبدء الجلسة.<br><small style="color: #0284c7;">(يتم تسجيل وحفظ جميع بياناتك والتارجت الخاص بك برقمك تلقائياً لتدخل به دائماً)</small></p>
-            <input type="text" id="passInput" placeholder="أدخل كود الموظف..." onkeypress="handleKeyPress(event)">
-            <button onclick="checkUserAuth()">دخول النظام وحفظ الجلسة</button>
-            <div id="errorMsg" class="error-msg">يرجى إدخال رمز صحيح!</div>
-        </div>
-    </div>
-
-    <!-- محتوى الموقع الرئيسي -->
-    <div id="main-content">
-        <header>
-            <div class="header-container">
-                <div class="logo">
+<!-- شاشة تكبيرات الصلاة "الله أكبر" -->
+<div id="takbeer-overlay">
+<div class="takbeer-box">
+<div class="takbeer-text">الله أكبر</div>
+<div class="takbeer-sub" id="prayerNameNotice">حان الآن موعد أذان الصلاة 🕌</div>
+</div>
+</div>
+<!-- الشريط العلوي الشريف والتوقيت والساعات -->
+<div class="top-banner">
+<div class="hadith-section">
+<span class="salawat">✨ صلِّ على محمد ﷺ ✨</span>
+<span id="rotatingHadith">قال رسول الله ﷺ: « أَدِّ الأَمَانَةَ إِلَى مَنِ إِئْتَمَنَكَ وَلا تَخُنْ مَنْ خَانَكَ »</span>
+</div>
+<div class="clocks-wrapper">
+<div class="mini-analog-clock" title="ساعة العقارب">
+<div class="mini-center-dot"></div>
+<div class="mini-hand mini-hour" id="topAnalogHour"></div>
+<div class="mini-hand mini-minute" id="topAnalogMin"></div>
+<div class="mini-hand mini-second" id="topAnalogSec"></div>
+</div>
+<div class="clock-container" id="ksaClock">توقيت السعودية 🇸🇦: --:--:--</div>
+<div class="clock-container" id="egyptClock">مصر 🇪🇬: --:--:--</div>
+</div>
+</div>
+<!-- نافذة تسجيل الدخول برمز الموظف الشخصي -->
+<div id="auth-overlay">
+<div class="auth-box">
+<h2>🔑 دخول الموظف</h2>
+<p>أدخل كودك الخاص لبدء الجلسة.<br/><small style="color: #0284c7;">(يتم تسجيل وحفظ جميع بياناتك والتارجت الخاص بك برقمك تلقائياً لتدخل به دائماً)</small></p>
+<input id="passInput" onkeypress="handleKeyPress(event)" placeholder="أدخل كود الموظف..." type="text"/>
+<button onclick="checkUserAuth()">دخول النظام وحفظ الجلسة</button>
+<div class="error-msg" id="errorMsg">يرجى إدخال رمز صحيح!</div>
+</div>
+</div>
+<!-- محتوى الموقع الرئيسي -->
+<div id="main-content">
+<header>
+<div class="header-container">
+<div class="logo">
                     منظومة تحصيل هدف الخليج
-                    <img class="flag-icon" src="https://flagcdn.com/w40/eg.png" alt="علم مصر">
-                </div>
-                <div class="header-actions">
-                    <div class="user-tag" id="userDisplayTag">👤 كود الموظف: --</div>
-                    <button class="logout-btn" onclick="logoutUser()">تبديل الموظف</button>
-                    <div class="designer-tag">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-            </div>
-        </header>
-
-        <div class="controls-bar">
-            <button class="tab-btn active" onclick="switchTab('personal', event)">💳 قسم بنك SNB (القرض الشخصي)</button>
-            <button class="tab-btn" onclick="switchTab('credit', event)">🏛️ قسم بطاقة الكريديت كارد</button>
-            <button class="tab-btn" onclick="switchTab('auto', event)">🚗 قسم تمويل وقرض السيارة</button>
-            <button class="tab-btn tools-btn" onclick="switchTab('tools', event)">⚡ أدوات التحصيل الذكية والتارجت</button>
-            <button class="tab-btn" onclick="switchTab('followup', event)">📋 Follow Up (متابعة وتحديثات)</button>
-            <button class="tab-btn special-btn" onclick="switchTab('externallinks', event)">🔗 روابط مواقع الاستعلام</button>
-        </div>
-
-        <div class="container">
-
-            <div class="prayer-bar">
-                <div class="prayer-row">
-                    <span>🕌 مواعيد الصلاة اليوم (توقيت القاهرة 🇪🇬):</span>
-                    <div class="prayer-times-inline">
-                        <span class="prayer-item">الفجر: 05:14</span>
-                        <span class="prayer-item">الظهر: 12:55</span>
-                        <span class="prayer-item">العصر: 04:24</span>
-                        <span class="prayer-item">المغرب: 07:09</span>
-                        <span class="prayer-item">العشاء: 08:25</span>
-                    </div>
-                </div>
-                <div class="prayer-row" style="border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 5px;">
-                    <span>🕌 مواعيد الصلاة (توقيت الإمارات 🇦🇪):</span>
-                    <div class="prayer-times-inline">
-                        <span class="prayer-item">الفجر: 04:50</span>
-                        <span class="prayer-item">الظهر: 12:23</span>
-                        <span class="prayer-item">العصر: 03:50</span>
-                        <span class="prayer-item">المغرب: 06:36</span>
-                        <span class="prayer-item">العشاء: 08:06</span>
-                    </div>
-                    <button onclick="triggerTakbeer('تجريبي')" style="background: rgba(255,255,255,0.2); border: 1px solid #fff; color: #fff; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">اختبار الأذان 🔊</button>
-                </div>
-            </div>
-
-            <div class="dhikr-bar">
+                    <img alt="علم مصر" class="flag-icon" src="https://flagcdn.com/w40/eg.png"/>
+</div>
+<div class="header-actions"><div class="v2-top-actions">
+<button class="v2-icon-btn" onclick="toggleNotifications()">🔔 التنبيهات <span class="v2-notify-count" id="notifyCount" style="display:none">0</span></button>
+<button class="v2-icon-btn" id="themeToggleBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي</button>
+<button class="v2-icon-btn" onclick="exportBackup()">💾 نسخة احتياطية</button>
+<label class="v2-icon-btn" style="cursor:pointer">📥 استعادة<input accept="application/json" id="backupFile" onchange="importBackup(event)" style="display:none" type="file"/></label>
+</div>
+<div class="user-tag" id="userDisplayTag">👤 كود الموظف: --</div>
+<button class="logout-btn" onclick="logoutUser()">تبديل الموظف</button>
+<div class="designer-tag">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+</div>
+</header>
+<div class="v2-search-wrap">
+<span class="v2-search-icon">🔎</span>
+<input autocomplete="off" class="v2-global-search" id="globalSearch" oninput="runGlobalSearch(this.value)" placeholder="بحث سريع: اسم العميل، رقم الحساب، الهاتف، ملاحظة..." type="search"/>
+<div class="v2-search-results" id="globalSearchResults"></div>
+</div>
+<div class="controls-bar">
+<button class="tab-btn active" onclick="switchTab('dashboard', event)">📊 لوحة التحكم</button>
+<button class="tab-btn" onclick="switchTab('crm', event)">👥 CRM العملاء</button>
+<button class="tab-btn" onclick="switchTab('reports', event)">📈 التقارير</button>
+<button class="tab-btn" onclick="switchTab('personal', event)">💳 قسم بنك SNB (القرض الشخصي)</button>
+<button class="tab-btn" onclick="switchTab('credit', event)">🏛️ قسم بطاقة الكريديت كارد</button>
+<button class="tab-btn" onclick="switchTab('auto', event)">🚗 قسم تمويل وقرض السيارة</button>
+<button class="tab-btn tools-btn" onclick="switchTab('tools', event)">⚡ أدوات التحصيل الذكية والتارجت</button>
+<button class="tab-btn" onclick="switchTab('followup', event)">📋 Follow Up (متابعة وتحديثات)</button>
+<button class="tab-btn special-btn" onclick="switchTab('externallinks', event)">🔗 روابط مواقع الاستعلام</button>
+</div>
+<div class="container">
+<div class="prayer-bar">
+<div class="prayer-row">
+<span>🕌 مواعيد الصلاة اليوم (توقيت القاهرة 🇪🇬):</span>
+<div class="prayer-times-inline">
+<span class="prayer-item">الفجر: 05:14</span>
+<span class="prayer-item">الظهر: 12:55</span>
+<span class="prayer-item">العصر: 04:24</span>
+<span class="prayer-item">المغرب: 07:09</span>
+<span class="prayer-item">العشاء: 08:25</span>
+</div>
+</div>
+<div class="prayer-row" style="border-top: 1px dashed rgba(255,255,255,0.2); padding-top: 5px;">
+<span>🕌 مواعيد الصلاة (توقيت الإمارات 🇦🇪):</span>
+<div class="prayer-times-inline">
+<span class="prayer-item">الفجر: 04:50</span>
+<span class="prayer-item">الظهر: 12:23</span>
+<span class="prayer-item">العصر: 03:50</span>
+<span class="prayer-item">المغرب: 06:36</span>
+<span class="prayer-item">العشاء: 08:06</span>
+</div>
+<button onclick="triggerTakbeer('تجريبي')" style="background: rgba(255,255,255,0.2); border: 1px solid #fff; color: #fff; padding: 2px 8px; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">اختبار الأذان 🔊</button>
+</div>
+</div>
+<div class="dhikr-bar">
                 🌿 "اللَّهُمَّ اكْفِنِي بِحَلاَلِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ" | استعن بالله ولا تعجز.
             </div>
-
-            <!-- 1. القرض الشخصي -->
-            <div id="personal" class="script-group active">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 1: التقديم والافتتاحية الرسمية (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - القرض الشخصي</span>
-                    </div>
-                    <div class="script-box">
-                        "السلام عليكم ورحمة الله وبركاته، أهلاً بك أستاذ [اسم العميل]، أتمنى تكون بخير وصحة يا رب. مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج لخدمات التحصيل</span>، بتواصل مع سيادتك اليوم نيابة عن بنك <span class="highlight">البنك الأهلي السعودي SNB</span>.<br>
-                        اتصالي بحضرتك اليوم بخصوص ملف التمويل الشخصي والمديونية المستحقة على حسابكم بقيمة إجمالية تبلغ <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+<!-- 1. القرض الشخصي -->
+<div class="script-group active" id="dashboard">
+<div class="page-card">
+<div class="page-header"><h2 class="page-title">📊 لوحة التحكم الرئيسية</h2><span class="badge-ar">نظرة شاملة</span></div>
+<div class="v2-grid">
+<div class="v2-card"><div class="v2-stat-title">🎯 التارجت</div><div class="v2-stat-value" id="dashTarget">0</div><div class="v2-stat-sub">ريال</div></div>
+<div class="v2-card"><div class="v2-stat-title">💰 المحصل</div><div class="v2-stat-value" id="dashCollected">0</div><div class="v2-stat-sub" id="dashPercent">0% من الهدف</div></div>
+<div class="v2-card"><div class="v2-stat-title">👥 العملاء</div><div class="v2-stat-value" id="dashClients">0</div><div class="v2-stat-sub">ملف محفوظ على هذا الكود</div></div>
+<div class="v2-card"><div class="v2-stat-title">🔔 متابعات اليوم</div><div class="v2-stat-value" id="dashToday">0</div><div class="v2-stat-sub" id="dashOverdue">0 متأخرة</div></div>
+</div>
+<div class="v2-card" style="margin-bottom:18px">
+<div class="v2-section-title"><h3>نسبة تحقيق التارجت</h3><strong id="dashProgressText">0%</strong></div>
+<div class="v2-progress"><div id="dashProgressFill"></div></div>
+</div>
+<div class="v2-two-col">
+<div class="v2-card">
+<div class="v2-section-title"><h3>📅 المتابعات الأقرب</h3><button class="v2-btn" onclick="openCrmNew()">+ عميل جديد</button></div>
+<ul class="v2-list" id="dashFollowups"></ul>
+</div>
+<div class="v2-card">
+<div class="v2-section-title"><h3>💵 آخر عمليات التحصيل</h3><button class="v2-btn green" onclick="switchTabById('tools')">فتح أدوات التحصيل</button></div>
+<ul class="v2-list" id="dashCollections"></ul>
+</div>
+</div>
+<div class="v2-two-col" style="margin-top:18px">
+<div class="v2-card"><div class="v2-section-title"><h3>🧭 توزيع حالات العملاء</h3></div><div id="dashStatusBreakdown"></div></div>
+<div class="v2-card"><div class="v2-section-title"><h3>⚡ اختصارات</h3></div><div class="v2-actions">
+<button class="v2-btn" onclick="switchTabById('followup')">Follow Up</button><button class="v2-btn green" onclick="switchTabById('externallinks')">روابط الاستعلام</button><button class="v2-btn purple" onclick="switchTabById('reports')">التقارير</button><button class="v2-btn orange" onclick="toggleNotifications()">التنبيهات</button>
+</div></div>
+</div>
+</div>
+</div><div class="script-group" id="crm">
+<div class="page-card">
+<div class="page-header"><h2 class="page-title">👥 إدارة العملاء CRM</h2><span class="badge-ar">ملفات ومتابعات</span></div>
+<div class="v2-card" style="margin-bottom:18px">
+<div class="v2-section-title"><h3 id="crmFormTitle">إضافة / تحديث عميل</h3><span class="v2-small">البيانات تُحفظ محليًا تحت كود الموظف الحالي</span></div>
+<input id="crmEditId" type="hidden"/>
+<div class="v2-form-grid">
+<div class="v2-field"><label>اسم العميل *</label><input id="crmName" placeholder="اسم العميل"/></div>
+<div class="v2-field"><label>رقم الحساب / المرجع</label><input id="crmAccount" placeholder="Account / Reference"/></div>
+<div class="v2-field"><label>رقم الهاتف</label><input id="crmPhone" placeholder="9665..."/></div>
+<div class="v2-field"><label>المنتج</label><select id="crmProduct"><option>Personal Loan</option><option>Credit Card</option><option>Auto Finance</option><option>Other</option></select></div>
+<div class="v2-field"><label>المديونية</label><input id="crmDebt" min="0" placeholder="0.00" step="0.01" type="number"/></div>
+<div class="v2-field"><label>الحالة</label><select id="crmStatus"><option value="new">New</option><option value="contacted">Contacted</option><option value="promise">Promise to Pay</option><option value="follow">Follow Up</option><option value="paid">Paid</option><option value="closed">Closed</option></select></div>
+<div class="v2-field"><label>آخر تواصل</label><input id="crmLastContact" type="datetime-local"/></div>
+<div class="v2-field"><label>موعد المتابعة القادمة</label><input id="crmNextFollowup" type="datetime-local"/></div>
+<div class="v2-field"><label>قيمة الوعد بالسداد</label><input id="crmPromiseAmount" min="0" placeholder="0.00" step="0.01" type="number"/></div>
+<div class="v2-field span-2"><label>ملاحظات العميل</label><textarea id="crmNotes" placeholder="نتيجة الاتصال / ظروف العميل / المطلوب في المتابعة" rows="2"></textarea></div>
+<div class="v2-field"><label>تاريخ الوعد بالسداد</label><input id="crmPromiseDate" type="date"/></div>
+</div>
+<div class="v2-actions" style="margin-top:12px"><button class="v2-btn green" onclick="saveCrmClient()">💾 حفظ العميل</button><button class="v2-btn gray" onclick="clearCrmForm()">مسح الحقول</button></div>
+</div>
+<div class="v2-card">
+<div class="v2-section-title"><h3>قائمة العملاء</h3><div class="v2-actions"><input id="crmFilter" oninput="renderCrm()" placeholder="بحث داخل CRM..." style="padding:8px;border:1px solid #cbd5e1;border-radius:8px"/><select id="crmStatusFilter" onchange="renderCrm()" style="padding:8px;border:1px solid #cbd5e1;border-radius:8px"><option value="">كل الحالات</option><option value="new">New</option><option value="contacted">Contacted</option><option value="promise">Promise to Pay</option><option value="follow">Follow Up</option><option value="paid">Paid</option><option value="closed">Closed</option></select></div></div>
+<div class="v2-table-wrap"><table><thead><tr><th>العميل</th><th>الحساب</th><th>المنتج</th><th>المديونية</th><th>الحالة</th><th>المتابعة</th><th>الوعد</th><th>إجراءات</th></tr></thead><tbody id="crmTableBody"></tbody></table></div>
+</div>
+</div>
+</div><div class="script-group" id="reports">
+<div class="page-card">
+<div class="page-header"><h2 class="page-title">📈 التقارير والتصدير</h2><span class="badge-ar">يومي / شامل</span></div>
+<div class="v2-kpi-row" style="margin-bottom:18px">
+<div class="v2-kpi"><div class="v2-small">إجمالي التحصيل</div><strong id="reportCollected">0 ريال</strong></div>
+<div class="v2-kpi"><div class="v2-small">عدد عمليات التحصيل</div><strong id="reportCollectionsCount">0</strong></div>
+<div class="v2-kpi"><div class="v2-small">إجمالي مديونية CRM</div><strong id="reportDebt">0 ريال</strong></div>
+<div class="v2-kpi"><div class="v2-small">وعود السداد</div><strong id="reportPromises">0</strong></div>
+</div>
+<div class="v2-actions" style="margin-bottom:18px"><button class="v2-btn green" onclick="exportClientsCSV()">⬇️ تصدير العملاء CSV</button><button class="v2-btn" onclick="exportCollectionsCSV()">⬇️ تصدير التحصيل CSV</button><button class="v2-btn purple" onclick="window.print()">🖨️ طباعة / PDF</button><button class="v2-btn gray" onclick="exportBackup()">💾 JSON Backup</button></div>
+<div class="v2-two-col">
+<div class="v2-card"><div class="v2-section-title"><h3>حالات العملاء</h3></div><div id="reportStatusSummary"></div></div>
+<div class="v2-card"><div class="v2-section-title"><h3>آخر 7 أيام تحصيل</h3></div><div class="v2-chart-bars" id="weeklyBars"></div></div>
+</div>
+<div class="v2-card" style="margin-top:18px"><div class="v2-section-title"><h3>المتابعات المتأخرة والقادمة</h3></div><div id="reportFollowupList"></div></div>
+</div>
+</div><div class="script-group" id="personal">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 1: التقديم والافتتاحية الرسمية (بنك SNB)</h2>
+<span class="badge-ar">عربي - القرض الشخصي</span>
+</div>
+<div class="script-box">
+                        "السلام عليكم ورحمة الله وبركاته، أهلاً بك أستاذ [اسم العميل]، أتمنى تكون بخير وصحة يا رب. مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج لخدمات التحصيل</span>، بتواصل مع سيادتك اليوم نيابة عن بنك <span class="highlight">البنك الأهلي السعودي SNB</span>.<br/>
+                        اتصالي بحضرتك اليوم بخصوص ملف التمويل الشخصي والمديونية المستحقة على حسابكم بقيمة إجمالية تبلغ <span class="highlight">[62,038.80 ريال سعودي]</span>.<br/>
                         نحن في البنك مهتمون جداً بمتابعة حسابك واستقرار وضعك المالي، لذلك نحب نتعرف منك بشكل مباشر على أسباب عدم السداد حتى هذه اللحظة، وهل هناك أي صعوبات أو ظروف مالية واجهتك لنتمكن من المساعدة في حلها؟"
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 2: امتصاص الغضب وعرض الخصم المؤقت (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الثانية</span>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 2: امتصاص الغضب وعرض الخصم المؤقت (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الثانية</span>
+</div>
+<div class="script-box">
+                        "أنا مقدر ومستوعب تماماً الظروف التي مررت بها يا أستاذنا العزيز، ودوري هنا ليس فقط المطالبة بل الوقوف في صفك وإيجاد مخرج مالي مريح ينهي هذه المديونية بالكامل.<br/>
+                        بما إن لديك النية الجادة في إغلاق هذا الملف، أنا <span class="highlight">لن أعدك بوعود جازمة فورية، لكنني سأرفع طلب استثناء خاص للإدارة العليا بالبنك</span> لنحاول الحصول على <span class="success">أوفر خصم بنسبة مئوية ممتازة</span> على إجمالي المبلغ المستحق.<br/>
+<span class="danger">لكن هناك نقطة جوهرية يجب أن نتفق عليها:</span> موافقة الخصم حين تخرج من البنك تصدر <span class="danger">لمدة 24 ساعة فقط (يوم واحد)</span>، ولن تتكرر. يجب أن يتوفر المبلغ المتفق عليه جاهزاً معك اليوم لندفعه فور صدور الموافقة. هل السيولة المالية متوفرة معك اليوم لنبدأ بالإجراءات فوراً؟"
                     </div>
-                    <div class="script-box">
-                        "أنا مقدر ومستوعب تماماً الظروف التي مررت بها يا أستاذنا العزيز، ودوري هنا ليس فقط المطالبة بل الوقوف في صفك وإيجاد مخرج مالي مريح ينهي هذه المديونية بالكامل.<br>
-                        بما إن لديك النية الجادة في إغلاق هذا الملف، أنا <span class="highlight">لن أعدك بوعود جازمة فورية، لكنني سأرفع طلب استثناء خاص للإدارة العليا بالبنك</span> لنحاول الحصول على <span class="success">أوفر خصم بنسبة مئوية ممتازة</span> على إجمالي المبلغ المستحق.<br>
-                        <span class="danger">لكن هناك نقطة جوهرية يجب أن نتفق عليها:</span> موافقة الخصم حين تخرج من البنك تصدر <span class="danger">لمدة 24 ساعة فقط (يوم واحد)</span>، ولن تتكرر. يجب أن يتوفر المبلغ المتفق عليه جاهزاً معك اليوم لندفعه فور صدور الموافقة. هل السيولة المالية متوفرة معك اليوم لنبدأ بالإجراءات فوراً؟"
-                    </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 3: قنوات وطرق السداد الرسمية (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الثالثة</span>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>قناة السداد</th>
-                                <th>خطوات الشرح للعميل التفصيلية</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
-                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
-                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 4: عواقب عدم السداد والرفض (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الرابعة</span>
-                    </div>
-                    <div class="script-box">
-                        "أستاذي الفاضل، حرصاً مني على مصلحتك وتفادياً لأي أضرار مالية، واجب عليّ توضيح العواقب القانونية والائتمانية الصارمة في حال الرفض أو المماطلة:<br>
-                        1. <span class="danger">تدهور السجل الائتماني (I-Score):</span> سيتم تسريع تدهور تقييمك الائتماني مما يمنعك مستقبلاً من التعامل مع كافة القطاعات المصرفية.<br>
-                        2. <span class="danger">الإدراج الرسمي في الشركة السعودية للمعلومات الائتمانية (سمة - SIMAH):</span> يوضع اسمك كعميل متعثر، مما يوقف أي معاملات مالية أو شراء بالتقسيط في المملكة.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 3: قنوات وطرق السداد الرسمية (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الثالثة</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>قناة السداد</th>
+<th>خطوات الشرح للعميل التفصيلية</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+<td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+</tr>
+<tr>
+<td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+<td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+</tr>
+</tbody>
+</table>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 4: عواقب عدم السداد والرفض (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الرابعة</span>
+</div>
+<div class="script-box">
+                        "أستاذي الفاضل، حرصاً مني على مصلحتك وتفادياً لأي أضرار مالية، واجب عليّ توضيح العواقب القانونية والائتمانية الصارمة في حال الرفض أو المماطلة:<br/>
+                        1. <span class="danger">تدهور السجل الائتماني (I-Score):</span> سيتم تسريع تدهور تقييمك الائتماني مما يمنعك مستقبلاً من التعامل مع كافة القطاعات المصرفية.<br/>
+                        2. <span class="danger">الإدراج الرسمي في الشركة السعودية للمعلومات الائتمانية (سمة - SIMAH):</span> يوضع اسمك كعميل متعثر، مما يوقف أي معاملات مالية أو شراء بالتقسيط في المملكة.<br/>
                         3. <span class="danger">تحويل الملف للقسم القانوني (Legal Status):</span> سيتم رفع دعوى قضائية وإصدار أحكام تنفيذية قد تشمل إيقاف الخدمات والحسابات البنكية."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 5: التسهيلات والمخالصة بعد السداد (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الخامسة</span>
-                    </div>
-                    <div class="script-box">
-                        "في المقابل يا أستاذي، بمجرد تمام السداد وحسم الملف اليوم، ستستفيد بالعديد من التسهيلات الشاملة:<br>
-                        1. <span class="success">إصدار خطاب مخالصة الذمة المالية:</span> سنقوم فوراً ببدء إجراءات استخراج وثيقة مخالصة ذمة معتمدة وموثوقة من بنك SNB تُثبت سداد كافة التزاماتك.<br>
-                        2. <span class="success">تحديث وتطهير السجل في (سمة):</span> رفع اسمك فوراً من قوائم المتعثرين وتعديل وضعك الائتماني ليعود سليماً.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 5: التسهيلات والمخالصة بعد السداد (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الخامسة</span>
+</div>
+<div class="script-box">
+                        "في المقابل يا أستاذي، بمجرد تمام السداد وحسم الملف اليوم، ستستفيد بالعديد من التسهيلات الشاملة:<br/>
+                        1. <span class="success">إصدار خطاب مخالصة الذمة المالية:</span> سنقوم فوراً ببدء إجراءات استخراج وثيقة مخالصة ذمة معتمدة وموثوقة من بنك SNB تُثبت سداد كافة التزاماتك.<br/>
+                        2. <span class="success">تحديث وتطهير السجل في (سمة):</span> رفع اسمك فوراً من قوائم المتعثرين وتعديل وضعك الائتماني ليعود سليماً.<br/>
                         3. <span class="success">استعادة الأهلية المصرفية:</span> يمكنك التقديم مجدداً وبشكل طبيعي جداً على قروض، تمويلات، أو بطاقات ائتمانية جديدة من البنك."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 6: Debt Identification & Greeting (SNB Personal Loan)</h2>
-                        <span class="badge-en">English - Page 6</span>
-                    </div>
-                    <div class="script-box en">
-                        "Good day Mr. [Customer Name], I hope you are doing well. My name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej Collection Agency</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
-                        I am reaching out to you today concerning your <span class="highlight">Personal Loan Account</span>, which has an overdue total balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 6: Debt Identification &amp; Greeting (SNB Personal Loan)</h2>
+<span class="badge-en">English - Page 6</span>
+</div>
+<div class="script-box en">
+                        "Good day Mr. [Customer Name], I hope you are doing well. My name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej Collection Agency</span> on behalf of <span class="highlight">SNB Bank</span>.<br/>
+                        I am reaching out to you today concerning your <span class="highlight">Personal Loan Account</span>, which has an overdue total balance of <span class="highlight">[SAR 62,038.80]</span>.<br/>
                         We are keen to support you and understand the reasons behind the payment delay so we can offer suitable settlement solutions."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 7: Empathy & Discount Offer (SNB Personal Loan)</h2>
-                        <span class="badge-en">English - Page 7</span>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 7: Empathy &amp; Discount Offer (SNB Personal Loan)</h2>
+<span class="badge-en">English - Page 7</span>
+</div>
+<div class="script-box en">
+                        "I completely understand the financial difficulties you have faced, and my objective is to help you fully settle this debt safely.<br/>
+                        Since you have a serious intention to clear your account, <span class="highlight">I will submit an exceptional request to management</span> to secure a <span class="success">special percentage discount</span> on your balance.<br/>
+<span class="danger">Crucial Note:</span> Bank discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. You must ensure the agreed funds are fully available today. Are you ready to proceed with payment upon approval?"
                     </div>
-                    <div class="script-box en">
-                        "I completely understand the financial difficulties you have faced, and my objective is to help you fully settle this debt safely.<br>
-                        Since you have a serious intention to clear your account, <span class="highlight">I will submit an exceptional request to management</span> to secure a <span class="success">special percentage discount</span> on your balance.<br>
-                        <span class="danger">Crucial Note:</span> Bank discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. You must ensure the agreed funds are fully available today. Are you ready to proceed with payment upon approval?"
-                    </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 8: Consequences & Clearance Settlement (SNB Personal Loan)</h2>
-                        <span class="badge-en">English - Page 8</span>
-                    </div>
-                    <div class="script-box en">
-                        "If you choose not to settle today, your <span class="danger">I-Score rating</span> will drop significantly, your name will be officially reported as defaulted in <span class="danger">SIMAH</span>, and legal action will be initiated.<br>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 8: Consequences &amp; Clearance Settlement (SNB Personal Loan)</h2>
+<span class="badge-en">English - Page 8</span>
+</div>
+<div class="script-box en">
+                        "If you choose not to settle today, your <span class="danger">I-Score rating</span> will drop significantly, your name will be officially reported as defaulted in <span class="danger">SIMAH</span>, and legal action will be initiated.<br/>
                         However, upon immediate settlement, we will issue your official <span class="success">Clearance Letter</span>, clear your record from SIMAH, and restore your full eligibility for future financial products."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-            </div>
-
-            <!-- 2. الكريديت كارد -->
-            <div id="credit" class="script-group">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 1: التقديم وتحديد مديونية الكريديت كارد (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الأولى</span>
-                    </div>
-                    <div class="script-box">
-                        "مساء الخير أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br>
-                        تواصلنا اليوم يختص بحساب <span class="highlight">بطاقة الائتمان (الكريديت كارد)</span> الخاصة بك، حيث يوجد رصيد مستحق لم يتم سداده بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+</div>
+<!-- 2. الكريديت كارد -->
+<div class="script-group" id="credit">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 1: التقديم وتحديد مديونية الكريديت كارد (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الأولى</span>
+</div>
+<div class="script-box">
+                        "مساء الخير أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br/>
+                        تواصلنا اليوم يختص بحساب <span class="highlight">بطاقة الائتمان (الكريديت كارد)</span> الخاصة بك، حيث يوجد رصيد مستحق لم يتم سداده بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br/>
                         نود الاستفسار عن سبب التوقف عن سداد الرصيد الكلي، ومساعدتك في إعادة تنظيم وتسوية البطاقة بشكل نهائي."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 2: عرض خصم تسوية البطاقة بشرط الجاهزية (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الثانية</span>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 2: عرض خصم تسوية البطاقة بشرط الجاهزية (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الثانية</span>
+</div>
+<div class="script-box">
+                        "أقدر تماماً التغيرات المالية التي جعلتك تتأخر عن السداد. دوري اليوم أن أقدم لك حلاً جذرياً لإغلاق البطاقة تماماً وإسقاط جزء من الفوائد.<br/>
+<span class="highlight">سأطلب لك موافقة استثنائية لإلغاء نسبة مئوية من المديونية</span> شريطة أن تكون جاهزاً بالسداد اليوم.<br/>
+<span class="danger">تنبيه هام:</span> موافقات خصومات الكريديت كارد تكون صالحة <span class="danger">ليوم واحد فقط</span> وتلغى تلقائياً بعد منتصف الليل. هل المبلغ المتفق عليه جاهز في حسابك لنرفع الطلب الآن؟"
                     </div>
-                    <div class="script-box">
-                        "أقدر تماماً التغيرات المالية التي جعلتك تتأخر عن السداد. دوري اليوم أن أقدم لك حلاً جذرياً لإغلاق البطاقة تماماً وإسقاط جزء من الفوائد.<br>
-                        <span class="highlight">سأطلب لك موافقة استثنائية لإلغاء نسبة مئوية من المديونية</span> شريطة أن تكون جاهزاً بالسداد اليوم.<br>
-                        <span class="danger">تنبيه هام:</span> موافقات خصومات الكريديت كارد تكون صالحة <span class="danger">ليوم واحد فقط</span> وتلغى تلقائياً بعد منتصف الليل. هل المبلغ المتفق عليه جاهز في حسابك لنرفع الطلب الآن؟"
-                    </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 3: طرق سداد مستحقات الكريديت كارد</h2>
-                        <span class="badge-ar">عربي - الورقة الثالثة</span>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>طريقة الدفع</th>
-                                <th>التفاصيل والإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
-                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
-                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 4: مخاطر تجاهل سداد بطاقة الائتمان (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الرابعة</span>
-                    </div>
-                    <div class="script-box">
-                        "تأخير سداد الكريديت كارد يتسبب في تبعات مالية وقانونية مشددة:<br>
-                        1. <span class="danger">حظر التعامل الائتماني:</span> حظر كلي لإصدار أي بطاقات جديدة أو تمويلات في المملكة.<br>
-                        2. <span class="danger">البلاغ في سمة (SIMAH):</span> تسجيل الحساب كبطاقة متعثرة وتدهور مؤشر الـ I-Score.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 3: طرق سداد مستحقات الكريديت كارد</h2>
+<span class="badge-ar">عربي - الورقة الثالثة</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>طريقة الدفع</th>
+<th>التفاصيل والإجراءات</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+<td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+</tr>
+<tr>
+<td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+<td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+</tr>
+</tbody>
+</table>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 4: مخاطر تجاهل سداد بطاقة الائتمان (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الرابعة</span>
+</div>
+<div class="script-box">
+                        "تأخير سداد الكريديت كارد يتسبب في تبعات مالية وقانونية مشددة:<br/>
+                        1. <span class="danger">حظر التعامل الائتماني:</span> حظر كلي لإصدار أي بطاقات جديدة أو تمويلات في المملكة.<br/>
+                        2. <span class="danger">البلاغ في سمة (SIMAH):</span> تسجيل الحساب كبطاقة متعثرة وتدهور مؤشر الـ I-Score.<br/>
                         3. <span class="danger">الملاحقة القضائية:</span> إحالة الملف إلى المحكمة التنفيذية وتحويل الحساب إلى عميل ليجل (Legal)."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 5: فوائد تسوية وإلغاء بطاقة الائتمان (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الخامسة</span>
-                    </div>
-                    <div class="script-box">
-                        "عند قيامك بالسداد اليوم عبر العرض المتاح:<br>
-                        1. سنقوم بإغلاق البطاقة نهائياً وإصدار <span class="success">خطاب مخالصة ذمة مالية</span> معتمد من بنك SNB.<br>
-                        2. <span class="success">تعديل التقرير الائتماني في سمة</span> وإزالة اسمك من قوائم التعثر.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 5: فوائد تسوية وإلغاء بطاقة الائتمان (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الخامسة</span>
+</div>
+<div class="script-box">
+                        "عند قيامك بالسداد اليوم عبر العرض المتاح:<br/>
+                        1. سنقوم بإغلاق البطاقة نهائياً وإصدار <span class="success">خطاب مخالصة ذمة مالية</span> معتمد من بنك SNB.<br/>
+                        2. <span class="success">تعديل التقرير الائتماني في سمة</span> وإزالة اسمك من قوائم التعثر.<br/>
                         3. حمايتك من تراكم الرسوم والفوائد التأخيرية واكتساب ثقة البنك مجدداً."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 6: Credit Card Debt Identification & Greeting (SNB)</h2>
-                        <span class="badge-en">English - Page 6</span>
-                    </div>
-                    <div class="script-box en">
-                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
-                        I am calling regarding your <span class="highlight">Credit Card Account</span> with an overdue balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 6: Credit Card Debt Identification &amp; Greeting (SNB)</h2>
+<span class="badge-en">English - Page 6</span>
+</div>
+<div class="script-box en">
+                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br/>
+                        I am calling regarding your <span class="highlight">Credit Card Account</span> with an overdue balance of <span class="highlight">[SAR 62,038.80]</span>.<br/>
                         We want to discuss the reasons for non-payment and offer you a structured settlement."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 7: Credit Card Discount & Validity Offer (SNB)</h2>
-                        <span class="badge-en">English - Page 7</span>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 7: Credit Card Discount &amp; Validity Offer (SNB)</h2>
+<span class="badge-en">English - Page 7</span>
+</div>
+<div class="script-box en">
+                        "I understand your current situation. I can request a <span class="success">special percentage discount</span> to settle your total credit card balance.<br/>
+<span class="danger">Important Notice:</span> This approval is strictly valid for <span class="danger">ONE DAY ONLY</span>. Please confirm if your funds are available today so we can apply."
                     </div>
-                    <div class="script-box en">
-                        "I understand your current situation. I can request a <span class="success">special percentage discount</span> to settle your total credit card balance.<br>
-                        <span class="danger">Important Notice:</span> This approval is strictly valid for <span class="danger">ONE DAY ONLY</span>. Please confirm if your funds are available today so we can apply."
-                    </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 8: Credit Card Settlement & Legal Warning (SNB)</h2>
-                        <span class="badge-en">English - Page 8</span>
-                    </div>
-                    <div class="script-box en">
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 8: Credit Card Settlement &amp; Legal Warning (SNB)</h2>
+<span class="badge-en">English - Page 8</span>
+</div>
+<div class="script-box en">
                         "Failing to settle today will result in updating your record as defaulted in <span class="danger">SIMAH</span> and transferring your file to Legal. Settle today to receive your official <span class="success">Clearance Letter</span> and restore your credit rating."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-            </div>
-
-            <!-- 3. تمويل السيارة -->
-            <div id="auto" class="script-group">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 1: التقديم والمديونية لتمويل السيارة (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الأولى</span>
-                    </div>
-                    <div class="script-box">
-                        "السلام عليكم أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br>
-                        اتصالي بحضرتك بخصوص عقد <span class="highlight">تمويل وقرض السيارة</span>، والمديونية المتأخرة بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+</div>
+<!-- 3. تمويل السيارة -->
+<div class="script-group" id="auto">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 1: التقديم والمديونية لتمويل السيارة (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الأولى</span>
+</div>
+<div class="script-box">
+                        "السلام عليكم أستاذ [اسم العميل]، مع سيادتك <span class="highlight">مصطفى</span> من شركة <span class="highlight">هدف الخليج</span> نيابة عن بنك <span class="highlight">SNB</span>.<br/>
+                        اتصالي بحضرتك بخصوص عقد <span class="highlight">تمويل وقرض السيارة</span>، والمديونية المتأخرة بقيمة <span class="highlight">[62,038.80 ريال سعودي]</span>.<br/>
                         نرغب في التأكد من أسباب التأخير وتجنب الوصول لمراحل سحب المركبة أو اتخاذ إجراءات قانونية."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 2: عرض خصم تسوية عقد السيارة والموافقة السريعة (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الثانية</span>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 2: عرض خصم تسوية عقد السيارة والموافقة السريعة (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الثانية</span>
+</div>
+<div class="script-box">
+                        "مقدرين تماماً ظروفك. يمكننا مساعدتك بتقديم طلب <span class="success">خصم استثنائي على الأرباح والرسوم المتبقية</span> لتمويل السيارة.<br/>
+<span class="danger">تنبيه حاسم:</span> العرض ينزل من البنك <span class="danger">صالح لمدة يوم واحد فقط</span>. يجب سداد المبلغ كاملاً اليوم بعد الخصم لتثبيت الملكية. هل المبلغ جاهز معك الآن؟"
                     </div>
-                    <div class="script-box">
-                        "مقدرين تماماً ظروفك. يمكننا مساعدتك بتقديم طلب <span class="success">خصم استثنائي على الأرباح والرسوم المتبقية</span> لتمويل السيارة.<br>
-                        <span class="danger">تنبيه حاسم:</span> العرض ينزل من البنك <span class="danger">صالح لمدة يوم واحد فقط</span>. يجب سداد المبلغ كاملاً اليوم بعد الخصم لتثبيت الملكية. هل المبلغ جاهز معك الآن؟"
-                    </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 3: قنوات وطرق سداد تمويل وقرض السيارة</h2>
-                        <span class="badge-ar">عربي - الورقة الثالثة</span>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>قناة وطريقة الدفع</th>
-                                <th>التفاصيل والإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
-                                <td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
-                                <td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 4: إجراءات وسحب المركبة عند عدم السداد (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الرابعة</span>
-                    </div>
-                    <div class="script-box">
-                        "في حال عدم السداد أو إلغاء العرض:<br>
-                        1. <span class="danger">إصدار أمر سحب المركبة:</span> البدء المباشر في إجراءات التعقب واسترداد السيارة.<br>
-                        2. <span class="danger">الإدراج في سمة (SIMAH):</span> حظر السجل الائتماني ومنع التعامل المصرفي.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 3: قنوات وطرق سداد تمويل وقرض السيارة</h2>
+<span class="badge-ar">عربي - الورقة الثالثة</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>قناة وطريقة الدفع</th>
+<th>التفاصيل والإجراءات</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. الدفع عن طريق سداد بالمعرف الحسابي</strong></td>
+<td>الدفع عن طريق سداد بالمعرف الحسابي الذي سأعطيه للعميل، ولما يكتبه سيظهر اسمه في موقع سداد لإتمام التسوية.</td>
+</tr>
+<tr>
+<td><strong>2. الدفع عن طريق التحويل البنكي من الخارج</strong></td>
+<td>التحويل المباشر من الخارج عبر الحساب البنكي المعتمد لحساب المديونية وإرسال الإشعار.</td>
+</tr>
+</tbody>
+</table>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 4: إجراءات وسحب المركبة عند عدم السداد (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الرابعة</span>
+</div>
+<div class="script-box">
+                        "في حال عدم السداد أو إلغاء العرض:<br/>
+                        1. <span class="danger">إصدار أمر سحب المركبة:</span> البدء المباشر في إجراءات التعقب واسترداد السيارة.<br/>
+                        2. <span class="danger">الإدراج في سمة (SIMAH):</span> حظر السجل الائتماني ومنع التعامل المصرفي.<br/>
                         3. <span class="danger">تحويل الملف للقضاء:</span> المطالبة القضائية بكامل أصل المبلغ والرسوم."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">ورقة 5: فك الحظر والمخالصة بعد سداد تمويل السيارة (بنك SNB)</h2>
-                        <span class="badge-ar">عربي - الورقة الخامسة</span>
-                    </div>
-                    <div class="script-box">
-                        "عند السداد اليوم بالتخفيض المتاح:<br>
-                        1. سنصدر <span class="success">خطاب مخالصة مالية وفك الحظر</span> عن المركبة لنقل ملكيتها بالكامل باسمك من بنك SNB.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">ورقة 5: فك الحظر والمخالصة بعد سداد تمويل السيارة (بنك SNB)</h2>
+<span class="badge-ar">عربي - الورقة الخامسة</span>
+</div>
+<div class="script-box">
+                        "عند السداد اليوم بالتخفيض المتاح:<br/>
+                        1. سنصدر <span class="success">خطاب مخالصة مالية وفك الحظر</span> عن المركبة لنقل ملكيتها بالكامل باسمك من بنك SNB.<br/>
                         2. <span class="success">تعديل وضعك في سمة</span> وإغلاق الملف بشكل قانوني نهائي."
                     </div>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 6: Auto Loan Debt Identification & Greeting (SNB)</h2>
-                        <span class="badge-en">English - Page 6</span>
-                    </div>
-                    <div class="script-box en">
-                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br>
-                        I am contacting you regarding your overdue <span class="highlight">Auto Loan Account</span> with a total outstanding balance of <span class="highlight">[SAR 62,038.80]</span>.<br>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 6: Auto Loan Debt Identification &amp; Greeting (SNB)</h2>
+<span class="badge-en">English - Page 6</span>
+</div>
+<div class="script-box en">
+                        "Hello Mr. [Customer Name], my name is <span class="highlight">Mostafa</span> calling from <span class="highlight">Hadaf Al-Khaleej</span> on behalf of <span class="highlight">SNB Bank</span>.<br/>
+                        I am contacting you regarding your overdue <span class="highlight">Auto Loan Account</span> with a total outstanding balance of <span class="highlight">[SAR 62,038.80]</span>.<br/>
                         We want to help you avoid vehicle repossession by offering a settlement solution."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 7: Auto Loan Discount & Repossession Warning (SNB)</h2>
-                        <span class="badge-en">English - Page 7</span>
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 7: Auto Loan Discount &amp; Repossession Warning (SNB)</h2>
+<span class="badge-en">English - Page 7</span>
+</div>
+<div class="script-box en">
+                        "We can submit an exceptional application for a <span class="success">discount on remaining profit charges</span>.<br/>
+<span class="danger">Please Note:</span> Discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. Non-settlement will result in issuing a vehicle repossession order and reporting to <span class="danger">SIMAH</span>."
                     </div>
-                    <div class="script-box en">
-                        "We can submit an exceptional application for a <span class="success">discount on remaining profit charges</span>.<br>
-                        <span class="danger">Please Note:</span> Discount approvals are valid for <span class="danger">ONE DAY ONLY</span>. Non-settlement will result in issuing a vehicle repossession order and reporting to <span class="danger">SIMAH</span>."
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">Page 8: Vehicle Release &amp; Clearance (SNB)</h2>
+<span class="badge-en">English - Page 8</span>
+</div>
+<div class="script-box en">
+                        "Upon full payment today, we will issue your official <span class="success">Clearance &amp; Vehicle Release Letter</span>, allowing you to transfer total ownership and clear your SIMAH credit score."
                     </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">Page 8: Vehicle Release & Clearance (SNB)</h2>
-                        <span class="badge-en">English - Page 8</span>
-                    </div>
-                    <div class="script-box en">
-                        "Upon full payment today, we will issue your official <span class="success">Clearance & Vehicle Release Letter</span>, allowing you to transfer total ownership and clear your SIMAH credit score."
-                    </div>
-                    <div class="card-footer">Developed by: Mostafa Waleed</div>
-                </div>
-            </div>
-
-            <!-- 4. أدوات التحصيل الذكية المحدثة والذكاء الاصطناعي -->
-            <div id="tools" class="script-group">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">⚡ أدوات العمل الذكية وشريط التارجت للمحصل</h2>
-                        <span class="badge-ar">أدوات حصرية ومحاسبة</span>
-                    </div>
-
-                    <!-- قسم الذكاء الاصطناعي - اسأل رشيد -->
-                    <div class="rasheed-container">
-                        <div class="rasheed-header">
-                            <div class="rasheed-title">🤖 المساعد الذكي التحصيلي: اسأل رشيد</div>
-                            <span style="font-size: 0.8rem; background: #7c3aed; color: white; padding: 2px 8px; border-radius: 6px;">AI Assistant</span>
-                        </div>
-                        
-                        <div class="rasheed-chat-box" id="rasheedChatBox">
-                            <div class="chat-msg bot">
+<div class="card-footer">Developed by: Mostafa Waleed</div>
+</div>
+</div>
+<!-- 4. أدوات التحصيل الذكية المحدثة والذكاء الاصطناعي -->
+<div class="script-group" id="tools">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">⚡ أدوات العمل الذكية وشريط التارجت للمحصل</h2>
+<span class="badge-ar">أدوات حصرية ومحاسبة</span>
+</div>
+<!-- قسم الذكاء الاصطناعي - اسأل رشيد -->
+<div class="rasheed-container">
+<div class="rasheed-header">
+<div class="rasheed-title">🤖 المساعد الذكي التحصيلي: اسأل رشيد</div>
+<span style="font-size: 0.8rem; background: #7c3aed; color: white; padding: 2px 8px; border-radius: 6px;">AI Assistant</span>
+</div>
+<div class="rasheed-chat-box" id="rasheedChatBox">
+<div class="chat-msg bot">
                                 أهلاً بك يا بطل! أنا **رشيد** مساعدك الذكي في التحصيل. كيف أستطيع مساعدتك في الرد على العميل الآن؟ يمكنك الاختيار من الأسئلة السريعة أدناه أو كتابة استفسارك:
                             </div>
-                        </div>
-
-                        <!-- أزرار سريعة للسكريبتات والردود -->
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
-                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يرفض السداد ويقول ليس لدي مال')">💡 رفض السداد للفقر</button>
-                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يطالب بخصم أعلى من المتاح')">📉 طلب خصم غير متاح</button>
-                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يهدد بتقديم شكوى')">⚠️ العميل يهدد بشكوى</button>
-                            <button class="rasheed-quick-btn" onclick="askRasheedQuick('كيف أقنعه بالسداد اليوم وليس غداً؟')">⏳ حسم السداد اليوم</button>
-                        </div>
-
-                        <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 0;">
-                            <input type="text" id="rasheedInput" placeholder="اكتب اعتراض العميل أو السؤال لرشيد..." onkeydown="if(event.key==='Enter') sendToRasheed()">
-                            <button class="tool-btn" style="width: 140px; margin-top: 0; background: #7c3aed;" onclick="sendToRasheed()">إرسال لرشيد</button>
-                        </div>
-                    </div>
-
-                    <!-- قسم التارجت المباشر الخاص بالموظف -->
-                    <div class="target-card" style="margin-top: 25px;">
-                        <h3 style="color: #0369a1; margin-bottom: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+</div>
+<!-- أزرار سريعة للسكريبتات والردود -->
+<div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;">
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يرفض السداد ويقول ليس لدي مال')">💡 رفض السداد للفقر</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يطالب بخصم أعلى من المتاح')">📉 طلب خصم غير متاح</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يهدد بتقديم شكوى')">⚠️ العميل يهدد بشكوى</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('كيف أقنعه بالسداد اليوم وليس غداً؟')">⏳ حسم السداد اليوم</button>
+</div>
+<div class="input-group" style="display: flex; gap: 10px; margin-bottom: 0;">
+<input id="rasheedInput" onkeydown="if(event.key==='Enter') sendToRasheed()" placeholder="اكتب اعتراض العميل أو السؤال لرشيد..." type="text"/>
+<button class="tool-btn" onclick="sendToRasheed()" style="width: 140px; margin-top: 0; background: #7c3aed;">إرسال لرشيد</button>
+</div>
+</div>
+<!-- قسم التارجت المباشر الخاص بالموظف -->
+<div class="target-card" style="margin-top: 25px;">
+<h3 style="color: #0369a1; margin-bottom: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
                             🎯 شريط إنجاز الهدف (التارجت الشخصي بكود الموظف)
                             <span id="targetStatusText" style="font-size: 0.9rem; color: #16a34a;">المتبقي: 0 ريال</span>
-                        </h3>
-
-                        <div class="target-grid">
-                            <div>
-                                <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                                    <div style="flex: 1; min-width: 140px;">
-                                        <label style="font-size: 0.8rem; font-weight: bold;">تحديد التارجت (الهدف):</label>
-                                        <input type="number" id="targetInput" placeholder="مبلغ التارجت..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                                    </div>
-                                    <div style="flex: 1; min-width: 140px;">
-                                        <label style="font-size: 0.8rem; font-weight: bold;">إضافة تحصيل جديد:</label>
-                                        <input type="number" id="collectedInput" placeholder="المبلغ المحصل..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;">
-                                    </div>
-                                </div>
-
-                                <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-                                    <button class="tool-btn" style="margin: 0; padding: 8px; flex: 1;" onclick="saveUserTarget()">حفظ الهدف</button>
-                                    <button class="tool-btn green" style="margin: 0; padding: 8px; flex: 1;" onclick="addCollection()">خصم وتحصيل</button>
-                                    <button class="tool-btn" style="margin: 0; padding: 8px; background: #64748b; flex: 1;" onclick="resetTargetData()">تصفير التارجت</button>
-                                </div>
-
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar-fill" id="progressBarFill"></div>
-                                </div>
-
-                                <div style="font-size: 0.85rem; color: #64748b;">
+</h3>
+<div class="target-grid">
+<div>
+<div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+<div style="flex: 1; min-width: 140px;">
+<label style="font-size: 0.8rem; font-weight: bold;">تحديد التارجت (الهدف):</label>
+<input id="targetInput" placeholder="مبلغ التارجت..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;" type="number"/>
+</div>
+<div style="flex: 1; min-width: 140px;">
+<label style="font-size: 0.8rem; font-weight: bold;">إضافة تحصيل جديد:</label>
+<input id="collectedInput" placeholder="المبلغ المحصل..." style="width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px;" type="number"/>
+</div>
+</div>
+<div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+<button class="tool-btn" onclick="saveUserTarget()" style="margin: 0; padding: 8px; flex: 1;">حفظ الهدف</button>
+<button class="tool-btn green" onclick="addCollection()" style="margin: 0; padding: 8px; flex: 1;">خصم وتحصيل</button>
+<button class="tool-btn" onclick="resetTargetData()" style="margin: 0; padding: 8px; background: #64748b; flex: 1;">تصفير التارجت</button>
+</div>
+<div class="progress-bar-container">
+<div class="progress-bar-fill" id="progressBarFill"></div>
+</div>
+<div style="font-size: 0.85rem; color: #64748b;">
                                     سجل التحصيل المباشر للكود الخاص بك:
                                     <ul class="history-list" id="historyList"></ul>
-                                </div>
-                            </div>
-
-                            <div class="chart-box">
-                                <div class="donut-chart" id="donutChart">
-                                    <span class="chart-text" id="chartPercentText">0%</span>
-                                </div>
-                                <span style="font-size: 0.85rem; font-weight: bold; margin-top: 8px; color: #475569;">نسبة المحصل</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tools-grid">
-                        <div class="tool-box">
-                            <h3>🧮 حاسبة الخصم المباشر</h3>
-                            <div class="input-group">
-                                <label>إجمالي المديونية (ريال):</label>
-                                <input type="number" id="calcTotal" placeholder="مثال: 62038">
-                            </div>
-                            <div class="input-group">
-                                <label>المبلغ المراد دفعه بعد الخصم (ريال):</label>
-                                <input type="number" id="calcPay" placeholder="مثال: 45000">
-                            </div>
-                            <button class="tool-btn" onclick="calculateDiscount()">احسب مبلغ الخصم والنسبة</button>
-                            
-                            <div class="calc-result-box">
-                                <div class="calc-result-row">
-                                    <span>المبلغ المعفي (الخصم):</span>
-                                    <span class="calc-val" id="resSaved">0.00 ريال</span>
-                                </div>
-                                <div class="calc-result-row">
-                                    <span>نسبة الخصم المئوية:</span>
-                                    <span class="calc-val" id="resPercent">0 %</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tool-box">
-                            <h3>📊 حاسبة تقسيط المديونية</h3>
-                            <div class="input-group">
-                                <label>المبلغ المراد تقسيطه (ريال):</label>
-                                <input type="number" id="planTotal" placeholder="مثال: 50000">
-                            </div>
-                            <div class="input-group">
-                                <label>عدد الأشهر المطلوبة:</label>
-                                <input type="number" id="planMonths" placeholder="مثال: 12">
-                            </div>
-                            <button class="tool-btn" onclick="calculatePlan()">حساب القسط الشهري</button>
-                            
-                            <div class="calc-result-box">
-                                <div class="calc-result-row">
-                                    <span>القسط الشهري التقريبي:</span>
-                                    <span class="calc-val" id="resMonthly">0.00 ريال</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="tool-box">
-                            <h3>💬 فتح المحادثة المباشرة (واتساب)</h3>
-                            <div class="input-group">
-                                <label>رقم العميل (مع المفتاح الدولي):</label>
-                                <input type="text" id="waPhoneDirect" placeholder="966500000000">
-                            </div>
-                            <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">سيتم فتح شات العميل مباشرة لتكتب له ما تشاء دون فرض أي نص.</p>
-                            <button class="tool-btn green" onclick="openDirectWhatsApp()">الدخول لمحادثة العميل</button>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 30px;">
-                        <div class="tool-box">
-                            <h3>📝 سجل ملاحظات المكالمة الحالية</h3>
-                            <div class="input-group">
-                                <textarea id="quickNotes" rows="3" placeholder="اكتب ملاحظاتك عن العميل هنا..." oninput="autoSaveNotes()"></textarea>
-                            </div>
-                            <button class="tool-btn" onclick="copyNotes()">نسخ الملاحظات للنظام</button>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 30px;">
-                        <div class="tool-box" style="border: 2px solid #0284c7; background: #f0f9ff;">
-                            <h3 style="color: #0369a1;">📌 قائمة ملاحظاتك المحفوظة بكودك (System Notes)</h3>
-                            <p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">ملاحظات مفصلة تظل محفوظة بكودك ولا تُمحى إلا برغبتك:</p>
-                            <div class="input-group" style="display: flex; gap: 10px;">
-                                <input type="text" id="systemNoteInput" placeholder="اكتب ملاحظة لإضافتها للقائمة..." onkeydown="if(event.key==='Enter') addSystemNote()">
-                                <button class="tool-btn" style="width: 140px; margin-top: 0;" onclick="addSystemNote()">حفظ بالقائمة</button>
-                            </div>
-                            <ul class="system-notes-list" id="systemNotesUl"></ul>
-                        </div>
-                    </div>
-
-                    <div style="margin-top: 25px;">
-                        <h3 style="color: #0369a1; margin-bottom: 10px;">📅 مواعيد المتابعة اليومية (Callbacks)</h3>
-                        <div class="tools-grid" style="grid-template-columns: 1fr 2fr auto; align-items: end;">
-                            <div class="input-group">
-                                <label>اسم العميل / الرقم:</label>
-                                <input type="text" id="cbName" placeholder="أحمد - 050xxxx">
-                            </div>
-                            <div class="input-group">
-                                <label>موعد الاتصال والطلب:</label>
-                                <input type="text" id="cbTime" placeholder="الساعة 4 عصراً - سداد 10 آلاف">
-                            </div>
-                            <button class="tool-btn" style="height: 42px; margin-bottom: 12px;" onclick="addCallback()">إضافة القائمة</button>
-                        </div>
-
-                        <table id="callbackTable">
-                            <thead>
-                                <tr>
-                                    <th>العميل</th>
-                                    <th>تفاصيل الموعد</th>
-                                    <th style="text-align: center;">إجراء</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-            </div>
-
-            <!-- 5. قسم Follow Up -->
-            <div id="followup" class="script-group">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">قائمة التحديثات والنصوص الجاهزة (Follow Up Notes)</h2>
-                        <span class="badge-en">Copy & Paste Ready</span>
-                    </div>
-                    <p style="margin-bottom: 20px; font-weight: bold; color: #475569;">اضغط على زر (Copy) بجانب الجملة التي تريد نسخها فوراً لاستخدامها في النظام:</p>
-                    
-                    <div class="followup-grid">
-                        <div class="followup-card color-active">
-                            <span class="followup-text">MOL....Active</span>
-                            <button class="copy-btn" onclick="copyText('MOL....Active')">Copy</button>
-                        </div>
-                        <div class="followup-card color-final-exit">
-                            <span class="followup-text">Mol.......Final Exit</span>
-                            <button class="copy-btn" onclick="copyText('Mol.......Final Exit')">Copy</button>
-                        </div>
-                        <div class="followup-card color-suspended">
-                            <span class="followup-text">Mol.....Suspended</span>
-                            <button class="copy-btn" onclick="copyText('Mol.....Suspended')">Copy</button>
-                        </div>
-                        <div class="followup-card color-absconded">
-                            <span class="followup-text">Mol...........Absconded</span>
-                            <button class="copy-btn" onclick="copyText('Mol...........Absconded')">Copy</button>
-                        </div>
-                        <div class="followup-card color-nothing">
-                            <span class="followup-text">Mol......Nothing</span>
-                            <button class="copy-btn" onclick="copyText('Mol......Nothing')">Copy</button>
-                        </div>
-                        <div class="followup-card color-not-found-cust">
-                            <span class="followup-text">Didn't find email or website customer</span>
-                            <button class="copy-btn" onclick="copyText('Didn\'t find email or website customer')">Copy</button>
-                        </div>
-                        <div class="followup-card color-not-found-comp">
-                            <span class="followup-text">Didn't find number or email or website Company</span>
-                            <button class="copy-btn" onclick="copyText('Didn\'t find number or email or website Company')">Copy</button>
-                        </div>
-                        <div class="followup-card color-found-comp">
-                            <span class="followup-text">Find email company and website</span>
-                            <button class="copy-btn" onclick="copyText('Find email company and website')">Copy</button>
-                        </div>
-                        <div class="followup-card color-found-cust">
-                            <span class="followup-text">Find email customer and website</span>
-                            <button class="copy-btn" onclick="copyText('Find email customer and website')">Copy</button>
-                        </div>
-                        <div class="followup-card color-tracing">
-                            <span class="followup-text">Under Tracing</span>
-                            <button class="copy-btn" onclick="copyText('Under Tracing')">Copy</button>
-                        </div>
-                        <div class="followup-card color-followup">
-                            <span class="followup-text">Follow up</span>
-                            <button class="copy-btn" onclick="copyText('Follow up')">Copy</button>
-                        </div>
-                        <div class="followup-card color-email-reminder">
-                            <span class="followup-text">Sent Email reminder</span>
-                            <button class="copy-btn" onclick="copyText('Sent Email reminder')">Copy</button>
-                        </div>
-                    </div>
-
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-            </div>
-
-            <!-- 6. قسم روابط مواقع الاستعلام -->
-            <div id="externallinks" class="script-group">
-                <div class="page-card">
-                    <div class="page-header">
-                        <h2 class="page-title">دليل مواقع البحث والاستعلام الخارجية</h2>
-                        <span class="badge-ar">روابط مباشرة</span>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>اسم الموقع</th>
-                                <th>الغرض والاستخدام</th>
-                                <th style="text-align: center;">الانتقال</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Truecaller</strong></td>
-                                <td>البحث والتقصي عن طريق رقم الهاتف.</td>
-                                <td style="text-align: center;"><a href="https://www.truecaller.com/ar-na/reverse-phone-number-lookup" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>RocketReach</strong></td>
-                                <td>الربط بحساب LinkedIn لاستخراج الأرقام والإيميلات.</td>
-                                <td style="text-align: center;"><a href="https://rocketreach.co/person?link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Ffouad-abdulhamid-2191363b&start=1&pageSize=10" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>SignalHire</strong></td>
-                                <td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
-                                <td style="text-align: center;"><a href="https://www.signalhire.com/search/people" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>ContactOut</strong></td>
-                                <td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
-                                <td style="text-align: center;"><a href="https://contactout.com/login" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>الهيئة السعودية للتخصصات الصحية</strong></td>
-                                <td>الاستعلام عن العميل برقم الهوية (إذا كان دكتور).</td>
-                                <td style="text-align: center;"><a href="https://scfhs.org.sa/en/E-Services/regvaliddescription" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>وزارة التجارة (البيانات التجارية)</strong></td>
-                                <td>الاستعلام برقم الهوية لمعرفة هل للعميل شركة أم لا.</td>
-                                <td style="text-align: center;"><a href="https://mc.gov.sa/ar/eservices/Pages/Commercial-data.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>خدمات مكتب العمل (نقل الخدمات)</strong></td>
-                                <td>معرفة الشركة التي يعمل بها أو طلب نقل لشركة أخرى برقم الهوية.</td>
-                                <td style="text-align: center;"><a href="https://es.hrsd.gov.sa/Services/Inquiry/LaborOfficeServicesInquiry.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>استعلام وافد (وزارة الموارد البشرية)</strong></td>
-                                <td>الاستعلام برقم الهوية لمعرفة هل هو متواجد داخل المملكة أم خارجها.</td>
-                                <td style="text-align: center;"><a href="https://es.hrsd.gov.sa/services/inquiry/nonsaudiempinquiry.aspx" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mails.so</strong></td>
-                                <td>التحقق من حالة البريد الإلكتروني (هل هو Active أم لا).</td>
-                                <td style="text-align: center;"><a href="https://mails.so/login" target="_blank" class="go-btn">دخول الموقع</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="toast">تم النسخ بنجاح!</div>
-
-    <script>
+</div>
+</div>
+<div class="chart-box">
+<div class="donut-chart" id="donutChart">
+<span class="chart-text" id="chartPercentText">0%</span>
+</div>
+<span style="font-size: 0.85rem; font-weight: bold; margin-top: 8px; color: #475569;">نسبة المحصل</span>
+</div>
+</div>
+</div>
+<div class="tools-grid">
+<div class="tool-box">
+<h3>🧮 حاسبة الخصم المباشر</h3>
+<div class="input-group">
+<label>إجمالي المديونية (ريال):</label>
+<input id="calcTotal" placeholder="مثال: 62038" type="number"/>
+</div>
+<div class="input-group">
+<label>المبلغ المراد دفعه بعد الخصم (ريال):</label>
+<input id="calcPay" placeholder="مثال: 45000" type="number"/>
+</div>
+<button class="tool-btn" onclick="calculateDiscount()">احسب مبلغ الخصم والنسبة</button>
+<div class="calc-result-box">
+<div class="calc-result-row">
+<span>المبلغ المعفي (الخصم):</span>
+<span class="calc-val" id="resSaved">0.00 ريال</span>
+</div>
+<div class="calc-result-row">
+<span>نسبة الخصم المئوية:</span>
+<span class="calc-val" id="resPercent">0 %</span>
+</div>
+</div>
+</div>
+<div class="tool-box">
+<h3>📊 حاسبة تقسيط المديونية</h3>
+<div class="input-group">
+<label>المبلغ المراد تقسيطه (ريال):</label>
+<input id="planTotal" placeholder="مثال: 50000" type="number"/>
+</div>
+<div class="input-group">
+<label>عدد الأشهر المطلوبة:</label>
+<input id="planMonths" placeholder="مثال: 12" type="number"/>
+</div>
+<button class="tool-btn" onclick="calculatePlan()">حساب القسط الشهري</button>
+<div class="calc-result-box">
+<div class="calc-result-row">
+<span>القسط الشهري التقريبي:</span>
+<span class="calc-val" id="resMonthly">0.00 ريال</span>
+</div>
+</div>
+</div>
+<div class="tool-box">
+<h3>💬 فتح المحادثة المباشرة (واتساب)</h3>
+<div class="input-group">
+<label>رقم العميل (مع المفتاح الدولي):</label>
+<input id="waPhoneDirect" placeholder="966500000000" type="text"/>
+</div>
+<p style="font-size: 0.8rem; color: #64748b; margin-bottom: 10px;">سيتم فتح شات العميل مباشرة لتكتب له ما تشاء دون فرض أي نص.</p>
+<button class="tool-btn green" onclick="openDirectWhatsApp()">الدخول لمحادثة العميل</button>
+</div>
+</div>
+<div style="margin-top: 30px;">
+<div class="tool-box">
+<h3>📝 سجل ملاحظات المكالمة الحالية</h3>
+<div class="input-group">
+<textarea id="quickNotes" oninput="autoSaveNotes()" placeholder="اكتب ملاحظاتك عن العميل هنا..." rows="3"></textarea>
+</div>
+<button class="tool-btn" onclick="copyNotes()">نسخ الملاحظات للنظام</button>
+</div>
+</div>
+<div style="margin-top: 30px;">
+<div class="tool-box" style="border: 2px solid #0284c7; background: #f0f9ff;">
+<h3 style="color: #0369a1;">📌 قائمة ملاحظاتك المحفوظة بكودك (System Notes)</h3>
+<p style="font-size: 0.85rem; color: #475569; margin-bottom: 12px;">ملاحظات مفصلة تظل محفوظة بكودك ولا تُمحى إلا برغبتك:</p>
+<div class="input-group" style="display: flex; gap: 10px;">
+<input id="systemNoteInput" onkeydown="if(event.key==='Enter') addSystemNote()" placeholder="اكتب ملاحظة لإضافتها للقائمة..." type="text"/>
+<button class="tool-btn" onclick="addSystemNote()" style="width: 140px; margin-top: 0;">حفظ بالقائمة</button>
+</div>
+<ul class="system-notes-list" id="systemNotesUl"></ul>
+</div>
+</div>
+<div style="margin-top: 25px;">
+<h3 style="color: #0369a1; margin-bottom: 10px;">📅 مواعيد المتابعة اليومية (Callbacks)</h3>
+<div class="tools-grid" style="grid-template-columns: 1fr 2fr auto; align-items: end;">
+<div class="input-group">
+<label>اسم العميل / الرقم:</label>
+<input id="cbName" placeholder="أحمد - 050xxxx" type="text"/>
+</div>
+<div class="input-group">
+<label>موعد الاتصال والطلب:</label>
+<input id="cbTime" placeholder="الساعة 4 عصراً - سداد 10 آلاف" type="text"/>
+</div>
+<button class="tool-btn" onclick="addCallback()" style="height: 42px; margin-bottom: 12px;">إضافة القائمة</button>
+</div>
+<table id="callbackTable">
+<thead>
+<tr>
+<th>العميل</th>
+<th>تفاصيل الموعد</th>
+<th style="text-align: center;">إجراء</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+</div>
+<!-- 5. قسم Follow Up -->
+<div class="script-group" id="followup">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">قائمة التحديثات والنصوص الجاهزة (Follow Up Notes)</h2>
+<span class="badge-en">Copy &amp; Paste Ready</span>
+</div>
+<p style="margin-bottom: 20px; font-weight: bold; color: #475569;">اضغط على زر (Copy) بجانب الجملة التي تريد نسخها فوراً لاستخدامها في النظام:</p>
+<div class="followup-grid">
+<div class="followup-card color-active">
+<span class="followup-text">MOL....Active</span>
+<button class="copy-btn" onclick="copyText('MOL....Active')">Copy</button>
+</div>
+<div class="followup-card color-final-exit">
+<span class="followup-text">Mol.......Final Exit</span>
+<button class="copy-btn" onclick="copyText('Mol.......Final Exit')">Copy</button>
+</div>
+<div class="followup-card color-suspended">
+<span class="followup-text">Mol.....Suspended</span>
+<button class="copy-btn" onclick="copyText('Mol.....Suspended')">Copy</button>
+</div>
+<div class="followup-card color-absconded">
+<span class="followup-text">Mol...........Absconded</span>
+<button class="copy-btn" onclick="copyText('Mol...........Absconded')">Copy</button>
+</div>
+<div class="followup-card color-nothing">
+<span class="followup-text">Mol......Nothing</span>
+<button class="copy-btn" onclick="copyText('Mol......Nothing')">Copy</button>
+</div>
+<div class="followup-card color-not-found-cust">
+<span class="followup-text">Didn't find email or website customer</span>
+<button class="copy-btn" onclick="copyText('Didn\'t find email or website customer')">Copy</button>
+</div>
+<div class="followup-card color-not-found-comp">
+<span class="followup-text">Didn't find number or email or website Company</span>
+<button class="copy-btn" onclick="copyText('Didn\'t find number or email or website Company')">Copy</button>
+</div>
+<div class="followup-card color-found-comp">
+<span class="followup-text">Find email company and website</span>
+<button class="copy-btn" onclick="copyText('Find email company and website')">Copy</button>
+</div>
+<div class="followup-card color-found-cust">
+<span class="followup-text">Find email customer and website</span>
+<button class="copy-btn" onclick="copyText('Find email customer and website')">Copy</button>
+</div>
+<div class="followup-card color-tracing">
+<span class="followup-text">Under Tracing</span>
+<button class="copy-btn" onclick="copyText('Under Tracing')">Copy</button>
+</div>
+<div class="followup-card color-followup">
+<span class="followup-text">Follow up</span>
+<button class="copy-btn" onclick="copyText('Follow up')">Copy</button>
+</div>
+<div class="followup-card color-email-reminder">
+<span class="followup-text">Sent Email reminder</span>
+<button class="copy-btn" onclick="copyText('Sent Email reminder')">Copy</button>
+</div>
+</div>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+</div>
+<!-- 6. قسم روابط مواقع الاستعلام -->
+<div class="script-group" id="externallinks">
+<div class="page-card">
+<div class="page-header">
+<h2 class="page-title">دليل مواقع البحث والاستعلام الخارجية</h2>
+<span class="badge-ar">روابط مباشرة</span>
+</div>
+<table>
+<thead>
+<tr>
+<th>اسم الموقع</th>
+<th>الغرض والاستخدام</th>
+<th style="text-align: center;">الانتقال</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Truecaller</strong></td>
+<td>البحث والتقصي عن طريق رقم الهاتف.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://www.truecaller.com/ar-na/reverse-phone-number-lookup" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>RocketReach</strong></td>
+<td>الربط بحساب LinkedIn لاستخراج الأرقام والإيميلات.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://rocketreach.co/person?link=https%3A%2F%2Fwww.linkedin.com%2Fin%2Ffouad-abdulhamid-2191363b&amp;start=1&amp;pageSize=10" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>SignalHire</strong></td>
+<td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://www.signalhire.com/search/people" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>ContactOut</strong></td>
+<td>ربطه بحساب LinkedIn ويستخرج الأرقام والإيميلات.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://contactout.com/login" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>الهيئة السعودية للتخصصات الصحية</strong></td>
+<td>الاستعلام عن العميل برقم الهوية (إذا كان دكتور).</td>
+<td style="text-align: center;"><a class="go-btn" href="https://scfhs.org.sa/en/E-Services/regvaliddescription" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>وزارة التجارة (البيانات التجارية)</strong></td>
+<td>الاستعلام برقم الهوية لمعرفة هل للعميل شركة أم لا.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://mc.gov.sa/ar/eservices/Pages/Commercial-data.aspx" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>خدمات مكتب العمل (نقل الخدمات)</strong></td>
+<td>معرفة الشركة التي يعمل بها أو طلب نقل لشركة أخرى برقم الهوية.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://es.hrsd.gov.sa/Services/Inquiry/LaborOfficeServicesInquiry.aspx" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>استعلام وافد (وزارة الموارد البشرية)</strong></td>
+<td>الاستعلام برقم الهوية لمعرفة هل هو متواجد داخل المملكة أم خارجها.</td>
+<td style="text-align: center;"><a class="go-btn" href="https://es.hrsd.gov.sa/services/inquiry/nonsaudiempinquiry.aspx" target="_blank">دخول الموقع</a></td>
+</tr>
+<tr>
+<td><strong>Mails.so</strong></td>
+<td>التحقق من حالة البريد الإلكتروني (هل هو Active أم لا).</td>
+<td style="text-align: center;"><a class="go-btn" href="https://mails.so/login" target="_blank">دخول الموقع</a></td>
+</tr>
+</tbody>
+</table>
+<div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
+</div>
+</div>
+</div>
+</div>
+<div id="toast">تم النسخ بنجاح!</div>
+<script>
         let currentUserCode = "";
         let userData = {
             target: 0,
@@ -2045,60 +2125,187 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
     setInterval(changePageBackground, 300000);
     changePageBackground();
 </script>
+<div class="v2-notify-panel" id="notificationPanel">
+<div class="v2-notify-head"><h3>🔔 مركز التنبيهات</h3><button class="v2-icon-btn danger" onclick="toggleNotifications(false)">إغلاق</button></div>
+<div id="notificationList"></div>
+</div>
+<div class="v2-modal" id="clientModal" onclick="if(event.target===this) closeClientModal()">
+<div class="v2-modal-card"><div class="v2-modal-head"><h3 id="clientModalTitle">ملف العميل 360°</h3><button class="v2-icon-btn danger" onclick="closeClientModal()">✕</button></div><div id="clientModalBody"></div></div>
+</div>
+<script>
+(function(){
+  const STATUS_LABELS = {new:'New', contacted:'Contacted', promise:'Promise to Pay', follow:'Follow Up', paid:'Paid', closed:'Closed'};
+  const STATUS_CLASS = {new:'new', contacted:'contacted', promise:'promise', follow:'follow', paid:'paid', closed:'closed'};
 
-</body>
+  function ensureV2Data(){
+    if(!window.userData) return;
+    if(!Array.isArray(userData.clients)) userData.clients = [];
+    if(!Array.isArray(userData.callbacks)) userData.callbacks = [];
+    if(!Array.isArray(userData.history)) userData.history = [];
+    if(!Array.isArray(userData.systemNotes)) userData.systemNotes = [];
+    if(typeof userData.quickNotes !== 'string') userData.quickNotes = '';
+    userData.version = 2;
+    saveUserData();
+  }
+
+  function money(v){ return (Number(v)||0).toLocaleString('ar-EG',{maximumFractionDigits:2}) + ' ريال'; }
+  function fmtDate(v){ if(!v) return '—'; const d=new Date(v); return isNaN(d)?'—':d.toLocaleString('ar-EG',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}); }
+  function localDateKey(d){ const x=new Date(d); if(isNaN(x)) return ''; return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0'); }
+  function esc(s){ return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+  function uid(){ return 'c_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,8); }
+  function downloadText(filename,text,type='text/plain;charset=utf-8'){ const blob=new Blob([text],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500); }
+  function csvCell(v){ const s=String(v??''); return '"'+s.replace(/"/g,'""')+'"'; }
+
+  window.switchTabById = function(id){ const btn=[...document.querySelectorAll('.tab-btn')].find(b=>b.getAttribute('onclick')?.includes("'"+id+"'")); switchTab(id,{currentTarget:btn||document.createElement('button')}); if(id==='dashboard') renderDashboard(); if(id==='crm') renderCrm(); if(id==='reports') renderReports(); window.scrollTo({top:0,behavior:'smooth'}); };
+
+  const originalLogin = window.loginUser;
+  window.loginUser = function(code){ originalLogin(code); ensureV2Data(); renderAllV2(); applyTheme(); };
+
+  const originalSave = window.saveUserData;
+  window.saveUserData = function(){ originalSave(); };
+
+  // Upgrade target history with dates while preserving old behavior/UI.
+  window.addCollection = function(){
+    const val=parseFloat(document.getElementById('collectedInput').value);
+    if(isNaN(val)||val<=0){ alert('يرجى إدخال مبلغ تحصيل صحيح!'); return; }
+    ensureV2Data();
+    userData.collected=(Number(userData.collected)||0)+val;
+    const now=new Date();
+    userData.history.unshift({amount:val,time:now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'}),date:now.toISOString()});
+    document.getElementById('collectedInput').value=''; saveUserData(); updateTargetUI(); renderAllV2(); showToast('تم إضافة المبلغ وتحصيله!');
+  };
+
+  // Persist the existing callback tool instead of losing rows on refresh.
+  window.addCallback = function(){
+    ensureV2Data(); const name=document.getElementById('cbName').value.trim(); const time=document.getElementById('cbTime').value;
+    if(!name||!time){alert('يرجى إدخال البيانات');return;}
+    userData.callbacks.unshift({id:uid(),name,time,createdAt:new Date().toISOString()}); saveUserData();
+    document.getElementById('cbName').value=''; document.getElementById('cbTime').value=''; renderLegacyCallbacks(); renderAllV2();
+  };
+  window.deleteCallbackV2=function(id){ userData.callbacks=(userData.callbacks||[]).filter(x=>x.id!==id); saveUserData(); renderLegacyCallbacks(); renderAllV2(); };
+  function renderLegacyCallbacks(){
+    const tbody=document.querySelector('#callbackTable tbody'); if(!tbody||!window.userData)return; tbody.innerHTML='';
+    (userData.callbacks||[]).forEach(x=>{ const tr=document.createElement('tr'); tr.innerHTML=`<td>${esc(x.name)}</td><td>${esc(x.time)}</td><td style="text-align:center"><button onclick="deleteCallbackV2('${x.id}')" style="background:#dc2626;color:white;border:none;padding:4px 8px;border-radius:4px;cursor:pointer">حذف</button></td>`; tbody.appendChild(tr); });
+  }
+
+  window.toggleDarkMode=function(){ const next=!document.body.classList.contains('dark-mode'); document.body.classList.toggle('dark-mode',next); localStorage.setItem('hkh_theme',next?'dark':'light'); const b=document.getElementById('themeToggleBtn'); if(b)b.textContent=next?'☀️ الوضع الفاتح':'🌙 الوضع الليلي'; };
+  function applyTheme(){ const dark=localStorage.getItem('hkh_theme')==='dark'; document.body.classList.toggle('dark-mode',dark); const b=document.getElementById('themeToggleBtn'); if(b)b.textContent=dark?'☀️ الوضع الفاتح':'🌙 الوضع الليلي'; }
+
+  window.openCrmNew=function(){ switchTabById('crm'); clearCrmForm(); setTimeout(()=>document.getElementById('crmName')?.focus(),250); };
+  window.clearCrmForm=function(){ ['crmEditId','crmName','crmAccount','crmPhone','crmDebt','crmLastContact','crmNextFollowup','crmPromiseAmount','crmNotes','crmPromiseDate'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); const p=document.getElementById('crmProduct'); if(p)p.value='Personal Loan'; const s=document.getElementById('crmStatus'); if(s)s.value='new'; const t=document.getElementById('crmFormTitle'); if(t)t.textContent='إضافة / تحديث عميل'; };
+
+  window.saveCrmClient=function(){
+    ensureV2Data(); const name=document.getElementById('crmName').value.trim(); if(!name){alert('اسم العميل مطلوب');return;}
+    const editId=document.getElementById('crmEditId').value; const old=(userData.clients||[]).find(x=>x.id===editId);
+    const c={id:editId||uid(),name,account:document.getElementById('crmAccount').value.trim(),phone:document.getElementById('crmPhone').value.trim(),product:document.getElementById('crmProduct').value,debt:Number(document.getElementById('crmDebt').value)||0,status:document.getElementById('crmStatus').value,lastContact:document.getElementById('crmLastContact').value,nextFollowup:document.getElementById('crmNextFollowup').value,promiseAmount:Number(document.getElementById('crmPromiseAmount').value)||0,promiseDate:document.getElementById('crmPromiseDate').value,notes:document.getElementById('crmNotes').value.trim(),createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};
+    if(editId) userData.clients=userData.clients.map(x=>x.id===editId?c:x); else userData.clients.unshift(c);
+    saveUserData(); clearCrmForm(); renderAllV2(); showToast(editId?'تم تحديث العميل':'تم حفظ العميل');
+  };
+
+  window.editCrmClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; const map={crmEditId:c.id,crmName:c.name,crmAccount:c.account,crmPhone:c.phone,crmProduct:c.product||'Personal Loan',crmDebt:c.debt||'',crmStatus:c.status||'new',crmLastContact:c.lastContact||'',crmNextFollowup:c.nextFollowup||'',crmPromiseAmount:c.promiseAmount||'',crmPromiseDate:c.promiseDate||'',crmNotes:c.notes||''}; Object.entries(map).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v;}); document.getElementById('crmFormTitle').textContent='تعديل العميل: '+c.name; switchTabById('crm'); window.scrollTo({top:document.getElementById('crm').offsetTop-100,behavior:'smooth'}); };
+  window.deleteCrmClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; if(confirm('حذف ملف العميل '+c.name+'؟')){userData.clients=userData.clients.filter(x=>x.id!==id);saveUserData();renderAllV2();} };
+  window.markClientPaid=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return;c.status='paid';c.nextFollowup='';c.updatedAt=new Date().toISOString();saveUserData();renderAllV2();showToast('تم تحديث الحالة إلى Paid'); };
+
+  window.renderCrm=function(){
+    const tbody=document.getElementById('crmTableBody'); if(!tbody||!window.userData)return; ensureV2Data(); const q=(document.getElementById('crmFilter')?.value||'').trim().toLowerCase(); const sf=document.getElementById('crmStatusFilter')?.value||'';
+    let arr=[...userData.clients]; if(q)arr=arr.filter(c=>[c.name,c.account,c.phone,c.product,c.notes].some(v=>String(v||'').toLowerCase().includes(q))); if(sf)arr=arr.filter(c=>c.status===sf);
+    tbody.innerHTML=''; if(!arr.length){tbody.innerHTML='<tr><td colspan="8" class="v2-empty">لا توجد نتائج</td></tr>';return;}
+    arr.sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||'')).forEach(c=>{ const overdue=c.nextFollowup&&new Date(c.nextFollowup)<new Date()&&c.status!=='paid'&&c.status!=='closed'; const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${esc(c.name)}</strong><div class="v2-small">${esc(c.phone||'')}</div></td><td>${esc(c.account||'—')}</td><td>${esc(c.product||'—')}</td><td>${money(c.debt)}</td><td><span class="v2-badge ${STATUS_CLASS[c.status]||''}">${esc(STATUS_LABELS[c.status]||c.status||'New')}</span></td><td>${overdue?'<span class="v2-badge overdue">متأخرة</span> ':''}${fmtDate(c.nextFollowup)}</td><td>${c.promiseAmount?money(c.promiseAmount):'—'}<div class="v2-small">${esc(c.promiseDate||'')}</div></td><td><div class="v2-actions"><button class="v2-btn" onclick="viewClient('${c.id}')">360°</button><button class="v2-btn gray" onclick="editCrmClient('${c.id}')">تعديل</button>${c.status!=='paid'?`<button class="v2-btn green" onclick="markClientPaid('${c.id}')">Paid</button>`:''}<button class="v2-btn red" onclick="deleteCrmClient('${c.id}')">حذف</button></div></td>`; tbody.appendChild(tr); });
+  };
+
+  window.viewClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; document.getElementById('clientModalTitle').textContent='ملف العميل 360° — '+c.name; document.getElementById('clientModalBody').innerHTML=`
+    <div class="v2-grid" style="grid-template-columns:repeat(3,1fr)"><div class="v2-card"><div class="v2-small">المديونية</div><strong>${money(c.debt)}</strong></div><div class="v2-card"><div class="v2-small">الحالة</div><strong>${esc(STATUS_LABELS[c.status]||c.status)}</strong></div><div class="v2-card"><div class="v2-small">الوعد</div><strong>${money(c.promiseAmount)}</strong></div></div>
+    <table><tbody><tr><th>رقم الحساب</th><td>${esc(c.account||'—')}</td></tr><tr><th>الهاتف</th><td>${esc(c.phone||'—')}</td></tr><tr><th>المنتج</th><td>${esc(c.product||'—')}</td></tr><tr><th>آخر تواصل</th><td>${fmtDate(c.lastContact)}</td></tr><tr><th>المتابعة القادمة</th><td>${fmtDate(c.nextFollowup)}</td></tr><tr><th>تاريخ الوعد</th><td>${esc(c.promiseDate||'—')}</td></tr><tr><th>الملاحظات</th><td style="white-space:pre-wrap">${esc(c.notes||'—')}</td></tr></tbody></table>
+    <div class="v2-actions"><button class="v2-btn" onclick="editCrmClient('${c.id}');closeClientModal()">تعديل الملف</button>${c.phone?`<button class="v2-btn green" onclick="window.open('https://wa.me/${esc(c.phone.replace(/[^0-9]/g,''))}','_blank')">WhatsApp</button>`:''}</div>`; document.getElementById('clientModal').classList.add('open'); };
+  window.closeClientModal=function(){document.getElementById('clientModal')?.classList.remove('open');};
+
+  function getFollowups(){ const now=new Date(), today=localDateKey(now); return (userData.clients||[]).filter(c=>c.nextFollowup&&c.status!=='paid'&&c.status!=='closed').map(c=>({...c,_d:new Date(c.nextFollowup),_today:localDateKey(c.nextFollowup)===today,_over:new Date(c.nextFollowup)<now})).sort((a,b)=>a._d-b._d); }
+
+  window.renderDashboard=function(){
+    if(!window.userData)return; ensureV2Data(); const target=Number(userData.target)||0,col=Number(userData.collected)||0, pct=target?Math.min(100,col/target*100):0; const f=getFollowups();
+    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;}; set('dashTarget',(target||0).toLocaleString('ar-EG'));set('dashCollected',(col||0).toLocaleString('ar-EG'));set('dashPercent',pct.toFixed(1)+'% من الهدف');set('dashClients',userData.clients.length);set('dashToday',f.filter(x=>x._today).length);set('dashOverdue',f.filter(x=>x._over&&!x._today).length+' متأخرة');set('dashProgressText',pct.toFixed(1)+'%');const fill=document.getElementById('dashProgressFill');if(fill)fill.style.width=pct+'%';
+    const fl=document.getElementById('dashFollowups'); if(fl){fl.innerHTML=''; const rows=f.slice(0,6); if(!rows.length)fl.innerHTML='<li class="v2-empty">لا توجد متابعات مجدولة</li>'; rows.forEach(c=>{const li=document.createElement('li');li.innerHTML=`<span><strong>${esc(c.name)}</strong><div class="v2-small">${fmtDate(c.nextFollowup)}</div></span><span class="v2-badge ${c._over?'overdue':'follow'}">${c._over?'متأخرة':'قادمة'}</span>`;li.onclick=()=>viewClient(c.id);li.style.cursor='pointer';fl.appendChild(li);});}
+    const cl=document.getElementById('dashCollections'); if(cl){cl.innerHTML='';const rows=(userData.history||[]).slice(0,6);if(!rows.length)cl.innerHTML='<li class="v2-empty">لا توجد عمليات تحصيل</li>';rows.forEach(x=>{const li=document.createElement('li');li.innerHTML=`<span>تحصيل</span><strong>${money(x.amount)}</strong><span class="v2-small">${x.date?fmtDate(x.date):esc(x.time||'')}</span>`;cl.appendChild(li);});}
+    renderStatusSummary('dashStatusBreakdown');
+  };
+
+  function renderStatusSummary(id){ const box=document.getElementById(id);if(!box)return;const counts={};(userData.clients||[]).forEach(c=>counts[c.status]=(counts[c.status]||0)+1); const total=Math.max(1,userData.clients.length);box.innerHTML='';Object.keys(STATUS_LABELS).forEach(k=>{const n=counts[k]||0;box.innerHTML+=`<div style="margin:9px 0"><div style="display:flex;justify-content:space-between"><span>${STATUS_LABELS[k]}</span><strong>${n}</strong></div><div class="v2-progress" style="height:7px"><div style="width:${n/total*100}%"></div></div></div>`;}); }
+
+  window.toggleNotifications=function(force){const p=document.getElementById('notificationPanel');if(!p)return;const open=typeof force==='boolean'?force:!p.classList.contains('open');p.classList.toggle('open',open);if(open)renderNotifications();};
+  function renderNotifications(){ const list=document.getElementById('notificationList'); if(!list||!window.userData)return;const f=getFollowups();list.innerHTML='';const actionable=f.filter(x=>x._over||x._today);if(!actionable.length)list.innerHTML='<div class="v2-empty">لا توجد تنبيهات عاجلة الآن ✅</div>';actionable.forEach(c=>{const d=document.createElement('div');d.className='v2-notice '+(c._over?'overdue':'today');d.innerHTML=`<strong>${esc(c.name)}</strong><div class="v2-small">${c._over?'متابعة متأخرة':'متابعة اليوم'} — ${fmtDate(c.nextFollowup)}</div>`;d.onclick=()=>viewClient(c.id);d.style.cursor='pointer';list.appendChild(d);}); const nc=document.getElementById('notifyCount');if(nc){const n=actionable.length;nc.textContent=n;nc.style.display=n?'inline-flex':'none';} }
+
+  window.renderReports=function(){
+    if(!window.userData)return;ensureV2Data();const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set('reportCollected',money(userData.collected));set('reportCollectionsCount',(userData.history||[]).length);set('reportDebt',money((userData.clients||[]).reduce((s,c)=>s+(Number(c.debt)||0),0)));set('reportPromises',(userData.clients||[]).filter(c=>c.status==='promise'||Number(c.promiseAmount)>0).length);renderStatusSummary('reportStatusSummary');
+    const bars=document.getElementById('weeklyBars');if(bars){bars.innerHTML='';const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-i);days.push(d);}const vals=days.map(d=>(userData.history||[]).filter(h=>h.date&&localDateKey(h.date)===localDateKey(d)).reduce((s,h)=>s+(Number(h.amount)||0),0));const max=Math.max(...vals,1);days.forEach((d,i)=>{bars.innerHTML+=`<div class="v2-bar-item"><div title="${money(vals[i])}" class="v2-bar" style="height:${Math.max(4,vals[i]/max*140)}px"></div><div class="v2-bar-label">${d.toLocaleDateString('ar-EG',{weekday:'short'})}</div></div>`;});}
+    const list=document.getElementById('reportFollowupList');if(list){const f=getFollowups();list.innerHTML=f.length?'<div class="v2-table-wrap"><table><thead><tr><th>العميل</th><th>الحالة</th><th>الموعد</th><th>التصنيف</th></tr></thead><tbody>'+f.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(STATUS_LABELS[c.status]||c.status)}</td><td>${fmtDate(c.nextFollowup)}</td><td>${c._over?'<span class="v2-badge overdue">متأخرة</span>':c._today?'<span class="v2-badge contacted">اليوم</span>':'<span class="v2-badge follow">قادمة</span>'}</td></tr>`).join('')+'</tbody></table></div>':'<div class="v2-empty">لا توجد متابعات</div>';}
+  };
+
+  window.runGlobalSearch=function(q){ const box=document.getElementById('globalSearchResults');if(!box||!window.userData)return;q=q.trim().toLowerCase();if(q.length<2){box.style.display='none';box.innerHTML='';return;}const rows=(userData.clients||[]).filter(c=>[c.name,c.account,c.phone,c.notes,c.product].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,10);box.innerHTML=rows.length?rows.map(c=>`<div class="v2-search-item" onclick="viewClient('${c.id}');document.getElementById('globalSearchResults').style.display='none'"><strong>${esc(c.name)}</strong><div class="v2-small">${esc(c.account||'')} ${esc(c.phone||'')} — ${esc(STATUS_LABELS[c.status]||c.status)}</div></div>`).join(''):'<div class="v2-empty">لا توجد نتائج</div>';box.style.display='block'; };
+  document.addEventListener('click',e=>{if(!e.target.closest('.v2-search-wrap')){const b=document.getElementById('globalSearchResults');if(b)b.style.display='none';}});
+
+  window.exportClientsCSV=function(){ensureV2Data();const head=['Name','Account','Phone','Product','Debt','Status','Last Contact','Next Follow Up','Promise Amount','Promise Date','Notes'];const rows=userData.clients.map(c=>[c.name,c.account,c.phone,c.product,c.debt,STATUS_LABELS[c.status]||c.status,c.lastContact,c.nextFollowup,c.promiseAmount,c.promiseDate,c.notes]);const csv='\uFEFF'+[head,...rows].map(r=>r.map(csvCell).join(',')).join('\n');downloadText('Hadaf_Clients_'+currentUserCode+'.csv',csv,'text/csv;charset=utf-8');};
+  window.exportCollectionsCSV=function(){ensureV2Data();const head=['Amount','Time','Date'];const rows=(userData.history||[]).map(h=>[h.amount,h.time,h.date||'']);const csv='\uFEFF'+[head,...rows].map(r=>r.map(csvCell).join(',')).join('\n');downloadText('Hadaf_Collections_'+currentUserCode+'.csv',csv,'text/csv;charset=utf-8');};
+  window.exportBackup=function(){ if(!window.currentUserCode){alert('سجل الدخول أولاً');return;} ensureV2Data();const pack={app:'Hadaf Al-Khaleej',version:2,userCode:currentUserCode,exportedAt:new Date().toISOString(),data:userData};downloadText('Hadaf_Backup_'+currentUserCode+'_'+localDateKey(new Date())+'.json',JSON.stringify(pack,null,2),'application/json');};
+  window.importBackup=function(ev){const file=ev.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const pack=JSON.parse(r.result);if(!pack.data||typeof pack.data!=='object')throw new Error('bad');if(!confirm('سيتم استبدال بيانات الكود الحالي بالنسخة الاحتياطية. متابعة؟'))return;userData=pack.data;ensureV2Data();saveUserData();renderAllV2();updateTargetUI();renderSystemNotes();document.getElementById('quickNotes').value=userData.quickNotes||'';showToast('تمت استعادة النسخة الاحتياطية');}catch(e){alert('ملف النسخة الاحتياطية غير صالح');}finally{ev.target.value='';}};r.readAsText(file,'utf-8');};
+
+  function renderAllV2(){ if(!window.userData)return; ensureV2Data(); renderLegacyCallbacks(); renderDashboard(); renderCrm(); renderReports(); renderNotifications(); }
+  window.renderAllV2=renderAllV2;
+
+  // Keep V2 panels synchronized when the original target changes.
+  const oldSaveTarget=window.saveUserTarget; window.saveUserTarget=function(){oldSaveTarget();renderAllV2();};
+  const oldResetTarget=window.resetTargetData; window.resetTargetData=function(){oldResetTarget();renderAllV2();};
+
+  window.addEventListener('load',()=>{applyTheme(); if(window.currentUserCode){ensureV2Data();renderAllV2();}});
+})();
+</script></body>
 </html>
 <!-- SNB Email Generator Tool -->
-<div style="max-width: 800px; margin: 30px auto; background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: Arial, sans-serif;" dir="ltr">
-    <h3 style="color: #00334e; border-bottom: 2px solid #005c8a; padding-bottom: 10px; margin-bottom: 20px; text-align: left;">SNB Collection Email Generator</h3>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-        <div>
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Client Name:</label>
-            <input type="text" id="genName" placeholder="e.g. Ahmed Ali" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Iqama / Residency No:</label>
-            <input type="text" id="genIqama" placeholder="e.g. 2xxxxxxxxxx" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Account Number:</label>
-            <input type="text" id="genAccount" placeholder="e.g. SNB-0000000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-        </div>
-        <div>
-            <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Outstanding Balance (SAR):</label>
-            <input type="text" id="genBalance" placeholder="e.g. 5,000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;">
-        </div>
-    </div>
-
-    <button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
+<div dir="ltr" style="max-width: 800px; margin: 30px auto; background: #ffffff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
+<h3 style="color: #00334e; border-bottom: 2px solid #005c8a; padding-bottom: 10px; margin-bottom: 20px; text-align: left;">SNB Collection Email Generator</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+<div>
+<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Client Name:</label>
+<input id="genName" placeholder="e.g. Ahmed Ali" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
+</div>
+<div>
+<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Iqama / Residency No:</label>
+<input id="genIqama" placeholder="e.g. 2xxxxxxxxxx" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
+</div>
+<div>
+<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Account Number:</label>
+<input id="genAccount" placeholder="e.g. SNB-0000000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
+</div>
+<div>
+<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Outstanding Balance (SAR):</label>
+<input id="genBalance" placeholder="e.g. 5,000" style="width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+<button onclick="generateEmailText()" style="background: #005c8a; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 15px;">Generate Email</button>
 <div style="background: #f7fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; margin: 10px 0;">
-    <div style="font-weight: bold; margin-bottom: 8px; color: #2b6cb0;">بيانات الحساب الثاني (لو العميل عنده كرتين):</div>
-    <div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 200px;">
-            <label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Account Number:</label>
-            <input type="text" id="genAccount2" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="رقم الحساب الثاني">
-        </div>
-        <div style="flex: 1; min-width: 200px;">
-            <label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Balance (SAR):</label>
-            <input type="text" id="genBalance2" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" placeholder="مبلغ الحساب الثاني">
-        </div>
-    </div>
-    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-        <button type="button" onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+<div style="font-weight: bold; margin-bottom: 8px; color: #2b6cb0;">بيانات الحساب الثاني (لو العميل عنده كرتين):</div>
+<div style="display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap;">
+<div style="flex: 1; min-width: 200px;">
+<label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Account Number:</label>
+<input id="genAccount2" placeholder="رقم الحساب الثاني" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" type="text"/>
+</div>
+<div style="flex: 1; min-width: 200px;">
+<label style="display: block; font-size: 13px; margin-bottom: 3px;">Second Balance (SAR):</label>
+<input id="genBalance2" placeholder="مبلغ الحساب الثاني" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" type="text"/>
+</div>
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+<button onclick="generateTwoCardsEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;" type="button">
             ايميل لعميل لو عنده كرتين
         </button>
-        <button type="button" onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;">
+<button onclick="generateReminderEmail()" style="background: #2b6cb0; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 6px; cursor: pointer;" type="button">
             اميل تذكيري
         </button>
-    </div>
 </div>
-    <label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
-    <textarea id="genResult" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;" readonly></textarea>
-
-    <button onclick="copyEmailText()" style="background: #28a745; color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">Copy Email to Clipboard</button>
 </div>
-
+<label style="display: block; font-weight: bold; margin-bottom: 5px; color: #333; text-align: left;">Generated Email Preview:</label>
+<textarea id="genResult" readonly="" rows="14" style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 13px; box-sizing: border-box; background: #f9f9f9;"></textarea>
+<button onclick="copyEmailText()" style="background: #28a745; color: white; border: none; padding: 10px 20px; font-size: 15px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 10px;">Copy Email to Clipboard</button>
+</div>
 <script>
 function generateEmailText() {
     let name = document.getElementById('genName').value.trim();
@@ -2141,16 +2348,15 @@ function copyEmailText() {
 </script>
 <!-- End SNB Email Generator Tool -->
 <!-- SNB Admin Live Device Tracker with Count & IDs -->
-<div id="adminTrackerPanel" style="display: none; max-width: 800px; margin: 30px auto; background: #fff3cd; border: 2px solid #ffeeba; padding: 20px; border-radius: 12px; font-family: Arial, sans-serif;" dir="ltr">
-    <h3 style="color: #856404; margin-bottom: 10px; border-bottom: 1px solid #ffeeba; padding-bottom: 8px; text-align: left;">🔒 Admin Live Device Tracker (ID: 8394)</h3>
-    <p style="font-size: 14px; color: #533f03; margin-bottom: 10px; text-align: left;">Welcome back, Mostafa Waleed! Real-time session monitoring:</p>
-    <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd; font-family: monospace; font-size: 13px; text-align: left;">
-        <p style="margin: 5px 0;"><strong>Active Devices Count:</strong> <span id="activeCount" style="color: #d9534f; font-weight: bold;">1</span></p>
-        <p style="margin: 5px 0;"><strong>Connected Employee IDs:</strong> <span id="activeIds" style="color: #0275d8; font-weight: bold;">8394</span></p>
-        <p style="margin: 5px 0;"><strong>Status:</strong> <span style="color: #28a745;">● Live Monitoring Active</span></p>
-    </div>
+<div dir="ltr" id="adminTrackerPanel" style="display: none; max-width: 800px; margin: 30px auto; background: #fff3cd; border: 2px solid #ffeeba; padding: 20px; border-radius: 12px; font-family: Arial, sans-serif;">
+<h3 style="color: #856404; margin-bottom: 10px; border-bottom: 1px solid #ffeeba; padding-bottom: 8px; text-align: left;">🔒 Admin Live Device Tracker (ID: 8394)</h3>
+<p style="font-size: 14px; color: #533f03; margin-bottom: 10px; text-align: left;">Welcome back, Mostafa Waleed! Real-time session monitoring:</p>
+<div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #ddd; font-family: monospace; font-size: 13px; text-align: left;">
+<p style="margin: 5px 0;"><strong>Active Devices Count:</strong> <span id="activeCount" style="color: #d9534f; font-weight: bold;">1</span></p>
+<p style="margin: 5px 0;"><strong>Connected Employee IDs:</strong> <span id="activeIds" style="color: #0275d8; font-weight: bold;">8394</span></p>
+<p style="margin: 5px 0;"><strong>Status:</strong> <span style="color: #28a745;">● Live Monitoring Active</span></p>
 </div>
-
+</div>
 <script>
 window.addEventListener('DOMContentLoaded', (event) => {
     let currentEmployeeId = '8394';
@@ -2230,35 +2436,28 @@ Looking forward to your prompt response`;
 <!-- End SNB Admin Device Tracker Tool -->
 <!-- شاشة بداية أمنية لشركة أمبريلا / مشروع أليس (خلفية إنذار أحمر خطر) -->
 <div id="secretTerminal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #3a0000 0%, #150000 50%, #050000 100%); color: #ff3333; font-family: 'Courier New', monospace; z-index: 99999; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: opacity 0.8s ease; overflow: hidden;">
-    
-    <!-- خلفية رموز الماتريكس -->
-    <canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
-
-    <!-- محتوى الشاشة في المنتصف -->
-    <div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
-        
-        <!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
-        <div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
-            <div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-            <div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
-            <div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
-        </div>
-
-        <!-- اسم الشركة والاختصار -->
-        <div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
-        <div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
-
-        <!-- نص التحرير والتشغيل -->
-        <div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
-        
-        <!-- شريط التحميل -->
-        <div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
-            <div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
-        </div>
-    </div>
+<!-- خلفية رموز الماتريكس -->
+<canvas id="matrixRain" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.2; pointer-events: none;"></canvas>
+<!-- محتوى الشاشة في المنتصف -->
+<div style="position: relative; z-index: 2; max-width: 550px; width: 100%; background: rgba(15, 0, 0, 0.9); border: 2px solid #ff0000; padding: 30px; border-radius: 10px; box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); text-align: center;">
+<!-- شعار أمبريلا (رسم هندسي بـ CSS) -->
+<div style="width: 70px; height: 70px; margin: 0 auto 15px auto; position: relative; transform: rotate(45deg);">
+<div style="position: absolute; top: 0; left: 0; width: 32px; height: 32px; background: #ffffff;"></div>
+<div style="position: absolute; top: 0; right: 0; width: 32px; height: 32px; background: #cc0000;"></div>
+<div style="position: absolute; bottom: 0; left: 0; width: 32px; height: 32px; background: #cc0000;"></div>
+<div style="position: absolute; bottom: 0; right: 0; width: 32px; height: 32px; background: #ffffff;"></div>
 </div>
-
+<!-- اسم الشركة والاختصار -->
+<div style="font-size: 22px; font-weight: bold; letter-spacing: 3px; color: #ffffff; margin-bottom: 5px;">UMBRELLA CORP.</div>
+<div style="font-size: 12px; letter-spacing: 5px; color: #ff3333; margin-bottom: 20px;">[ U.C. / PROJECT ALICE - BIOHAZARD SECURE ]</div>
+<!-- نص التحرير والتشغيل -->
+<div id="terminalText" style="font-size: 13px; line-height: 1.6; min-height: 70px; margin-bottom: 20px; text-align: left; color: #00ff66;"></div>
+<!-- شريط التحميل -->
+<div style="width: 100%; background: #220000; height: 5px; border-radius: 3px; overflow: hidden; border: 1px solid #ff0000;">
+<div id="terminalBar" style="width: 0%; height: 100%; background: #ff0000; transition: width 0.05s linear;"></div>
+</div>
+</div>
+</div>
 <script>
 // تأثير مطر الماتريكس في الخلفية
 const canvas = document.getElementById('matrixRain');
