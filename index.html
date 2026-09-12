@@ -1203,6 +1203,40 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
   #themeScene .umbrella-outer-mark{right:1%;bottom:22%;}
 }
 </style>
+
+<style id="umbrella-live-upgrade">
+/* ===== UMBRELLA LIVE CINEMATIC BACKGROUND UPGRADE ===== */
+#v3AlertIntro{background:#020000!important;isolation:isolate}
+#v3AlertIntro::before{z-index:2!important;opacity:.65!important;background:
+  repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,0,0,.045) 6px 7px),
+  linear-gradient(90deg,rgba(255,0,0,.10),transparent 20%,transparent 80%,rgba(255,0,0,.10))!important;
+  animation:v3ScanEnhanced .8s linear infinite!important}
+#v3AlertIntro::after{z-index:3!important;opacity:.72!important;filter:blur(1px);animation:v3InfectionEnhanced 5s ease-in-out infinite alternate!important}
+.v3-alert-matrix{z-index:1!important;opacity:.34!important;mix-blend-mode:screen}
+.v3-alert-core{z-index:20!important;overflow:hidden;backdrop-filter:blur(4px);animation:v3AlarmEnhanced 1.8s ease-in-out infinite alternate!important}
+.v3-alert-core::before{content:"";position:absolute;inset:-100%;background:conic-gradient(from 0deg,transparent 0 74%,rgba(255,0,0,.18) 79%,transparent 84%);animation:v3CoreSweep 5s linear infinite;pointer-events:none}
+.v3-alert-core>*{position:relative;z-index:2}
+.v3-alert-emblem{animation:v3EmblemFloat 2.8s ease-in-out infinite!important}
+.v3-alert-title{animation:v3TextPulse 1.7s ease-in-out infinite alternate}
+.v3-alert-status{font-size:13px!important;text-shadow:0 0 8px rgba(255,0,0,.45)}
+.v3-alert-bar{position:relative;overflow:hidden}
+.v3-alert-bar::after{content:"";position:absolute;top:0;bottom:0;width:90px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);filter:blur(2px);animation:v3BarSweep 1.25s linear infinite}
+.v3-alert-bar>div{animation:v3Load 7s linear forwards,v3BarPulse .8s ease-in-out infinite alternate!important}
+.v3-live-hud{position:absolute;inset:0;z-index:4;pointer-events:none;color:rgba(255,45,45,.24);font:700 10px/1.3 monospace;letter-spacing:.18em;text-transform:uppercase}
+.v3-live-hud span{position:absolute;white-space:nowrap;animation:v3HudFlicker 2s steps(2,end) infinite}
+.v3-live-hud .h1{left:2%;top:12%}.v3-live-hud .h2{right:2%;top:20%}.v3-live-hud .h3{left:3%;bottom:18%}.v3-live-hud .h4{right:3%;bottom:12%}
+@keyframes v3ScanEnhanced{from{transform:translateY(-3%)}to{transform:translateY(3%)}}
+@keyframes v3InfectionEnhanced{0%{transform:scale(1) translate3d(0,0,0);filter:blur(1px) saturate(1)}50%{transform:scale(1.04) translate3d(0,-8px,0);filter:blur(2px) saturate(1.3)}100%{transform:scale(1.08) translate3d(6px,5px,0);filter:blur(1px) saturate(1.1)}}
+@keyframes v3AlarmEnhanced{from{transform:scale(1) translateY(0);filter:brightness(.95)}to{transform:scale(1.018) translateY(-2px);filter:brightness(1.22)}}
+@keyframes v3CoreSweep{to{transform:rotate(360deg)}}
+@keyframes v3EmblemFloat{0%,100%{transform:rotate(45deg) translateY(0) scale(1)}50%{transform:rotate(45deg) translateY(-6px) scale(1.045)}}
+@keyframes v3TextPulse{from{text-shadow:0 0 10px rgba(255,0,0,.45)}to{text-shadow:0 0 28px rgba(255,0,0,1),0 0 50px rgba(255,0,0,.35)}}
+@keyframes v3BarSweep{from{left:-100px}to{left:100%}}
+@keyframes v3BarPulse{from{filter:brightness(.85)}to{filter:brightness(1.35)}}
+@keyframes v3HudFlicker{0%,88%,100%{opacity:.2}90%{opacity:.7}92%{opacity:.08}94%{opacity:.5}}
+@media(prefers-reduced-motion:reduce){#v3AlertIntro::before,#v3AlertIntro::after,.v3-alert-core,.v3-alert-core::before,.v3-alert-emblem,.v3-alert-title,.v3-alert-bar::after,.v3-live-hud span{animation:none!important}}
+</style>
+
 </head>
 <body>
 
@@ -2737,8 +2771,53 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   setInterval(()=>{const k='hkh_v3_kick_'+sid;if(localStorage.getItem(k))handleKick(sid)},2000);
   window.addEventListener('load',()=>{setTimeout(()=>{if(window.currentUserCode){upsertSession();if(String(window.currentUserCode)===ADMIN_CODE){document.getElementById('v3AdminPanel').style.display='block';v3RenderPolicies();v3RefreshSessions();}}},150);});
 
-  // Red alert / Matrix intro
-  function initAlert(){const c=document.getElementById('v3AlertMatrix'),status=document.getElementById('v3AlertStatus');if(!c||!status)return;const ctx=c.getContext('2d');function resize(){c.width=innerWidth;c.height=innerHeight}resize();addEventListener('resize',resize);const chars='01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%';let fs=15,d=[];function reset(){d=Array(Math.ceil(c.width/fs)).fill(0).map(()=>Math.random()*c.height/fs)}reset();function draw(){ctx.fillStyle='rgba(0,0,0,.08)';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#ff2020';ctx.font=fs+'px monospace';d.forEach((y,i)=>{ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*fs,y*fs);d[i]=(y*fs>c.height&&Math.random()>.975)?0:y+1})}setInterval(draw,35);const lines=['> BOOTING UMBRELLA SECURE CORE...','> VERIFYING COLLECTION CONTROL LAYER...','> MATRIX CHANNEL: ACTIVE','> SESSION CONTROL: READY','> STATUS: SYSTEM ONLINE'];let n=0;function type(){if(n<lines.length){status.innerHTML+=escHtml(lines[n])+'<br>';n++;setTimeout(type,480)}}type();setTimeout(()=>{document.getElementById('v3AlertIntro')?.remove()},9000)}
+  // Red alert / Matrix intro — enhanced live cinematic version
+  function initAlert(){
+    const c=document.getElementById('v3AlertMatrix'),status=document.getElementById('v3AlertStatus');
+    if(!c||!status)return;
+    const ctx=c.getContext('2d');
+    let W=0,H=0,drops=[],particles=[],orbs=[],frame=0;
+    const chars='01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}#$%/@';
+    const fs=15;
+    function resize(){
+      const dpr=Math.min(window.devicePixelRatio||1,2);
+      W=innerWidth;H=innerHeight;c.width=W*dpr;c.height=H*dpr;c.style.width=W+'px';c.style.height=H+'px';ctx.setTransform(dpr,0,0,dpr,0,0);
+      drops=Array(Math.ceil(W/fs)+2).fill(0).map(()=>Math.random()*H/fs);
+      particles=Array.from({length:Math.min(85,Math.max(35,Math.floor(W/18)))},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.3,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.28,a:Math.random()*.55+.15}));
+      orbs=Array.from({length:12},()=>({x:Math.random()*W,y:Math.random()*H,r:15+Math.random()*65,vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.14,p:Math.random()*Math.PI*2}));
+    }
+    resize(); addEventListener('resize',resize);
+    function draw(){
+      frame++;
+      ctx.fillStyle='rgba(2,0,0,.14)';ctx.fillRect(0,0,W,H);
+      // red atmospheric orbs
+      orbs.forEach(o=>{o.x+=o.vx;o.y+=o.vy;o.p+=.018;if(o.x<-100)o.x=W+100;if(o.x>W+100)o.x=-100;if(o.y<-100)o.y=H+100;if(o.y>H+100)o.y=-100;
+        const a=.025+.035*(Math.sin(o.p)+1)/2;
+        const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);g.addColorStop(0,`rgba(255,0,0,${a})`);g.addColorStop(1,'rgba(255,0,0,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();
+      });
+      // floating particles
+      particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.fillStyle=`rgba(255,45,45,${p.a})`;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();});
+      // matrix rain
+      ctx.font=fs+'px monospace';
+      drops.forEach((y,i)=>{
+        const x=i*fs;
+        const ch=chars[Math.floor(Math.random()*chars.length)];
+        const alpha=.10+Math.random()*.34;
+        ctx.fillStyle=`rgba(255,20,20,${alpha})`;ctx.fillText(ch,x,y*fs);
+        if(Math.random()>.92){ctx.fillStyle='rgba(255,90,90,.8)';ctx.fillText(chars[Math.floor(Math.random()*chars.length)],x,(y-1)*fs)}
+        drops[i]=(y*fs>H&&Math.random()>.975)?0:y+1;
+      });
+      // sweeping laser lines
+      const scan=(frame*3)%H;ctx.fillStyle='rgba(255,0,0,.045)';ctx.fillRect(0,scan,W,2);ctx.fillRect(0,(scan+H*.5)%H,W,1);
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+    const hud=document.createElement('div');hud.className='v3-live-hud';hud.innerHTML='<span class="h1">UMBRELLA // BIOHAZARD CHANNEL 07</span><span class="h2">MATRIX LINK // ONLINE</span><span class="h3">CONTAINMENT FIELD // ACTIVE</span><span class="h4">NODE STATUS // 100%</span>';document.getElementById('v3AlertIntro').appendChild(hud);
+    const lines=['> BOOTING UMBRELLA SECURE CORE...','> VERIFYING COLLECTION CONTROL LAYER...','> MATRIX CHANNEL: ACTIVE','> CONTAINMENT FIELD: STABLE','> SESSION CONTROL: READY','> STATUS: SYSTEM ONLINE'];
+    let n=0;function type(){if(n<lines.length){status.innerHTML+=escHtml(lines[n])+'<br>';n++;setTimeout(type,400)}}type();
+    setTimeout(()=>{document.getElementById('v3AlertIntro')?.remove()},9000);
+  }
+
   initAlert();
 })();
 </script>
