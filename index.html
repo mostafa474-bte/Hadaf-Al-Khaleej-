@@ -959,138 +959,31 @@ body.v3-alert-active header,body.v3-alert-active .controls-bar,body.v3-alert-act
 
 
 <style id="theme-scenes-css">
-/* ===== Dynamic Light / Dark Background Scenes ===== */
+/* ===== OUTER UMBRELLA / BIOHAZARD LIVE BACKGROUND ===== */
 body{background:transparent!important;position:relative;overflow-x:hidden}
-#themeScene{
-  position:fixed;inset:0;z-index:-3;overflow:hidden;pointer-events:none;
-  background:#07111f;
-}
-#themeScene .scene-light,
-#themeScene .scene-dark{
-  position:absolute;inset:0;transition:opacity .7s ease;
-}
-#themeScene .scene-light{
-  opacity:1;
-  background:
-    linear-gradient(to bottom,rgba(0,119,190,.12),rgba(255,255,255,.04) 42%,rgba(255,255,255,.22)),
-    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=90') center/cover no-repeat;
-}
-#themeScene .scene-dark{
-  opacity:0;
-  background:
-    radial-gradient(circle at 50% 50%,rgba(12,45,72,.08),rgba(1,5,12,.72) 62%,rgba(0,0,0,.92)),
-    #02050b;
-}
-body.dark-mode #themeScene .scene-light{opacity:0}
-body.dark-mode #themeScene .scene-dark{opacity:1}
-
-/* Animated ocean waves in Light mode */
-.theme-waves{
-  position:absolute;left:-5%;right:-5%;bottom:-1px;height:52%;
-  overflow:hidden;opacity:.82;
-  filter:drop-shadow(0 -5px 10px rgba(255,255,255,.18));
-}
-.theme-wave{
-  position:absolute;left:-10%;width:120%;height:145px;
-  border-radius:50% 50% 0 0;
-  background:
-    radial-gradient(80px 30px at 10% 100%,rgba(255,255,255,.82) 0 28%,transparent 30%),
-    radial-gradient(110px 34px at 35% 100%,rgba(255,255,255,.55) 0 28%,transparent 30%),
-    radial-gradient(90px 28px at 62% 100%,rgba(255,255,255,.72) 0 28%,transparent 30%),
-    radial-gradient(120px 36px at 88% 100%,rgba(255,255,255,.52) 0 28%,transparent 30%);
-  background-size:360px 100px;
-  border-top:3px solid rgba(255,255,255,.78);
-  animation:themeWaveMove 7s linear infinite;
-}
-.theme-wave.w1{bottom:22px;opacity:.70;animation-duration:7s}
-.theme-wave.w2{bottom:78px;opacity:.55;animation-duration:10s;animation-direction:reverse;transform:scaleY(.8)}
-.theme-wave.w3{bottom:145px;opacity:.38;animation-duration:13s}
-@keyframes themeWaveMove{
-  from{transform:translateX(0) translateY(0)}
-  50%{transform:translateX(-7%) translateY(-18px)}
-  to{transform:translateX(-14%) translateY(-2px)}
-}
-
-/* Moving sun glow for Light mode */
-.theme-sun{
-  position:absolute;width:240px;height:240px;right:7%;top:10%;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,249,196,.95) 0 12%,rgba(255,211,91,.42) 28%,rgba(255,255,255,0) 70%);
-  filter:blur(2px);
-  animation:themeSunFloat 7s ease-in-out infinite alternate;
-}
-@keyframes themeSunFloat{
-  from{transform:translate3d(0,0,0);opacity:.72}
-  to{transform:translate3d(-20px,14px,0);opacity:.95}
-}
-
-/* Earth in Dark mode */
-.theme-earth-wrap{
-  position:absolute;left:50%;top:50%;
-  width:min(62vw,620px);height:min(62vw,620px);
-  transform:translate(-50%,-50%);
-  border-radius:50%;
-  box-shadow:
-    0 0 55px rgba(20,145,255,.24),
-    0 0 130px rgba(10,80,160,.18),
-    inset -45px -20px 70px rgba(0,0,0,.82);
-  overflow:hidden;
-}
-.theme-earth{
-  position:absolute;inset:-2%;
-  border-radius:50%;
-  background-image:
-    radial-gradient(circle at 32% 35%,rgba(255,255,255,.18),transparent 8%),
-    linear-gradient(90deg,rgba(0,0,0,.08),rgba(255,255,255,.04),rgba(0,0,0,.72)),
-    url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg');
-  background-size:auto,auto,200% 100%;
-  background-position:center,center,0% center;
-  background-repeat:no-repeat;
-  animation:earthRotate 28s linear infinite;
-  filter:saturate(1.15) contrast(1.08);
-}
-.theme-earth::after{
-  content:"";position:absolute;inset:0;border-radius:50%;
-  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.20),transparent 25%,rgba(0,0,0,.12) 58%,rgba(0,0,0,.74) 100%);
-}
-@keyframes earthRotate{
-  from{background-position:center,center,0% center}
-  to{background-position:center,center,100% center}
-}
-.theme-stars{
-  position:absolute;inset:0;
-  background-image:
-    radial-gradient(2px 2px at 12% 20%,rgba(255,255,255,.8),transparent 60%),
-    radial-gradient(1.5px 1.5px at 27% 72%,rgba(255,255,255,.65),transparent 60%),
-    radial-gradient(2px 2px at 74% 18%,rgba(255,255,255,.8),transparent 60%),
-    radial-gradient(1px 1px at 86% 64%,rgba(255,255,255,.7),transparent 60%),
-    radial-gradient(1.5px 1.5px at 55% 83%,rgba(255,255,255,.65),transparent 60%);
-  background-size:260px 220px;
-  animation:starsDrift 35s linear infinite;
-}
-@keyframes starsDrift{
-  from{transform:translate3d(0,0,0)}
-  to{transform:translate3d(-80px,30px,0)}
-}
-body:not(.dark-mode) .theme-earth-wrap,
-body:not(.dark-mode) .theme-stars{opacity:0}
-body.dark-mode .theme-earth-wrap,
-body.dark-mode .theme-stars{opacity:1;transition:opacity .7s ease}
-
-/* Keep the existing corporate grid, but make it work over the animated scenes */
-body:before{z-index:-2!important;opacity:.55}
-body.dark-mode .page-card,
-body.dark-mode .v2-card,
-body.dark-mode .tool-box,
-body.dark-mode .target-card{backdrop-filter:blur(14px)}
-@media(max-width:700px){
-  .theme-earth-wrap{width:78vw;height:78vw}
-  .theme-sun{width:170px;height:170px;right:-20px;top:7%}
-  .theme-waves{height:30%}
-}
-@media(prefers-reduced-motion:reduce){
-  .theme-wave,.theme-sun,.theme-earth,.theme-stars{animation:none!important}
-}
+#themeScene{position:fixed;inset:0;z-index:-10;overflow:hidden;pointer-events:none;background:radial-gradient(circle at 50% 20%,rgba(115,0,0,.30),transparent 35%),linear-gradient(135deg,#020305 0%,#080b10 45%,#130305 100%)}
+#themeScene:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 35%,rgba(255,0,0,.16),transparent 22%),radial-gradient(circle at 80% 65%,rgba(180,0,0,.13),transparent 25%);animation:umbrellaAura 8s ease-in-out infinite alternate}
+.umbrella-grid{position:absolute;inset:0;opacity:.20;background-image:linear-gradient(rgba(255,30,30,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,30,30,.10) 1px,transparent 1px);background-size:70px 70px;transform:perspective(500px) rotateX(55deg) scale(1.7);transform-origin:center bottom;animation:gridMove 9s linear infinite}
+.umbrella-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,.52) 100%)}
+.umbrella-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(58vw,620px);height:min(58vw,620px);opacity:.10;filter:drop-shadow(0 0 30px rgba(255,0,0,.5));animation:logoPulse 4.5s ease-in-out infinite}
+.umbrella-logo:before{content:"";position:absolute;inset:8%;border:clamp(18px,3vw,34px) solid #d40000;border-radius:50%;box-shadow:0 0 35px rgba(255,0,0,.45),inset 0 0 30px rgba(255,0,0,.2)}
+.umbrella-logo:after{content:"☂";position:absolute;inset:0;display:grid;place-items:center;color:#e60000;font-size:min(34vw,340px);font-family:Arial,sans-serif;transform:rotate(180deg);text-shadow:0 0 25px rgba(255,0,0,.8)}
+.umbrella-label{position:absolute;left:50%;top:calc(50% + min(30vw,310px));transform:translateX(-50%);font:800 clamp(14px,2vw,25px)/1.1 Arial,sans-serif;letter-spacing:.45em;color:rgba(255,70,70,.40);white-space:nowrap;text-shadow:0 0 15px rgba(255,0,0,.5)}
+.biohazard-field{position:absolute;inset:0;overflow:hidden}
+.biohazard-particle{position:absolute;width:clamp(28px,4vw,55px);height:clamp(28px,4vw,55px);border:2px solid rgba(190,255,90,.22);border-radius:50%;color:rgba(190,255,90,.25);display:grid;place-items:center;font:700 clamp(13px,1.8vw,24px)/1 Arial,sans-serif;box-shadow:0 0 18px rgba(120,255,30,.12),inset 0 0 12px rgba(120,255,30,.08);animation:virusFloat linear infinite}
+.biohazard-particle:before,.biohazard-particle:after{content:"";position:absolute;border:1px solid rgba(190,255,90,.18);border-radius:50%;inset:20%;transform:rotate(60deg)}
+.biohazard-particle:after{transform:rotate(-60deg)}
+.vp1{left:7%;top:18%;animation-duration:16s}.vp2{left:23%;top:74%;animation-duration:21s;animation-delay:-6s}.vp3{left:78%;top:18%;animation-duration:19s;animation-delay:-10s}.vp4{left:88%;top:72%;animation-duration:24s;animation-delay:-3s}.vp5{left:48%;top:8%;animation-duration:18s;animation-delay:-9s}.vp6{left:55%;top:82%;animation-duration:22s;animation-delay:-14s}
+.biohazard-mist{position:absolute;width:45vw;height:45vw;border-radius:50%;filter:blur(50px);opacity:.10;background:radial-gradient(circle,rgba(115,255,40,.45),transparent 65%);animation:mistMove 12s ease-in-out infinite alternate}
+.mist1{left:-12%;top:10%}.mist2{right:-15%;bottom:-8%;animation-delay:-6s}
+body:before{z-index:-2!important;opacity:.32!important}
+@keyframes umbrellaAura{from{transform:scale(1);opacity:.65}to{transform:scale(1.08);opacity:1}}
+@keyframes gridMove{from{background-position:0 0,0 0}to{background-position:0 140px,140px 0}}
+@keyframes logoPulse{0%,100%{transform:translate(-50%,-50%) scale(.96);opacity:.07}50%{transform:translate(-50%,-50%) scale(1.03);opacity:.13}}
+@keyframes virusFloat{0%{transform:translate3d(0,40px,0) rotate(0deg);opacity:0}12%{opacity:.7}50%{transform:translate3d(35px,-90px,0) rotate(180deg);opacity:.45}100%{transform:translate3d(-25px,-190px,0) rotate(360deg);opacity:0}}
+@keyframes mistMove{from{transform:translate3d(0,0,0) scale(.9)}to{transform:translate3d(90px,-50px,0) scale(1.15)}}
+@media(max-width:700px){.umbrella-logo{width:80vw;height:80vw}.umbrella-label{top:72%;font-size:11px;letter-spacing:.22em}.umbrella-grid{background-size:45px 45px}.biohazard-particle{opacity:.65}}
+@media(prefers-reduced-motion:reduce){.umbrella-grid,.umbrella-logo,.biohazard-particle,.biohazard-mist,#themeScene:before{animation:none!important}}
 </style>
 
 </head>
@@ -1098,20 +991,20 @@ body.dark-mode .target-card{backdrop-filter:blur(14px)}
 
 <!-- Dynamic theme background: Light = beach + moving waves, Dark = rotating Earth -->
 <div id="themeScene" aria-hidden="true">
-  <div class="scene-light">
-    <div class="theme-sun"></div>
-    <div class="theme-waves">
-      <div class="theme-wave w1"></div>
-      <div class="theme-wave w2"></div>
-      <div class="theme-wave w3"></div>
-    </div>
+  <div class="umbrella-grid"></div>
+  <div class="umbrella-logo"></div>
+  <div class="umbrella-label">UMBRELLA CORP. / BIOHAZARD CONTAINMENT</div>
+  <div class="biohazard-field">
+    <div class="biohazard-particle vp1">☣</div>
+    <div class="biohazard-particle vp2">☣</div>
+    <div class="biohazard-particle vp3">☣</div>
+    <div class="biohazard-particle vp4">☣</div>
+    <div class="biohazard-particle vp5">☣</div>
+    <div class="biohazard-particle vp6">☣</div>
   </div>
-  <div class="scene-dark">
-    <div class="theme-stars"></div>
-    <div class="theme-earth-wrap">
-      <div class="theme-earth"></div>
-    </div>
-  </div>
+  <div class="biohazard-mist mist1"></div>
+  <div class="biohazard-mist mist2"></div>
+  <div class="umbrella-vignette"></div>
 </div>
 
 
@@ -1892,8 +1785,8 @@ body.dark-mode .target-card{backdrop-filter:blur(14px)}
 <div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on Eyecon and didn't find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on Eyecon and didn\'t find has name')">Copy</button></div>
 <div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer and find website and numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and find website and numbers')">Copy</button></div>
 <div class="followup-card color-found-cust"><span class="followup-text">Search by email of the customer and find website and numbers</span><button class="copy-btn" onclick="copyText('Search by email of the customer and find website and numbers')">Copy</button></div>
-<div class="followup-card color-not-found-comp"><span class="followup-text">Search by number of the customer and didn't find website or numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and didn\'t find website or numbers')">Copy</button></div>
-<div class="followup-card color-not-found-comp"><span class="followup-text">Search by email of the customer and didn't find website or numbers</span><button class="copy-btn" onclick="copyText('Search by email of the customer and didn\'t find website or numbers')">Copy</button></div>
+<div class="followup-card color-not-found-comp"><span class="followup-text">Search by number of the customer on pipl and didn't find website or numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and didn\'t find website or numbers')">Copy</button></div>
+<div class="followup-card color-not-found-comp"><span class="followup-text">Search by email of the customer on pipl and didn't  find website or numbers</span><button class="copy-btn" onclick="copyText('Search by email of the customer and didn\'t find website or numbers')">Copy</button></div>
 </div>
 <div class="card-footer">إعداد وتطوير: Mostafa Waleed</div>
 </div>
