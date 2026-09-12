@@ -1754,9 +1754,22 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يهدد بتقديم شكوى')">⚠️ العميل يهدد بشكوى</button>
 <button class="rasheed-quick-btn" onclick="askRasheedQuick('كيف أقنعه بالسداد اليوم وليس غداً؟')">⏳ حسم السداد اليوم</button>
 </div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:12px;">
+<div class="v2-field"><label>اسم العميل (اختياري)</label><input id="rasheedClientName" placeholder="Ahmed Ali"></div>
+<div class="v2-field"><label>نوع المنتج</label><select id="rasheedProduct"><option value="personal">قرض شخصي</option><option value="credit">Credit Card</option><option value="car">قرض سيارة</option></select></div>
+<div class="v2-field"><label>المديونية (ريال)</label><input id="rasheedDebt" type="number" placeholder="50000"></div>
+</div>
 <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 0;">
-<input id="rasheedInput" onkeydown="if(event.key==='Enter') sendToRasheed()" placeholder="اكتب اعتراض العميل أو السؤال لرشيد..." type="text"/>
+<input id="rasheedInput" onkeydown="if(event.key==='Enter') sendToRasheed()" placeholder="اكتب اعتراض العميل أو الحالة بالتفصيل..." type="text"/>
 <button class="tool-btn" onclick="sendToRasheed()" style="width: 140px; margin-top: 0; background: #7c3aed;">إرسال لرشيد</button>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يقول إنه غير قادر على السداد حاليًا')">💬 عدم القدرة على السداد</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يطلب مهلة للتسديد')">📅 طلب مهلة</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('العميل يعترض على قيمة المديونية')">🧾 اعتراض على المديونية</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('جهز لي رسالة واتساب للعميل')">📱 WhatsApp</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('جهز لي إيميل رسمي للعميل')">✉️ Email</button>
+<button class="rasheed-quick-btn" onclick="askRasheedQuick('لخص لي الحالة ونصيحة للمتابعة')">📝 تلخيص الحالة</button>
 </div>
 </div>
 <!-- قسم التارجت المباشر الخاص بالموظف -->
@@ -1903,13 +1916,14 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <p class="v2-small" style="margin-bottom:14px">كل قوالب الإيميل في مكان واحد بدل تكرارها داخل صفحات المنتجات.</p>
 <div class="v3-email-grid">
 <div class="v2-field"><label>Client Name</label><input id="v3EmailName" placeholder="Ahmed Ali"></div>
+<div class="v2-field"><label>نوع المنتج</label><select id="v3EmailProduct" onchange="v3UpdateEmailSubject()"><option value="personal">1 - قرض شخصي</option><option value="credit">2 - Credit Card</option><option value="car">3 - قرض سيارة</option></select></div>
 <div class="v2-field"><label>Iqama / Residency</label><input id="v3EmailIqama" placeholder="2xxxxxxxxxx"></div>
 <div class="v2-field"><label>Account 1</label><input id="v3EmailAcc1" placeholder="SNB-000000"></div>
 <div class="v2-field"><label>Balance 1 (SAR)</label><input id="v3EmailBal1" type="number" placeholder="50000"></div>
 <div class="v2-field"><label>Account 2 (optional)</label><input id="v3EmailAcc2" placeholder="Account 2"></div>
 <div class="v2-field"><label>Balance 2 (SAR)</label><input id="v3EmailBal2" type="number" placeholder="0"></div>
 <div class="v2-field"><label>Template</label><select id="v3EmailTemplate"><option value="standard">Standard collection</option><option value="two">Two accounts</option><option value="reminder">Reminder</option></select></div>
-<div class="v2-field"><label>Subject</label><input id="v3EmailSubject" value="Payment Follow-up - SNB Account"></div>
+<div class="v2-field"><label>Subject</label><input id="v3EmailSubject" value="Payment Follow-up - Personal Loan"></div>
 </div>
 <div class="v3-template-row">
 <button class="v2-btn" onclick="v3GenerateEmail('standard')">Generate Standard</button>
@@ -2437,45 +2451,73 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
             sendToRasheed();
         }
 
-        function sendToRasheed() {
-            const input = document.getElementById("rasheedInput");
-            const query = input.value.trim();
-            if (!query) return;
-
-            const chatBox = document.getElementById("rasheedChatBox");
-
-            // رسالة المستخدم
-            const userMsg = document.createElement("div");
-            userMsg.className = "chat-msg user";
-            userMsg.innerText = query;
-            chatBox.appendChild(userMsg);
-
-            input.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            // توليد الرد من رشيد
-            setTimeout(() => {
-                const botMsg = document.createElement("div");
-                botMsg.className = "chat-msg bot";
-                botMsg.innerText = getRasheedReply(query);
-                chatBox.appendChild(botMsg);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 500);
+        function getRasheedContext() {
+            const name = document.getElementById('rasheedClientName')?.value.trim() || 'العميل';
+            const product = document.getElementById('rasheedProduct')?.value || 'personal';
+            const debt = document.getElementById('rasheedDebt')?.value.trim() || '';
+            const productName = product === 'credit' ? 'Credit Card' : product === 'car' ? 'قرض سيارة' : 'قرض شخصي';
+            return {name, product, productName, debt};
         }
 
-        function getRasheedReply(q) {
-            q = q.toLowerCase();
-            if (q.includes("رفض") || q.includes("ليس لدي") || q.includes("ما عندي")) {
-                return "قل له: أستاذي العزيز، مقدر ظروفك تماماً ولكن تراكم المديونية سيسبب إدراج اسمك في سمة وتجميد خدماتك. دعنا نضع حلاً استثنائياً اليوم بدفع جزء بسيط لتجميد أي إجراء قانوني ضدك.";
-            } else if (q.includes("خصم") || q.includes("نسبة")) {
-                return "قل له: موافقة الخصم تخرج بطلب خاص بشرط السداد الفوري خلال 24 ساعة فقط. هل المبلغ جاهز لديك اليوم حتى أرفع الطلب للإدارة فوراً؟";
-            } else if (q.includes("شكوى") || q.includes("تهديد")) {
-                return "قل له: أستاذنا نحن نهدف لمساعدتك وحل ملفك ودياً قبل أي تصعيد قانوني من البنك، والهدف من الاتصال هو المصلحة المشتركة وتفادي الآثار الائتمانية.";
-            } else if (q.includes("اليوم") || q.includes("غدا") || q.includes("تأجيل")) {
-                return "قل له: العرض الحالي متاح اليوم فقط حتى الساعة 12 ليلاً من البنك ولا نضمن تجديده غداً. حسم الموضوع اليوم هو الضمان الوحيد للخصم.";
-            } else {
-                return "💡 نصيحة رشيد: حاول أن تبدأ دائماً بامتصاص غضب العميل وربط الخصم بشرط الجاهزية للسداد اليوم، وتذكيره دائماً بتفادي حظر سمة I-Score.";
+        function askRasheedQuick(text) {
+            const input = document.getElementById('rasheedInput');
+            input.value = text;
+            sendToRasheed();
+        }
+
+        function sendToRasheed() {
+            const input = document.getElementById('rasheedInput');
+            const query = input.value.trim();
+            if (!query) return;
+            const chatBox = document.getElementById('rasheedChatBox');
+            const ctx = getRasheedContext();
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.innerText = query;
+            chatBox.appendChild(userMsg);
+            input.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                botMsg.innerText = getRasheedReply(query, ctx);
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 350);
+        }
+
+        function getRasheedReply(q, ctx) {
+            const x = q.toLowerCase();
+            const debtText = ctx.debt ? `المديونية المسجلة: ${Number(ctx.debt).toLocaleString('ar-SA')} ريال.` : 'لم يتم تسجيل قيمة المديونية.';
+            const header = `👤 ${ctx.name} | المنتج: ${ctx.productName}\n${debtText}\n\n`;
+
+            if (x.includes('واتساب') || x.includes('whatsapp')) {
+                return header + `📱 رسالة WhatsApp مقترحة:\nأستاذ/ة ${ctx.name}، نود التواصل معكم بخصوص ملف ${ctx.productName}. نرجو التواصل معنا في أقرب وقت لمراجعة وضع الحساب والخيارات المتاحة للسداد. شكرًا لتعاونكم.`;
             }
+            if (x.includes('إيميل') || x.includes('email')) {
+                return header + `✉️ Email مقترح:\nSubject: Payment Follow-up - ${ctx.productName}\n\nDear ${ctx.name},\n\nWe are contacting you regarding your outstanding ${ctx.productName} account. Please contact us at your earliest convenience to review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
+            }
+            if (x.includes('غير قادر') || x.includes('ليس لدي') || x.includes('ما عندي') || x.includes('فقد') || x.includes('مال')) {
+                return header + `🎯 تحليل الحالة:\nالعميل يذكر عدم القدرة على السداد حاليًا.\n\n💬 الرد المقترح:\nأتفهم ظروفك، وهدفنا الوصول إلى حل مناسب لحالتك. ما المبلغ الذي تستطيع الالتزام به حاليًا، وما أقرب موعد تتوقع فيه السداد؟\n\n📝 خطوة المتابعة:\nسجل المبلغ والموعد المقترح من العميل قبل إنهاء التواصل.`;
+            }
+            if (x.includes('مهلة') || x.includes('تأجيل') || x.includes('بعد شهر') || x.includes('غدا') || x.includes('غدًا')) {
+                return header + `🎯 تحليل الحالة:\nالعميل يطلب تأجيل السداد.\n\n💬 الرد المقترح:\nأقدر طلبك، دعنا نحدد موعدًا واضحًا ومبلغًا واقعيًا يمكنك الالتزام به، حتى أسجل طلبك وأتابع معك في الموعد المتفق عليه.\n\n📝 خطوة المتابعة:\nحدد تاريخ المتابعة والمبلغ المتوقع بدل ترك الطلب مفتوحًا.`;
+            }
+            if (x.includes('خصم') || x.includes('نسبة')) {
+                return header + `🎯 تحليل الحالة:\nالعميل يناقش الخصم أو نسبة التسوية.\n\n💬 الرد المقترح:\nأقدر رغبتك في الوصول إلى أفضل تسوية. أخبرني بالمبلغ الذي تستطيع توفيره حاليًا وسأوضح لك الخيارات المتاحة وفق الإجراءات المعتمدة.\n\n📝 خطوة المتابعة:\nلا تعد العميل بنسبة خصم غير معتمدة.`;
+            }
+            if (x.includes('شكوى') || x.includes('تهديد') || x.includes('غاضب')) {
+                return header + `🎯 تحليل الحالة:\nالعميل غير راضٍ أو يلوح بتقديم شكوى.\n\n💬 الرد المقترح:\nأتفهم اعتراضك، ومن حقك معرفة تفاصيل ملفك. دعنا نراجع المعلومات المتاحة ونحاول الوصول إلى حل مناسب دون افتراضات أو وعود غير مؤكدة.\n\n📝 خطوة المتابعة:\nسجل سبب الاعتراض واطلب التفاصيل التي يريد العميل توضيحها.`;
+            }
+            if (x.includes('اعتراض') || x.includes('المديونية') || x.includes('المبلغ')) {
+                return header + `🎯 تحليل الحالة:\nالعميل يعترض على بيانات أو قيمة المديونية.\n\n💬 الرد المقترح:\nأفهم اعتراضك. دعنا نراجع تفاصيل الحساب والرصيد المسجل، وإذا كان لديك أي مستند أو معلومة مختلفة أخبرني بها حتى يتم توثيقها ومراجعتها.\n\n📝 خطوة المتابعة:\nلا تجزم بصحة الرقم قبل مراجعة بيانات الحساب.`;
+            }
+            if (x.includes('تلخيص') || x.includes('لخص') || x.includes('ملخص')) {
+                return header + `📝 ملخص متابعة:\nالمنتج: ${ctx.productName}\nالمديونية: ${ctx.debt ? Number(ctx.debt).toLocaleString('ar-SA') + ' ريال' : 'غير محددة'}\nالطلب/الاعتراض: ${q}\n\n🎯 الإجراء المقترح:\nحدد نتيجة الاتصال بوضوح، ثم سجل موعد المتابعة والمبلغ الذي التزم به العميل إن وجد.`;
+            }
+            return header + `💡 رشيد يقترح:\nحدد لي اعتراض العميل أو المطلوب منه بشكل مباشر، وسأجهز لك ردًا مناسبًا للمكالمة أو WhatsApp أو Email.\n\nمثال: «العميل يطلب مهلة شهر» أو «العميل يعترض على المديونية».`;
         }
     </script>
 <script>
@@ -2668,15 +2710,18 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   window.v3DeletePolicy=function(code){const p=getPolicies();delete p[code];savePolicies(p);v3RenderPolicies();};
 
   function v3EmailName(){return document.getElementById('v3EmailName')?.value.trim()||'Customer'}
+  function v3ProductName(){const v=document.getElementById('v3EmailProduct')?.value||'personal';return v==='credit'?'Credit Card':v==='car'?'Auto Loan':'Personal Loan'}
+  function v3UpdateEmailSubject(){const p=v3ProductName();const el=document.getElementById('v3EmailSubject');if(el)el.value=`Payment Follow-up - ${p}`;}
   window.v3GenerateEmail=function(type){
-    const name=v3EmailName(), iq=document.getElementById('v3EmailIqama')?.value.trim()||'', a1=document.getElementById('v3EmailAcc1')?.value.trim()||'', a2=document.getElementById('v3EmailAcc2')?.value.trim()||'', b1=Number(document.getElementById('v3EmailBal1')?.value)||0,b2=Number(document.getElementById('v3EmailBal2')?.value)||0,total=b1+b2;
+    const name=v3EmailName(), iq=document.getElementById('v3EmailIqama')?.value.trim()||'', a1=document.getElementById('v3EmailAcc1')?.value.trim()||'', a2=document.getElementById('v3EmailAcc2')?.value.trim()||'', b1=Number(document.getElementById('v3EmailBal1')?.value)||0,b2=Number(document.getElementById('v3EmailBal2')?.value)||0,total=b1+b2,product=v3ProductName(),subject=document.getElementById('v3EmailSubject')?.value||`Payment Follow-up - ${product}`;
     let text='';
-    if(type==='reminder') text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up'}\n\nDear Mr. ${name},\n\nI hope you are well. This is a reminder regarding the outstanding matter on your account. Please contact us at your earliest convenience so we can review the available settlement options and next steps.\n\nKind Regards,\nHadaf Al-Khaleej`;
-    else if(type==='two') text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up - SNB Accounts'}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above. Please contact us to discuss the available settlement options and to clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
-    else text=`Subject: ${document.getElementById('v3EmailSubject')?.value||'Payment Follow-up - SNB Account'}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your account. Please contact us at your earliest convenience so we can review the available settlement options and next steps.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    if(type==='reminder') text=`Subject: ${subject}\n\nDear Mr. ${name},\n\nThis is a friendly reminder regarding your outstanding ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    else if(type==='two') text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above for your ${product}. Please contact us to discuss the available payment options and clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    else text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
     document.getElementById('v3EmailResult').value=text;
   };
   window.v3CopyEmail=function(){const e=document.getElementById('v3EmailResult');if(!e?.value)return; navigator.clipboard?.writeText(e.value).then(()=>showToast('تم نسخ الإيميل')) .catch(()=>{e.select();document.execCommand('copy');showToast('تم نسخ الإيميل')});};
+  document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('v3EmailProduct'))v3UpdateEmailSubject();});
 
   // Enforce optional admin-managed expiry/block policies without changing the old login UI.
   const oldCheck=window.checkUserAuth;
