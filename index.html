@@ -947,12 +947,12 @@ th{background:#0d2943!important;color:#9be9ff!important}td{color:#e5edf5!importa
 .top-banner{background:linear-gradient(90deg,#06101c,#102f48,#06101c)!important;border-bottom:1px solid rgba(25,200,255,.18)}
 .user-tag{background:rgba(22,163,74,.16)!important;color:#86efac!important;border-color:rgba(134,239,172,.25)!important}.designer-tag{background:rgba(25,200,255,.08)!important;color:#9be9ff!important;border-color:rgba(25,200,255,.2)!important}
 .v3-email-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.v3-email-grid .wide{grid-column:span 2}.v3-template-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.v3-template-row button{flex:1;min-width:160px}
-.v3-admin{border:1px solid rgba(225,29,46,.42)!important;background:linear-gradient(135deg,rgba(45,5,10,.88),rgba(8,18,30,.92))!important}.v3-admin-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(225,29,46,.25);padding-bottom:12px;margin-bottom:14px}.v3-live-dot{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:#86efac}.v3-live-dot i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e;display:inline-block}.v3-session{display:grid;grid-template-columns:1.2fr .8fr .8fr auto;gap:8px;align-items:center;padding:10px;border:1px solid #29455b;border-radius:10px;margin-bottom:8px;background:rgba(3,12,22,.8)}.v3-session .danger{background:#b91c1c!important;color:#fff!important;border:0;border-radius:7px;padding:7px 10px;cursor:pointer;font-weight:800}.v3-admin-note{font-size:.78rem;color:#94a3b8;margin-top:10px;line-height:1.6}
-.v3-expiry-grid{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end;margin-top:14px}.v3-code-list{margin-top:12px}.v3-code-row{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border:1px solid #29455b;border-radius:8px;margin-bottom:6px}
+.v3-live-dot{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:#86efac}.v3-live-dot i{width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px #22c55e;display:inline-block}
+.v3-code-list{margin-top:12px}.v3-code-row{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border:1px solid #29455b;border-radius:8px;margin-bottom:6px}
 /* Umbrella corporate emblem inside header */
 .v3-umbrella-badge{display:flex;align-items:center;gap:9px;margin-right:10px}.v3-umbrella-mark{width:32px;height:32px;display:grid;grid-template-columns:1fr 1fr;transform:rotate(45deg);border:2px solid #fff;box-shadow:0 0 15px rgba(225,29,46,.55);overflow:hidden;border-radius:5px}.v3-umbrella-mark span:nth-child(1),.v3-umbrella-mark span:nth-child(4){background:#fff}.v3-umbrella-mark span:nth-child(2),.v3-umbrella-mark span:nth-child(3){background:#b30f1c}.v3-umbrella-name{font-size:.72rem;letter-spacing:2px;color:#f8fafc;font-weight:900}
-@media(max-width:900px){.v3-email-grid{grid-template-columns:repeat(2,1fr)}.v3-email-grid .wide{grid-column:span 2}.v3-session{grid-template-columns:1fr 1fr}.v3-expiry-grid{grid-template-columns:1fr 1fr}.v3-expiry-grid button{grid-column:span 2}}
-@media(max-width:560px){.v3-email-grid{grid-template-columns:1fr}.v3-email-grid .wide{grid-column:span 1}.v3-expiry-grid{grid-template-columns:1fr}.v3-expiry-grid button{grid-column:span 1}.v3-session{grid-template-columns:1fr}.v3-umbrella-name{display:none}}
+@media(max-width:900px){.v3-email-grid{grid-template-columns:repeat(2,1fr)}.v3-email-grid .wide{grid-column:span 2}.v3-expiry-grid button{grid-column:span 2}}
+@media(max-width:560px){.v3-email-grid{grid-template-columns:1fr}.v3-email-grid .wide{grid-column:span 1}.v3-expiry-grid button{grid-column:span 1}.v3-umbrella-name{display:none}}
 /* Red world-alert intro */
 #v3AlertIntro{position:fixed;inset:0;z-index:100000;background:#030000;display:flex;align-items:center;justify-content:center;overflow:hidden;animation:v3FadeOut 1s ease 7.5s forwards}
 #v3AlertIntro:before{content:"";position:absolute;inset:-20%;background:repeating-linear-gradient(0deg,rgba(255,0,0,.00) 0 6px,rgba(255,0,0,.06) 7px 8px);animation:v3Scan 1.4s linear infinite}
@@ -1923,38 +1923,6 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <button class="tool-btn green" onclick="openDirectWhatsApp()">الدخول لمحادثة العميل</button>
 </div>
 </div>
-<!-- V6: Client Intelligence Hub -->
-<div class="page-card" id="linkedinFinderTool" style="margin-top:24px">
-<div class="page-header"><h2 class="page-title">🕵️ Client Intelligence Hub</h2><span class="badge-en">PUBLIC WEB INTELLIGENCE</span></div>
-<p class="v2-small" style="margin-bottom:14px">محرك بحث ذكي يجمع بيانات العميل ويبني عمليات بحث متعددة ويقيّم قوة التطابق من المعلومات العامة.</p>
-<div class="v3-email-grid">
-<div class="v2-field"><label>الاسم بالعربي</label><input id="liArabic" placeholder="نزار عثمان أحمد بابكر"></div>
-<div class="v2-field"><label>الاسم بالإنجليزي</label><input id="liEnglish" placeholder="Nizar Othman Ahmed Babiker"></div>
-<div class="v2-field"><label>الشركة / جهة العمل</label><input id="liCompany" placeholder="مؤسسة مكة المكرمة للطباعة والإعلام"></div>
-<div class="v2-field"><label>الدولة / المدينة</label><input id="liLocation" placeholder="Saudi Arabia / Makkah"></div>
-<div class="v2-field"><label>الجنسية</label><input id="liNationality" placeholder="Sudanese / سوداني"></div>
-<div class="v2-field"><label>السن أو سنة الميلاد</label><input id="liAge" placeholder="49 أو 1976"></div>
-<div class="v2-field"><label>المسمى الوظيفي</label><input id="liJob" placeholder="Administrative Assistant"></div>
-<div class="v2-field"><label>رقم الجوال</label><input id="liPhone" placeholder="0551962633"></div>
-<div class="v2-field"><label>البريد الإلكتروني</label><input id="liEmail" type="email" placeholder="name@example.com"></div>
-</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
-<button class="tool-btn green" onclick="liRunInvestigation()">🚀 فحص العميل بالكامل</button>
-<button class="tool-btn" onclick="liBuildSearches()">🔎 تجهيز عمليات البحث</button>
-<button class="tool-btn" onclick="liOpenPriority()">🌐 فتح أهم النتائج</button>
-<button class="tool-btn" onclick="liClear()" style="background:#64748b">مسح</button>
-</div>
-<div id="liIntelSummary" class="calc-result-box" style="margin-top:10px;display:none"></div>
-<div id="liEvidenceBoard" style="display:none;margin-top:12px"></div>
-<div id="liResults" class="calc-result-box" style="margin-top:12px">
-<div style="font-weight:900;margin-bottom:8px;color:#0369a1">مركز عمليات البحث</div>
-<div id="liSearchList" style="display:grid;gap:7px"><div style="color:#64748b">أدخل بيانات العميل ثم اضغط «فحص العميل بالكامل».</div></div>
-</div>
-<div style="margin-top:12px;padding:10px;border-radius:9px;background:rgba(2,132,199,.08);font-size:.82rem;line-height:1.7">
-<strong>تنبيه:</strong> الأداة لا تتجاوز تسجيل الدخول ولا تصل للبيانات الخاصة. هي تبني عمليات بحث للمعلومات العامة فقط. أي عمر أو جنسية معروضة كـ«مرجع محتمل» تحتاج مراجعة المصدر قبل اعتمادها.
-</div>
-</div>
-
 <div style="margin-top: 30px;">
 <div class="tool-box">
 <h3>📝 سجل ملاحظات المكالمة الحالية</h3>
@@ -2025,19 +1993,6 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <button class="v2-btn green" onclick="v3CopyEmail()">Copy Email</button>
 </div>
 <textarea id="v3EmailResult" rows="15" placeholder="Generated email will appear here..."></textarea>
-</div>
-
-<!-- V3: صلاحيات ومراقبة الكود 8394 -->
-<div class="page-card v3-admin" id="v3AdminPanel" style="display:none;margin-top:18px">
-<div class="v3-admin-head"><div><h2 class="page-title" style="color:#ff7777!important">🛡️ مركز الإدارة — 8394</h2><div class="v2-small">مراقبة الجلسات وإدارة صلاحية الأكواد</div></div><span class="v3-live-dot"><i></i> LIVE</span></div>
-<div class="v2-kpi-row">
-<div class="v2-kpi"><div class="v2-stat-title">المستخدمون النشطون</div><div class="v2-stat-value" id="v3ActiveCount">0</div></div>
-<div class="v2-kpi"><div class="v2-stat-title">الجلسات الظاهرة</div><div class="v2-stat-value" id="v3SessionCount">0</div></div>
-<div class="v2-kpi"><div class="v2-stat-title">صلاحية 8394</div><div class="v2-stat-value" style="color:#86efac">ADMIN</div></div>
-</div>
-<div style="margin-top:15px"><div class="v3-admin-head"><strong>👥 الجلسات الحالية</strong><button class="v2-btn gray" onclick="v3RefreshSessions()">تحديث</button></div><div id="v3SessionsList"></div></div>
-<div style="margin-top:18px"><strong>🔐 إضافة / تعديل صلاحية كود</strong><div class="v3-expiry-grid"><div class="v2-field"><label>Employee Code</label><input id="v3CodeInput" placeholder="مثال: 1234"></div><div class="v2-field"><label>Expiry Date</label><input id="v3ExpiryInput" type="date"></div><div class="v2-field"><label>الحالة</label><select id="v3CodeStatus"><option value="active">Active</option><option value="blocked">Blocked</option></select></div><button class="v2-btn" onclick="v3SaveCodePolicy()">حفظ الصلاحية</button></div><div id="v3CodePolicies" class="v3-code-list"></div></div>
-<div class="v3-admin-note">مهم: لأن الموقع الحالي GitHub Pages بدون Backend، المراقبة هنا تعمل بين نوافذ/تبويبات نفس المتصفح فقط. لا يمكن للـ HTML وحده رؤية أجهزة الموظفين الأخرى أو إخراجها عبر الإنترنت. لعمل ذلك فعليًا نحتاج خادم/قاعدة بيانات.</div>
 </div>
 
 <!-- 5. قسم Follow Up -->
@@ -2773,38 +2728,6 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 <script>
 /* ===== Hadaf Al-Khaleej V3 enhancements ===== */
 (function(){
-  const ADMIN_CODE='8394';
-  const SESSION_KEY='hkh_v3_sessions';
-  const POLICY_KEY='hkh_v3_code_policies';
-  const sid=(crypto&&crypto.randomUUID)?crypto.randomUUID():'s_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-  const channel=('BroadcastChannel' in window)?new BroadcastChannel('hkh_v3_presence'):null;
-  const escHtml=(v)=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  const today=()=>new Date().toISOString().slice(0,10);
-  function getPolicies(){try{return JSON.parse(localStorage.getItem(POLICY_KEY)||'{}')}catch{return {}}}
-  function savePolicies(x){localStorage.setItem(POLICY_KEY,JSON.stringify(x))}
-  function policyFor(code){return getPolicies()[String(code)]||null}
-  function isAllowed(code){if(code===ADMIN_CODE)return true;const p=policyFor(code);if(!p)return true; if(p.status==='blocked')return false; if(p.expiry && p.expiry<today())return false; return true}
-  function readSessions(){let a=[];try{a=JSON.parse(localStorage.getItem(SESSION_KEY)||'[]')}catch{};const cutoff=Date.now()-15000;return Array.isArray(a)?a.filter(x=>x&&x.lastSeen>cutoff):[]}
-  function writeSessions(a){localStorage.setItem(SESSION_KEY,JSON.stringify(a))}
-  function upsertSession(){if(!window.currentUserCode)return;let a=readSessions().filter(x=>x.sid!==sid);a.push({sid,code:String(window.currentUserCode),openedAt:window.__hkhV3OpenedAt||Date.now(),lastSeen:Date.now()});writeSessions(a);if(channel)channel.postMessage({type:'refresh'})}
-  function removeSession(){let a=readSessions().filter(x=>x.sid!==sid);writeSessions(a);if(channel)channel.postMessage({type:'refresh'})}
-  function kickSession(targetSid){localStorage.setItem('hkh_v3_kick_'+targetSid,String(Date.now())); if(channel)channel.postMessage({type:'kick',sid:targetSid});v3RefreshSessions();}
-  function handleKick(targetSid){if(targetSid!==sid)return; removeSession(); localStorage.removeItem('lastActiveUserCode'); alert('تم إنهاء جلستك بواسطة المسؤول 8394.'); location.reload();}
-  window.v3RefreshSessions=function(){
-    const box=document.getElementById('v3SessionsList'); if(!box)return; const sessions=readSessions();
-    document.getElementById('v3ActiveCount').textContent=new Set(sessions.map(x=>x.code)).size;
-    document.getElementById('v3SessionCount').textContent=sessions.length;
-    if(!sessions.length){box.innerHTML='<div class="v2-empty">لا توجد جلسات نشطة حاليًا</div>';return;}
-    box.innerHTML=sessions.map(x=>`<div class="v3-session"><div><strong>👤 كود ${escHtml(x.code)}</strong><div class="v2-small">جلسة ${escHtml(x.sid.slice(0,8))}</div></div><div><span class="v3-live-dot"><i></i> Online</span></div><div class="v2-small">آخر نشاط: ${new Date(x.lastSeen).toLocaleTimeString('ar-EG')}</div><button class="danger" onclick="v3Kick('${escHtml(x.sid)}')" ${x.sid===sid?'disabled':''}>خروج</button></div>`).join('');
-  };
-  window.v3Kick=kickSession;
-  window.v3SaveCodePolicy=function(){
-    const code=document.getElementById('v3CodeInput').value.trim(); const expiry=document.getElementById('v3ExpiryInput').value; const status=document.getElementById('v3CodeStatus').value;
-    if(!code||code===ADMIN_CODE){alert('أدخل كودًا صالحًا مختلفًا عن 8394.');return;} const p=getPolicies(); p[code]={expiry,status,updatedAt:new Date().toISOString()}; savePolicies(p); v3RenderPolicies(); alert('تم حفظ صلاحية الكود.');
-  };
-  window.v3RenderPolicies=function(){const box=document.getElementById('v3CodePolicies');if(!box)return;const p=getPolicies();const keys=Object.keys(p);box.innerHTML=keys.length?keys.map(k=>{const x=p[k];const expired=x.expiry&&x.expiry<today();return `<div class="v3-code-row"><span><strong>${escHtml(k)}</strong> — ${x.status==='blocked'?'Blocked':'Active'}</span><span class="v2-small">${x.expiry?'ينتهي '+escHtml(x.expiry):(expired?'Expired':'بدون تاريخ انتهاء')} <button class="v2-btn red" style="padding:4px 8px;margin-right:6px" onclick="v3DeletePolicy('${escHtml(k)}')">حذف</button></span></div>`}).join(''):'<div class="v2-empty">لم تتم إضافة سياسات أكواد بعد</div>';};
-  window.v3DeletePolicy=function(code){const p=getPolicies();delete p[code];savePolicies(p);v3RenderPolicies();};
-
   function v3EmailName(){return document.getElementById('v3EmailName')?.value.trim()||'Customer'}
   function v3ProductName(){const v=document.getElementById('v3EmailProduct')?.value||'personal';return v==='credit'?'Credit Card':v==='car'?'Auto Loan':'Personal Loan'}
   function v3UpdateEmailSubject(){const p=v3ProductName();const el=document.getElementById('v3EmailSubject');if(el)el.value=`Payment Follow-up - ${p}`;}
@@ -2818,20 +2741,6 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   };
   window.v3CopyEmail=function(){const e=document.getElementById('v3EmailResult');if(!e?.value)return; navigator.clipboard?.writeText(e.value).then(()=>showToast('تم نسخ الإيميل')) .catch(()=>{e.select();document.execCommand('copy');showToast('تم نسخ الإيميل')});};
   document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('v3EmailProduct'))v3UpdateEmailSubject();});
-
-  // Enforce optional admin-managed expiry/block policies without changing the old login UI.
-  const oldCheck=window.checkUserAuth;
-  window.checkUserAuth=function(){const code=document.getElementById('passInput')?.value.trim()||''; if(!code||code.length<2){oldCheck();return;} if(!isAllowed(code)){const e=document.getElementById('errorMsg');e.textContent='هذا الكود غير صالح أو انتهت صلاحيته.';e.style.display='block';return;} oldCheck(); setTimeout(()=>{upsertSession();if(code===ADMIN_CODE){document.getElementById('v3AdminPanel').style.display='block';v3RenderPolicies();v3RefreshSessions();}},50);};
-  const oldLogin=window.loginUser;
-  window.loginUser=function(code){if(!isAllowed(String(code))){alert('هذا الكود غير صالح أو انتهت صلاحيته.');return;} oldLogin(code);window.__hkhV3OpenedAt=Date.now();upsertSession();if(String(code)===ADMIN_CODE){const p=document.getElementById('v3AdminPanel');if(p)p.style.display='block';v3RenderPolicies();v3RefreshSessions();}else{const p=document.getElementById('v3AdminPanel');if(p)p.style.display='none';}};
-  const oldLogout=window.logoutUser;
-  window.logoutUser=function(){removeSession();oldLogout();};
-  window.addEventListener('beforeunload',removeSession);
-  window.addEventListener('storage',e=>{if(e.key&&e.key.startsWith('hkh_v3_kick_')&&e.key.endsWith(sid))handleKick(sid);if(e.key===SESSION_KEY||e.key===POLICY_KEY)v3RefreshSessions();});
-  if(channel)channel.onmessage=e=>{if(e.data?.type==='kick')handleKick(e.data.sid);if(e.data?.type==='refresh')v3RefreshSessions();};
-  setInterval(()=>{if(window.currentUserCode){upsertSession();if(String(window.currentUserCode)===ADMIN_CODE)v3RefreshSessions();}},5000);
-  setInterval(()=>{const k='hkh_v3_kick_'+sid;if(localStorage.getItem(k))handleKick(sid)},2000);
-  window.addEventListener('load',()=>{setTimeout(()=>{if(window.currentUserCode){upsertSession();if(String(window.currentUserCode)===ADMIN_CODE){document.getElementById('v3AdminPanel').style.display='block';v3RenderPolicies();v3RefreshSessions();}}},150);});
 
   // Red alert / Matrix intro — lightweight cinematic version
   function initAlert(){
@@ -2913,56 +2822,7 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 </script>
 
 
-<script>
-function liVal(id){return (document.getElementById(id)?.value||'').trim();}
-function liEsc(s){return encodeURIComponent(s);}
-function liData(){return {ar:liVal('liArabic'),en:liVal('liEnglish'),co:liVal('liCompany'),loc:liVal('liLocation'),nat:liVal('liNationality'),age:liVal('liAge'),job:liVal('liJob'),phone:liVal('liPhone'),email:liVal('liEmail')}}
-function liNames(d){return [...new Set([d.ar,d.en].filter(Boolean))]}
-function liNormalizePhone(p){const x=p.replace(/[^0-9+]/g,''); if(/^05/.test(x)) return ['"'+x+'"','"+966'+x.slice(1)+'"']; if(/^9665/.test(x)) return ['"'+x+'"','"+'+x+'"']; return x?['"'+x+'"']:[]}
-function liAgeQueries(age){if(!age)return []; const n=parseInt(age,10); if(!Number.isFinite(n)) return ['"'+age+'"']; const year=new Date().getFullYear(); const birth=year-n; return ['"'+n+'"','"'+birth+'"','"'+(birth-1)+'"','"'+(birth+1)+'"']}
-function liMakeQueries(d){
- const names=liNames(d); const q=[]; const ages=liAgeQueries(d.age); const phones=liNormalizePhone(d.phone);
- names.forEach(n=>{
-   if(d.co) q.push(`site:linkedin.com/in "${n}" "${d.co}"`);
-   if(d.co&&d.loc) q.push(`site:linkedin.com/in "${n}" "${d.co}" "${d.loc}"`);
-   if(d.job) q.push(`site:linkedin.com/in "${n}" "${d.job}"`);
-   if(d.nat) q.push(`site:linkedin.com/in "${n}" "${d.nat}"`);
-   if(d.loc) q.push(`site:linkedin.com/in "${n}" "${d.loc}"`);
-   q.push(`site:linkedin.com/in "${n}"`);
-   if(d.co) q.push(`"${n}" "${d.co}" ${d.loc?'"'+d.loc+'"':''}`.trim());
-   if(d.nat&&d.co) q.push(`"${n}" "${d.nat}" "${d.co}"`);
-   if(d.job&&d.co) q.push(`"${n}" "${d.job}" "${d.co}"`);
-   ages.forEach(a=>q.push(`"${n}" ${a} ${d.co?'"'+d.co+'"':''}`.replace(/\s+/g,' ').trim()));
-   if(d.email) q.push(`"${d.email}"`);
- });
- phones.forEach(ph=>q.push(`${ph} ${d.co?'"'+d.co+'"':''} ${d.ar?'"'+d.ar+'"':''}`.replace(/\s+/g,' ').trim()));
- if(d.email) q.push(`"${d.email}" ${d.co?'"'+d.co+'"':''}`.replace(/\s+/g,' ').trim());
- return [...new Set(q)].slice(0,30);
-}
-function liScore(d){
- let score=0, reasons=[]; const fields=[['ar',30,'الاسم العربي'],['en',30,'الاسم الإنجليزي'],['co',25,'الشركة'],['loc',15,'الدولة/المدينة'],['job',10,'المسمى'],['nat',10,'الجنسية'],['age',10,'العمر/الميلاد'],['phone',5,'الجوال'],['email',5,'الإيميل']];
- fields.forEach(([k,w,label])=>{if(d[k]){score+=w;reasons.push('✓ '+label)}}); return {score:Math.min(score,100),reasons};
-}
-function liProviderUrl(provider,q){return provider==='Google'?'https://www.google.com/search?q='+liEsc(q):provider==='Bing'?'https://www.bing.com/search?q='+liEsc(q):'https://search.brave.com/search?q='+liEsc(q)}
-function liBuildSearches(){
- const d=liData(); if(!d.ar&&!d.en){alert('اكتب الاسم بالعربي أو الإنجليزي أولاً');return []}
- const qs=liMakeQueries(d); window._liQueries=qs;
- const box=document.getElementById('liSearchList');
- box.innerHTML=qs.map((x,i)=>{const priority=i<8?'🟢 أولوية':'⚪ إضافي'; return `<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;border:1px solid #dbeafe;border-radius:8px;padding:8px;background:#fff"><span style="min-width:72px;font-weight:800;font-size:.78rem">${priority}</span><span style="flex:1;min-width:260px;font-size:.82rem">${i+1}. ${x}</span><a class="go-btn" href="${liProviderUrl('Google',x)}" target="_blank" rel="noopener">Google</a><a class="go-btn" href="${liProviderUrl('Bing',x)}" target="_blank" rel="noopener">Bing</a></div>`}).join(''); return qs;
-}
-function liRunInvestigation(){
- const d=liData(); if(!d.ar&&!d.en){alert('اكتب الاسم بالعربي أو الإنجليزي أولاً');return}
- const qs=liBuildSearches(); const sc=liScore(d);
- const summary=document.getElementById('liIntelSummary'); summary.style.display='block';
- summary.innerHTML=`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><div style="font-size:1.05rem;font-weight:950;color:#0f172a">تقرير أولي للعميل</div><div style="color:#64748b;font-size:.82rem">تم تجهيز ${qs.length} عملية بحث عامة</div></div><div style="font-size:1.5rem;font-weight:950;color:${sc.score>=75?'#16a34a':sc.score>=45?'#d97706':'#dc2626'}">${sc.score}%<div style="font-size:.68rem;text-align:center;color:#64748b">اكتمال بيانات الإدخال</div></div></div><div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">${sc.reasons.map(r=>`<span style="background:#f1f5f9;padding:4px 8px;border-radius:999px;font-size:.75rem">${r}</span>`).join('')}</div>`;
- const board=document.getElementById('liEvidenceBoard'); board.style.display='block';
- board.innerHTML=`<div style="font-weight:900;color:#0369a1;margin-bottom:8px">🧩 لوحة المطابقة — استخدمها لمراجعة النتائج العامة</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">${[
- ['الاسم',d.ar||d.en||'—','مرتفع'],['الشركة',d.co||'—',d.co?'مرتفع':'غير متوفر'],['الموقع',d.loc||'—',d.loc?'متوسط':'غير متوفر'],['الجنسية',d.nat||'—',d.nat?'مرجع بحث':'غير متوفر'],['السن',d.age||'—',d.age?'مرجع بحث':'غير متوفر'],['الوظيفة',d.job||'—',d.job?'مرجع بحث':'غير متوفر'],['الجوال',d.phone||'—',d.phone?'مرجع بحث':'غير متوفر'],['الإيميل',d.email||'—',d.email?'مرجع بحث':'غير متوفر']
-].map(x=>`<div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;background:#fff"><div style="font-size:.72rem;color:#64748b">${x[0]}</div><div style="font-weight:900;margin:3px 0;word-break:break-word">${x[1]}</div><div style="font-size:.7rem;color:#475569">${x[2]}</div></div>`).join('')}</div>`;
-}
-function liOpenPriority(){if(!window._liQueries?.length)liBuildSearches();(window._liQueries||[]).slice(0,8).forEach((x,i)=>setTimeout(()=>window.open(liProviderUrl('Google',x),'_blank'),i*250));}
-function liClear(){['liArabic','liEnglish','liCompany','liLocation','liNationality','liAge','liJob','liPhone','liEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});window._liQueries=[];document.getElementById('liSearchList').innerHTML='<div style="color:#64748b">تم المسح.</div>';document.getElementById('liIntelSummary').style.display='none';document.getElementById('liEvidenceBoard').style.display='none';}
-</script>
+
 
 <script id="odoo-app-navigation-js">
 function toggleAppLauncher(force){
