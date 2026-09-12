@@ -1306,7 +1306,6 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
                     <img alt="علم مصر" class="flag-icon" src="https://flagcdn.com/w40/eg.png"/>
 </div>
 <div class="header-actions"><div class="v3-umbrella-badge"><div class="v3-umbrella-mark"><span></span><span></span><span></span><span></span></div><span class="v3-umbrella-name">UMBRELLA // HK</span></div><div class="v2-top-actions">
-<button class="v2-icon-btn" onclick="toggleNotifications()">🔔 التنبيهات <span class="v2-notify-count" id="notifyCount" style="display:none">0</span></button>
 <button class="v2-icon-btn" id="themeToggleBtn" onclick="toggleDarkMode()">🌙 الوضع الليلي</button>
 <button class="v2-icon-btn" onclick="exportBackup()">💾 نسخة احتياطية</button>
 <label class="v2-icon-btn" style="cursor:pointer">📥 استعادة<input accept="application/json" id="backupFile" onchange="importBackup(event)" style="display:none" type="file"/></label>
@@ -1317,20 +1316,12 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 </div>
 </div>
 </header>
-<div class="v2-search-wrap">
-<span class="v2-search-icon">🔎</span>
-<input autocomplete="off" class="v2-global-search" id="globalSearch" oninput="runGlobalSearch(this.value)" placeholder="بحث سريع: اسم العميل، رقم الحساب، الهاتف، ملاحظة..." type="search"/>
-<div class="v2-search-results" id="globalSearchResults"></div>
-</div>
 <div class="controls-bar app-dock" aria-label="التنقل الرئيسي">
   <button class="app-launcher-btn" type="button" onclick="toggleAppLauncher()" title="كل التطبيقات" aria-label="كل التطبيقات">
     <span class="app-grid-icon"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
   </button>
   <span class="dock-divider"></span>
-  <button class="tab-btn app-nav-btn active" data-app="dashboard" onclick="switchTab('dashboard', event)" title="لوحة التحكم"><span class="app-icon">🏠</span><span class="app-label">الرئيسية</span></button>
-  <button class="tab-btn app-nav-btn" data-app="crm" onclick="switchTab('crm', event)" title="CRM العملاء"><span class="app-icon">👥</span><span class="app-label">CRM</span></button>
-  <button class="tab-btn app-nav-btn" data-app="reports" onclick="switchTab('reports', event)" title="التقارير"><span class="app-icon">📊</span><span class="app-label">التقارير</span></button>
-  <button class="tab-btn app-nav-btn" data-app="personal" onclick="switchTab('personal', event)" title="القرض الشخصي"><span class="app-icon">💳</span><span class="app-label">الشخصي</span></button>
+  <button class="tab-btn app-nav-btn active" data-app="personal" onclick="switchTab('personal', event)" title="القرض الشخصي"><span class="app-icon">💳</span><span class="app-label">الشخصي</span></button>
   <button class="tab-btn app-nav-btn" data-app="credit" onclick="switchTab('credit', event)" title="Credit Card"><span class="app-icon">💳</span><span class="app-label">Card</span></button>
   <button class="tab-btn app-nav-btn" data-app="auto" onclick="switchTab('auto', event)" title="تمويل السيارة"><span class="app-icon">🚗</span><span class="app-label">السيارة</span></button>
   <button class="tab-btn app-nav-btn" data-app="tools" onclick="switchTab('tools', event)" title="أدوات التحصيل"><span class="app-icon">⚡</span><span class="app-label">الأدوات</span></button>
@@ -1346,9 +1337,6 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
       <button type="button" class="app-close-btn" onclick="toggleAppLauncher(false)" aria-label="إغلاق">×</button>
     </div>
     <div class="app-launcher-grid">
-      <button onclick="openApp('dashboard')"><b>🏠</b><strong>الرئيسية</strong><small>ملخص العمل</small></button>
-      <button onclick="openApp('crm')"><b>👥</b><strong>CRM العملاء</strong><small>العملاء والملفات</small></button>
-      <button onclick="openApp('reports')"><b>📊</b><strong>التقارير</strong><small>الأداء والتحصيل</small></button>
       <button onclick="openApp('personal')"><b>💳</b><strong>القرض الشخصي</strong><small>SNB</small></button>
       <button onclick="openApp('credit')"><b>💳</b><strong>Credit Card</strong><small>بطاقات الائتمان</small></button>
       <button onclick="openApp('auto')"><b>🚗</b><strong>تمويل السيارة</strong><small>Auto Finance</small></button>
@@ -1386,79 +1374,7 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
                 🌿 "اللَّهُمَّ اكْفِنِي بِحَلاَلِكَ عَنْ حَرَامِكَ وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ" | استعن بالله ولا تعجز.
             </div>
 <!-- 1. القرض الشخصي -->
-<div class="script-group active" id="dashboard">
-<div class="page-card">
-<div class="page-header"><h2 class="page-title">📊 لوحة التحكم الرئيسية</h2><span class="badge-ar">نظرة شاملة</span></div>
-<div class="v2-grid">
-<div class="v2-card"><div class="v2-stat-title">🎯 التارجت</div><div class="v2-stat-value" id="dashTarget">0</div><div class="v2-stat-sub">ريال</div></div>
-<div class="v2-card"><div class="v2-stat-title">💰 المحصل</div><div class="v2-stat-value" id="dashCollected">0</div><div class="v2-stat-sub" id="dashPercent">0% من الهدف</div></div>
-<div class="v2-card"><div class="v2-stat-title">👥 العملاء</div><div class="v2-stat-value" id="dashClients">0</div><div class="v2-stat-sub">ملف محفوظ على هذا الكود</div></div>
-<div class="v2-card"><div class="v2-stat-title">🔔 متابعات اليوم</div><div class="v2-stat-value" id="dashToday">0</div><div class="v2-stat-sub" id="dashOverdue">0 متأخرة</div></div>
-</div>
-<div class="v2-card" style="margin-bottom:18px">
-<div class="v2-section-title"><h3>نسبة تحقيق التارجت</h3><strong id="dashProgressText">0%</strong></div>
-<div class="v2-progress"><div id="dashProgressFill"></div></div>
-</div>
-<div class="v2-two-col">
-<div class="v2-card">
-<div class="v2-section-title"><h3>📅 المتابعات الأقرب</h3><button class="v2-btn" onclick="openCrmNew()">+ عميل جديد</button></div>
-<ul class="v2-list" id="dashFollowups"></ul>
-</div>
-<div class="v2-card">
-<div class="v2-section-title"><h3>💵 آخر عمليات التحصيل</h3><button class="v2-btn green" onclick="switchTabById('tools')">فتح أدوات التحصيل</button></div>
-<ul class="v2-list" id="dashCollections"></ul>
-</div>
-</div>
-<div class="v2-two-col" style="margin-top:18px">
-<div class="v2-card"><div class="v2-section-title"><h3>🧭 توزيع حالات العملاء</h3></div><div id="dashStatusBreakdown"></div></div>
-<div class="v2-card"><div class="v2-section-title"><h3>⚡ اختصارات</h3></div><div class="v2-actions">
-<button class="v2-btn" onclick="switchTabById('followup')">Follow Up</button><button class="v2-btn green" onclick="switchTabById('externallinks')">روابط الاستعلام</button><button class="v2-btn purple" onclick="switchTabById('reports')">التقارير</button><button class="v2-btn orange" onclick="toggleNotifications()">التنبيهات</button>
-</div></div>
-</div>
-</div>
-</div><div class="script-group" id="crm">
-<div class="page-card">
-<div class="page-header"><h2 class="page-title">👥 إدارة العملاء CRM</h2><span class="badge-ar">ملفات ومتابعات</span></div>
-<div class="v2-card" style="margin-bottom:18px">
-<div class="v2-section-title"><h3 id="crmFormTitle">إضافة / تحديث عميل</h3><span class="v2-small">البيانات تُحفظ محليًا تحت كود الموظف الحالي</span></div>
-<input id="crmEditId" type="hidden"/>
-<div class="v2-form-grid">
-<div class="v2-field"><label>اسم العميل *</label><input id="crmName" placeholder="اسم العميل"/></div>
-<div class="v2-field"><label>رقم الحساب / المرجع</label><input id="crmAccount" placeholder="Account / Reference"/></div>
-<div class="v2-field"><label>رقم الهاتف</label><input id="crmPhone" placeholder="9665..."/></div>
-<div class="v2-field"><label>المنتج</label><select id="crmProduct"><option>Personal Loan</option><option>Credit Card</option><option>Auto Finance</option><option>Other</option></select></div>
-<div class="v2-field"><label>المديونية</label><input id="crmDebt" min="0" placeholder="0.00" step="0.01" type="number"/></div>
-<div class="v2-field"><label>الحالة</label><select id="crmStatus"><option value="new">New</option><option value="contacted">Contacted</option><option value="promise">Promise to Pay</option><option value="follow">Follow Up</option><option value="paid">Paid</option><option value="closed">Closed</option></select></div>
-<div class="v2-field"><label>آخر تواصل</label><input id="crmLastContact" type="datetime-local"/></div>
-<div class="v2-field"><label>موعد المتابعة القادمة</label><input id="crmNextFollowup" type="datetime-local"/></div>
-<div class="v2-field"><label>قيمة الوعد بالسداد</label><input id="crmPromiseAmount" min="0" placeholder="0.00" step="0.01" type="number"/></div>
-<div class="v2-field span-2"><label>ملاحظات العميل</label><textarea id="crmNotes" placeholder="نتيجة الاتصال / ظروف العميل / المطلوب في المتابعة" rows="2"></textarea></div>
-<div class="v2-field"><label>تاريخ الوعد بالسداد</label><input id="crmPromiseDate" type="date"/></div>
-</div>
-<div class="v2-actions" style="margin-top:12px"><button class="v2-btn green" onclick="saveCrmClient()">💾 حفظ العميل</button><button class="v2-btn gray" onclick="clearCrmForm()">مسح الحقول</button></div>
-</div>
-<div class="v2-card">
-<div class="v2-section-title"><h3>قائمة العملاء</h3><div class="v2-actions"><input id="crmFilter" oninput="renderCrm()" placeholder="بحث داخل CRM..." style="padding:8px;border:1px solid #cbd5e1;border-radius:8px"/><select id="crmStatusFilter" onchange="renderCrm()" style="padding:8px;border:1px solid #cbd5e1;border-radius:8px"><option value="">كل الحالات</option><option value="new">New</option><option value="contacted">Contacted</option><option value="promise">Promise to Pay</option><option value="follow">Follow Up</option><option value="paid">Paid</option><option value="closed">Closed</option></select></div></div>
-<div class="v2-table-wrap"><table><thead><tr><th>العميل</th><th>الحساب</th><th>المنتج</th><th>المديونية</th><th>الحالة</th><th>المتابعة</th><th>الوعد</th><th>إجراءات</th></tr></thead><tbody id="crmTableBody"></tbody></table></div>
-</div>
-</div>
-</div><div class="script-group" id="reports">
-<div class="page-card">
-<div class="page-header"><h2 class="page-title">📈 التقارير والتصدير</h2><span class="badge-ar">يومي / شامل</span></div>
-<div class="v2-kpi-row" style="margin-bottom:18px">
-<div class="v2-kpi"><div class="v2-small">إجمالي التحصيل</div><strong id="reportCollected">0 ريال</strong></div>
-<div class="v2-kpi"><div class="v2-small">عدد عمليات التحصيل</div><strong id="reportCollectionsCount">0</strong></div>
-<div class="v2-kpi"><div class="v2-small">إجمالي مديونية CRM</div><strong id="reportDebt">0 ريال</strong></div>
-<div class="v2-kpi"><div class="v2-small">وعود السداد</div><strong id="reportPromises">0</strong></div>
-</div>
-<div class="v2-actions" style="margin-bottom:18px"><button class="v2-btn green" onclick="exportClientsCSV()">⬇️ تصدير العملاء CSV</button><button class="v2-btn" onclick="exportCollectionsCSV()">⬇️ تصدير التحصيل CSV</button><button class="v2-btn purple" onclick="window.print()">🖨️ طباعة / PDF</button><button class="v2-btn gray" onclick="exportBackup()">💾 JSON Backup</button></div>
-<div class="v2-two-col">
-<div class="v2-card"><div class="v2-section-title"><h3>حالات العملاء</h3></div><div id="reportStatusSummary"></div></div>
-<div class="v2-card"><div class="v2-section-title"><h3>آخر 7 أيام تحصيل</h3></div><div class="v2-chart-bars" id="weeklyBars"></div></div>
-</div>
-<div class="v2-card" style="margin-top:18px"><div class="v2-section-title"><h3>المتابعات المتأخرة والقادمة</h3></div><div id="reportFollowupList"></div></div>
-</div>
-</div><div class="script-group" id="personal">
+<div class="script-group active" id="personal">
 <div class="page-card">
 <div class="page-header">
 <h2 class="page-title">ورقة 1: التقديم والافتتاحية الرسمية (بنك SNB)</h2>
@@ -2592,10 +2508,7 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
     setInterval(changePageBackground, 300000);
     changePageBackground();
 </script>
-<div class="v2-notify-panel" id="notificationPanel">
-<div class="v2-notify-head"><h3>🔔 مركز التنبيهات</h3><button class="v2-icon-btn danger" onclick="toggleNotifications(false)">إغلاق</button></div>
-<div id="notificationList"></div>
-</div>
+
 <div class="v2-modal" id="clientModal" onclick="if(event.target===this) closeClientModal()">
 <div class="v2-modal-card"><div class="v2-modal-head"><h3 id="clientModalTitle">ملف العميل 360°</h3><button class="v2-icon-btn danger" onclick="closeClientModal()">✕</button></div><div id="clientModalBody"></div></div>
 </div>
@@ -2623,7 +2536,7 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   function downloadText(filename,text,type='text/plain;charset=utf-8'){ const blob=new Blob([text],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),500); }
   function csvCell(v){ const s=String(v??''); return '"'+s.replace(/"/g,'""')+'"'; }
 
-  window.switchTabById = function(id){ const btn=[...document.querySelectorAll('.tab-btn')].find(b=>b.getAttribute('onclick')?.includes("'"+id+"'")); switchTab(id,{currentTarget:btn||document.createElement('button')}); if(id==='dashboard') renderDashboard(); if(id==='crm') renderCrm(); if(id==='reports') renderReports(); window.scrollTo({top:0,behavior:'smooth'}); };
+  window.switchTabById = function(id){ const btn=[...document.querySelectorAll('.tab-btn')].find(b=>b.getAttribute('onclick')?.includes("'"+id+"'")); switchTab(id,{currentTarget:btn||document.createElement('button')}); window.scrollTo({top:0,behavior:'smooth'}); };
 
   const originalLogin = window.loginUser;
   window.loginUser = function(code){ originalLogin(code); ensureV2Data(); renderAllV2(); applyTheme(); };
@@ -2661,84 +2574,10 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   window.openCrmNew=function(){ switchTabById('crm'); clearCrmForm(); setTimeout(()=>document.getElementById('crmName')?.focus(),250); };
   window.clearCrmForm=function(){ ['crmEditId','crmName','crmAccount','crmPhone','crmDebt','crmLastContact','crmNextFollowup','crmPromiseAmount','crmNotes','crmPromiseDate'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';}); const p=document.getElementById('crmProduct'); if(p)p.value='Personal Loan'; const s=document.getElementById('crmStatus'); if(s)s.value='new'; const t=document.getElementById('crmFormTitle'); if(t)t.textContent='إضافة / تحديث عميل'; };
 
-  window.saveCrmClient=function(){
-    ensureV2Data(); const name=document.getElementById('crmName').value.trim(); if(!name){alert('اسم العميل مطلوب');return;}
-    const editId=document.getElementById('crmEditId').value; const old=(userData.clients||[]).find(x=>x.id===editId);
-    const c={id:editId||uid(),name,account:document.getElementById('crmAccount').value.trim(),phone:document.getElementById('crmPhone').value.trim(),product:document.getElementById('crmProduct').value,debt:Number(document.getElementById('crmDebt').value)||0,status:document.getElementById('crmStatus').value,lastContact:document.getElementById('crmLastContact').value,nextFollowup:document.getElementById('crmNextFollowup').value,promiseAmount:Number(document.getElementById('crmPromiseAmount').value)||0,promiseDate:document.getElementById('crmPromiseDate').value,notes:document.getElementById('crmNotes').value.trim(),createdAt:old?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};
-    if(editId) userData.clients=userData.clients.map(x=>x.id===editId?c:x); else userData.clients.unshift(c);
-    saveUserData(); clearCrmForm(); renderAllV2(); showToast(editId?'تم تحديث العميل':'تم حفظ العميل');
-  };
-
-  window.editCrmClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; const map={crmEditId:c.id,crmName:c.name,crmAccount:c.account,crmPhone:c.phone,crmProduct:c.product||'Personal Loan',crmDebt:c.debt||'',crmStatus:c.status||'new',crmLastContact:c.lastContact||'',crmNextFollowup:c.nextFollowup||'',crmPromiseAmount:c.promiseAmount||'',crmPromiseDate:c.promiseDate||'',crmNotes:c.notes||''}; Object.entries(map).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v;}); document.getElementById('crmFormTitle').textContent='تعديل العميل: '+c.name; switchTabById('crm'); window.scrollTo({top:document.getElementById('crm').offsetTop-100,behavior:'smooth'}); };
-  window.deleteCrmClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; if(confirm('حذف ملف العميل '+c.name+'؟')){userData.clients=userData.clients.filter(x=>x.id!==id);saveUserData();renderAllV2();} };
-  window.markClientPaid=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return;c.status='paid';c.nextFollowup='';c.updatedAt=new Date().toISOString();saveUserData();renderAllV2();showToast('تم تحديث الحالة إلى Paid'); };
-
-  window.renderCrm=function(){
-    const tbody=document.getElementById('crmTableBody'); if(!tbody||!window.userData)return; ensureV2Data(); const q=(document.getElementById('crmFilter')?.value||'').trim().toLowerCase(); const sf=document.getElementById('crmStatusFilter')?.value||'';
-    let arr=[...userData.clients]; if(q)arr=arr.filter(c=>[c.name,c.account,c.phone,c.product,c.notes].some(v=>String(v||'').toLowerCase().includes(q))); if(sf)arr=arr.filter(c=>c.status===sf);
-    tbody.innerHTML=''; if(!arr.length){tbody.innerHTML='<tr><td colspan="8" class="v2-empty">لا توجد نتائج</td></tr>';return;}
-    arr.sort((a,b)=>(b.updatedAt||'').localeCompare(a.updatedAt||'')).forEach(c=>{ const overdue=c.nextFollowup&&new Date(c.nextFollowup)<new Date()&&c.status!=='paid'&&c.status!=='closed'; const tr=document.createElement('tr'); tr.innerHTML=`<td><strong>${esc(c.name)}</strong><div class="v2-small">${esc(c.phone||'')}</div></td><td>${esc(c.account||'—')}</td><td>${esc(c.product||'—')}</td><td>${money(c.debt)}</td><td><span class="v2-badge ${STATUS_CLASS[c.status]||''}">${esc(STATUS_LABELS[c.status]||c.status||'New')}</span></td><td>${overdue?'<span class="v2-badge overdue">متأخرة</span> ':''}${fmtDate(c.nextFollowup)}</td><td>${c.promiseAmount?money(c.promiseAmount):'—'}<div class="v2-small">${esc(c.promiseDate||'')}</div></td><td><div class="v2-actions"><button class="v2-btn" onclick="viewClient('${c.id}')">360°</button><button class="v2-btn gray" onclick="editCrmClient('${c.id}')">تعديل</button>${c.status!=='paid'?`<button class="v2-btn green" onclick="markClientPaid('${c.id}')">Paid</button>`:''}<button class="v2-btn red" onclick="deleteCrmClient('${c.id}')">حذف</button></div></td>`; tbody.appendChild(tr); });
-  };
-
-  window.viewClient=function(id){ const c=(userData.clients||[]).find(x=>x.id===id); if(!c)return; document.getElementById('clientModalTitle').textContent='ملف العميل 360° — '+c.name; document.getElementById('clientModalBody').innerHTML=`
-    <div class="v2-grid" style="grid-template-columns:repeat(3,1fr)"><div class="v2-card"><div class="v2-small">المديونية</div><strong>${money(c.debt)}</strong></div><div class="v2-card"><div class="v2-small">الحالة</div><strong>${esc(STATUS_LABELS[c.status]||c.status)}</strong></div><div class="v2-card"><div class="v2-small">الوعد</div><strong>${money(c.promiseAmount)}</strong></div></div>
-    <table><tbody><tr><th>رقم الحساب</th><td>${esc(c.account||'—')}</td></tr><tr><th>الهاتف</th><td>${esc(c.phone||'—')}</td></tr><tr><th>المنتج</th><td>${esc(c.product||'—')}</td></tr><tr><th>آخر تواصل</th><td>${fmtDate(c.lastContact)}</td></tr><tr><th>المتابعة القادمة</th><td>${fmtDate(c.nextFollowup)}</td></tr><tr><th>تاريخ الوعد</th><td>${esc(c.promiseDate||'—')}</td></tr><tr><th>الملاحظات</th><td style="white-space:pre-wrap">${esc(c.notes||'—')}</td></tr></tbody></table>
-    <div class="v2-actions"><button class="v2-btn" onclick="editCrmClient('${c.id}');closeClientModal()">تعديل الملف</button>${c.phone?`<button class="v2-btn green" onclick="window.open('https://wa.me/${esc(c.phone.replace(/[^0-9]/g,''))}','_blank')">WhatsApp</button>`:''}</div>`; document.getElementById('clientModal').classList.add('open'); };
-  window.closeClientModal=function(){document.getElementById('clientModal')?.classList.remove('open');};
-
-  function getFollowups(){ const now=new Date(), today=localDateKey(now); return (userData.clients||[]).filter(c=>c.nextFollowup&&c.status!=='paid'&&c.status!=='closed').map(c=>({...c,_d:new Date(c.nextFollowup),_today:localDateKey(c.nextFollowup)===today,_over:new Date(c.nextFollowup)<now})).sort((a,b)=>a._d-b._d); }
-
-  window.renderDashboard=function(){
-    if(!window.userData)return; ensureV2Data(); const target=Number(userData.target)||0,col=Number(userData.collected)||0, pct=target?Math.min(100,col/target*100):0; const f=getFollowups();
-    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;}; set('dashTarget',(target||0).toLocaleString('ar-EG'));set('dashCollected',(col||0).toLocaleString('ar-EG'));set('dashPercent',pct.toFixed(1)+'% من الهدف');set('dashClients',userData.clients.length);set('dashToday',f.filter(x=>x._today).length);set('dashOverdue',f.filter(x=>x._over&&!x._today).length+' متأخرة');set('dashProgressText',pct.toFixed(1)+'%');const fill=document.getElementById('dashProgressFill');if(fill)fill.style.width=pct+'%';
-    const fl=document.getElementById('dashFollowups'); if(fl){fl.innerHTML=''; const rows=f.slice(0,6); if(!rows.length)fl.innerHTML='<li class="v2-empty">لا توجد متابعات مجدولة</li>'; rows.forEach(c=>{const li=document.createElement('li');li.innerHTML=`<span><strong>${esc(c.name)}</strong><div class="v2-small">${fmtDate(c.nextFollowup)}</div></span><span class="v2-badge ${c._over?'overdue':'follow'}">${c._over?'متأخرة':'قادمة'}</span>`;li.onclick=()=>viewClient(c.id);li.style.cursor='pointer';fl.appendChild(li);});}
-    const cl=document.getElementById('dashCollections'); if(cl){cl.innerHTML='';const rows=(userData.history||[]).slice(0,6);if(!rows.length)cl.innerHTML='<li class="v2-empty">لا توجد عمليات تحصيل</li>';rows.forEach(x=>{const li=document.createElement('li');li.innerHTML=`<span>تحصيل</span><strong>${money(x.amount)}</strong><span class="v2-small">${x.date?fmtDate(x.date):esc(x.time||'')}</span>`;cl.appendChild(li);});}
-    renderStatusSummary('dashStatusBreakdown');
-  };
-
-  function renderStatusSummary(id){ const box=document.getElementById(id);if(!box)return;const counts={};(userData.clients||[]).forEach(c=>counts[c.status]=(counts[c.status]||0)+1); const total=Math.max(1,userData.clients.length);box.innerHTML='';Object.keys(STATUS_LABELS).forEach(k=>{const n=counts[k]||0;box.innerHTML+=`<div style="margin:9px 0"><div style="display:flex;justify-content:space-between"><span>${STATUS_LABELS[k]}</span><strong>${n}</strong></div><div class="v2-progress" style="height:7px"><div style="width:${n/total*100}%"></div></div></div>`;}); }
-
-  window.toggleNotifications=function(force){const p=document.getElementById('notificationPanel');if(!p)return;const open=typeof force==='boolean'?force:!p.classList.contains('open');p.classList.toggle('open',open);if(open)renderNotifications();};
-  function renderNotifications(){ const list=document.getElementById('notificationList'); if(!list||!window.userData)return;const f=getFollowups();list.innerHTML='';const actionable=f.filter(x=>x._over||x._today);if(!actionable.length)list.innerHTML='<div class="v2-empty">لا توجد تنبيهات عاجلة الآن ✅</div>';actionable.forEach(c=>{const d=document.createElement('div');d.className='v2-notice '+(c._over?'overdue':'today');d.innerHTML=`<strong>${esc(c.name)}</strong><div class="v2-small">${c._over?'متابعة متأخرة':'متابعة اليوم'} — ${fmtDate(c.nextFollowup)}</div>`;d.onclick=()=>viewClient(c.id);d.style.cursor='pointer';list.appendChild(d);}); const nc=document.getElementById('notifyCount');if(nc){const n=actionable.length;nc.textContent=n;nc.style.display=n?'inline-flex':'none';} }
-
-  window.renderReports=function(){
-    if(!window.userData)return;ensureV2Data();const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};set('reportCollected',money(userData.collected));set('reportCollectionsCount',(userData.history||[]).length);set('reportDebt',money((userData.clients||[]).reduce((s,c)=>s+(Number(c.debt)||0),0)));set('reportPromises',(userData.clients||[]).filter(c=>c.status==='promise'||Number(c.promiseAmount)>0).length);renderStatusSummary('reportStatusSummary');
-    const bars=document.getElementById('weeklyBars');if(bars){bars.innerHTML='';const days=[];for(let i=6;i>=0;i--){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-i);days.push(d);}const vals=days.map(d=>(userData.history||[]).filter(h=>h.date&&localDateKey(h.date)===localDateKey(d)).reduce((s,h)=>s+(Number(h.amount)||0),0));const max=Math.max(...vals,1);days.forEach((d,i)=>{bars.innerHTML+=`<div class="v2-bar-item"><div title="${money(vals[i])}" class="v2-bar" style="height:${Math.max(4,vals[i]/max*140)}px"></div><div class="v2-bar-label">${d.toLocaleDateString('ar-EG',{weekday:'short'})}</div></div>`;});}
-    const list=document.getElementById('reportFollowupList');if(list){const f=getFollowups();list.innerHTML=f.length?'<div class="v2-table-wrap"><table><thead><tr><th>العميل</th><th>الحالة</th><th>الموعد</th><th>التصنيف</th></tr></thead><tbody>'+f.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(STATUS_LABELS[c.status]||c.status)}</td><td>${fmtDate(c.nextFollowup)}</td><td>${c._over?'<span class="v2-badge overdue">متأخرة</span>':c._today?'<span class="v2-badge contacted">اليوم</span>':'<span class="v2-badge follow">قادمة</span>'}</td></tr>`).join('')+'</tbody></table></div>':'<div class="v2-empty">لا توجد متابعات</div>';}
-  };
-
-  window.runGlobalSearch=function(q){ const box=document.getElementById('globalSearchResults');if(!box||!window.userData)return;q=q.trim().toLowerCase();if(q.length<2){box.style.display='none';box.innerHTML='';return;}const rows=(userData.clients||[]).filter(c=>[c.name,c.account,c.phone,c.notes,c.product].some(v=>String(v||'').toLowerCase().includes(q))).slice(0,10);box.innerHTML=rows.length?rows.map(c=>`<div class="v2-search-item" onclick="viewClient('${c.id}');document.getElementById('globalSearchResults').style.display='none'"><strong>${esc(c.name)}</strong><div class="v2-small">${esc(c.account||'')} ${esc(c.phone||'')} — ${esc(STATUS_LABELS[c.status]||c.status)}</div></div>`).join(''):'<div class="v2-empty">لا توجد نتائج</div>';box.style.display='block'; };
-  document.addEventListener('click',e=>{if(!e.target.closest('.v2-search-wrap')){const b=document.getElementById('globalSearchResults');if(b)b.style.display='none';}});
-
-  window.exportClientsCSV=function(){ensureV2Data();const head=['Name','Account','Phone','Product','Debt','Status','Last Contact','Next Follow Up','Promise Amount','Promise Date','Notes'];const rows=userData.clients.map(c=>[c.name,c.account,c.phone,c.product,c.debt,STATUS_LABELS[c.status]||c.status,c.lastContact,c.nextFollowup,c.promiseAmount,c.promiseDate,c.notes]);const csv='\uFEFF'+[head,...rows].map(r=>r.map(csvCell).join(',')).join('\n');downloadText('Hadaf_Clients_'+currentUserCode+'.csv',csv,'text/csv;charset=utf-8');};
-  window.exportCollectionsCSV=function(){ensureV2Data();const head=['Amount','Time','Date'];const rows=(userData.history||[]).map(h=>[h.amount,h.time,h.date||'']);const csv='\uFEFF'+[head,...rows].map(r=>r.map(csvCell).join(',')).join('\n');downloadText('Hadaf_Collections_'+currentUserCode+'.csv',csv,'text/csv;charset=utf-8');};
   window.exportBackup=function(){ if(!window.currentUserCode){alert('سجل الدخول أولاً');return;} ensureV2Data();const pack={app:'Hadaf Al-Khaleej',version:2,userCode:currentUserCode,exportedAt:new Date().toISOString(),data:userData};downloadText('Hadaf_Backup_'+currentUserCode+'_'+localDateKey(new Date())+'.json',JSON.stringify(pack,null,2),'application/json');};
   window.importBackup=function(ev){const file=ev.target.files?.[0];if(!file)return;const r=new FileReader();r.onload=()=>{try{const pack=JSON.parse(r.result);if(!pack.data||typeof pack.data!=='object')throw new Error('bad');if(!confirm('سيتم استبدال بيانات الكود الحالي بالنسخة الاحتياطية. متابعة؟'))return;userData=pack.data;ensureV2Data();saveUserData();renderAllV2();updateTargetUI();renderSystemNotes();document.getElementById('quickNotes').value=userData.quickNotes||'';showToast('تمت استعادة النسخة الاحتياطية');}catch(e){alert('ملف النسخة الاحتياطية غير صالح');}finally{ev.target.value='';}};r.readAsText(file,'utf-8');};
 
-  function renderAllV2(){ if(!window.userData)return; ensureV2Data(); renderLegacyCallbacks(); renderDashboard(); renderCrm(); renderReports(); renderNotifications(); }
-  window.renderAllV2=renderAllV2;
-
-  // Keep V2 panels synchronized when the original target changes.
-  const oldSaveTarget=window.saveUserTarget; window.saveUserTarget=function(){oldSaveTarget();renderAllV2();};
-  const oldResetTarget=window.resetTargetData; window.resetTargetData=function(){oldResetTarget();renderAllV2();};
-
-  window.addEventListener('load',()=>{applyTheme(); if(window.currentUserCode){ensureV2Data();renderAllV2();}});
-})();
-</script>
-<script>
-/* ===== Hadaf Al-Khaleej V3 enhancements ===== */
-(function(){
-  function v3EmailName(){return document.getElementById('v3EmailName')?.value.trim()||'Customer'}
-  function v3ProductName(){const v=document.getElementById('v3EmailProduct')?.value||'personal';return v==='credit'?'Credit Card':v==='car'?'Auto Loan':'Personal Loan'}
-  function v3UpdateEmailSubject(){const p=v3ProductName();const el=document.getElementById('v3EmailSubject');if(el)el.value=`Payment Follow-up - ${p}`;}
-  window.v3GenerateEmail=function(type){
-    const name=v3EmailName(), iq=document.getElementById('v3EmailIqama')?.value.trim()||'', a1=document.getElementById('v3EmailAcc1')?.value.trim()||'', a2=document.getElementById('v3EmailAcc2')?.value.trim()||'', b1=Number(document.getElementById('v3EmailBal1')?.value)||0,b2=Number(document.getElementById('v3EmailBal2')?.value)||0,total=b1+b2,product=v3ProductName(),subject=document.getElementById('v3EmailSubject')?.value||`Payment Follow-up - ${product}`;
-    let text='';
-    if(type==='reminder') text=`Subject: ${subject}\n\nDear Mr. ${name},\n\nThis is a friendly reminder regarding your outstanding ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
-    else if(type==='two') text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above for your ${product}. Please contact us to discuss the available payment options and clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
-    else text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
-    document.getElementById('v3EmailResult').value=text;
-  };
+  function renderAllV2(){ if(!window.userData)return; ensureV2Data(); renderLegacyCallbacks(); }
   window.v3CopyEmail=function(){const e=document.getElementById('v3EmailResult');if(!e?.value)return; navigator.clipboard?.writeText(e.value).then(()=>showToast('تم نسخ الإيميل')) .catch(()=>{e.select();document.execCommand('copy');showToast('تم نسخ الإيميل')});};
   document.addEventListener('DOMContentLoaded',()=>{if(document.getElementById('v3EmailProduct'))v3UpdateEmailSubject();});
 
@@ -2831,7 +2670,7 @@ function toggleAppLauncher(force){
  el.classList.toggle('open',open); el.setAttribute('aria-hidden',String(!open));
  if(open){document.body.classList.add('app-launcher-lock');}else{document.body.classList.remove('app-launcher-lock');}
 }
-function openApp(id){toggleAppLauncher(false); const btn=document.querySelector('.app-nav-btn[data-app="'+id+'"]'); switchTab(id,{currentTarget:btn||document.createElement('button')}); if(id==='dashboard'&&typeof renderDashboard==='function')renderDashboard(); if(id==='crm'&&typeof renderCrm==='function')renderCrm(); if(id==='reports'&&typeof renderReports==='function')renderReports(); window.scrollTo({top:0,behavior:'smooth'});}
+function openApp(id){toggleAppLauncher(false); const btn=document.querySelector('.app-nav-btn[data-app="'+id+'"]'); switchTab(id,{currentTarget:btn||document.createElement('button')}); window.scrollTo({top:0,behavior:'smooth'});}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleAppLauncher(false);});
 </script>
 </body>
@@ -2851,7 +2690,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleAppLau
 /* Final cleanup: full-screen beach only in light mode; remove notification center. */
 .v2-notify-panel,
 .v2-notify-panel.open,
-#notificationPanel{display:none !important;visibility:hidden !important;pointer-events:none !important;}
+
 
 /* Hide buttons that only open the removed notification center. */
 button[onclick*="toggleNotifications"]{display:none !important;}
