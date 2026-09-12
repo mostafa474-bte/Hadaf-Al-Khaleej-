@@ -1320,16 +1320,41 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <input autocomplete="off" class="v2-global-search" id="globalSearch" oninput="runGlobalSearch(this.value)" placeholder="بحث سريع: اسم العميل، رقم الحساب، الهاتف، ملاحظة..." type="search"/>
 <div class="v2-search-results" id="globalSearchResults"></div>
 </div>
-<div class="controls-bar">
-<button class="tab-btn active" onclick="switchTab('dashboard', event)">📊 لوحة التحكم</button>
-<button class="tab-btn" onclick="switchTab('crm', event)">👥 CRM العملاء</button>
-<button class="tab-btn" onclick="switchTab('reports', event)">📈 التقارير</button>
-<button class="tab-btn" onclick="switchTab('personal', event)">💳 قسم بنك SNB (القرض الشخصي)</button>
-<button class="tab-btn" onclick="switchTab('credit', event)">🏛️ قسم بطاقة الكريديت كارد</button>
-<button class="tab-btn" onclick="switchTab('auto', event)">🚗 قسم تمويل وقرض السيارة</button>
-<button class="tab-btn tools-btn" onclick="switchTab('tools', event)">⚡ أدوات التحصيل الذكية والتارجت</button>
-<button class="tab-btn" onclick="switchTab('followup', event)">📋 Follow Up (متابعة وتحديثات)</button>
-<button class="tab-btn special-btn" onclick="switchTab('externallinks', event)">🔗 روابط مواقع الاستعلام</button>
+<div class="controls-bar app-dock" aria-label="التنقل الرئيسي">
+  <button class="app-launcher-btn" type="button" onclick="toggleAppLauncher()" title="كل التطبيقات" aria-label="كل التطبيقات">
+    <span class="app-grid-icon"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  </button>
+  <span class="dock-divider"></span>
+  <button class="tab-btn app-nav-btn active" data-app="dashboard" onclick="switchTab('dashboard', event)" title="لوحة التحكم"><span class="app-icon">🏠</span><span class="app-label">الرئيسية</span></button>
+  <button class="tab-btn app-nav-btn" data-app="crm" onclick="switchTab('crm', event)" title="CRM العملاء"><span class="app-icon">👥</span><span class="app-label">CRM</span></button>
+  <button class="tab-btn app-nav-btn" data-app="reports" onclick="switchTab('reports', event)" title="التقارير"><span class="app-icon">📊</span><span class="app-label">التقارير</span></button>
+  <button class="tab-btn app-nav-btn" data-app="personal" onclick="switchTab('personal', event)" title="القرض الشخصي"><span class="app-icon">💳</span><span class="app-label">الشخصي</span></button>
+  <button class="tab-btn app-nav-btn" data-app="credit" onclick="switchTab('credit', event)" title="Credit Card"><span class="app-icon">💳</span><span class="app-label">Card</span></button>
+  <button class="tab-btn app-nav-btn" data-app="auto" onclick="switchTab('auto', event)" title="تمويل السيارة"><span class="app-icon">🚗</span><span class="app-label">السيارة</span></button>
+  <button class="tab-btn app-nav-btn" data-app="tools" onclick="switchTab('tools', event)" title="أدوات التحصيل"><span class="app-icon">⚡</span><span class="app-label">الأدوات</span></button>
+  <button class="tab-btn app-nav-btn" data-app="followup" onclick="switchTab('followup', event)" title="Follow Up"><span class="app-icon">📋</span><span class="app-label">المتابعة</span></button>
+  <button class="tab-btn app-nav-btn" data-app="externallinks" onclick="switchTab('externallinks', event)" title="روابط الاستعلام"><span class="app-icon">🔗</span><span class="app-label">الروابط</span></button>
+</div>
+
+<div id="appLauncher" class="app-launcher" aria-hidden="true">
+  <div class="app-launcher-backdrop" onclick="toggleAppLauncher(false)"></div>
+  <section class="app-launcher-panel" role="dialog" aria-modal="true" aria-label="كل التطبيقات">
+    <div class="app-launcher-head">
+      <div><strong>تطبيقات منظومة هدف الخليج</strong><small>اختصرنا الواجهة — كل وظيفة في مكانها</small></div>
+      <button type="button" class="app-close-btn" onclick="toggleAppLauncher(false)" aria-label="إغلاق">×</button>
+    </div>
+    <div class="app-launcher-grid">
+      <button onclick="openApp('dashboard')"><b>🏠</b><strong>الرئيسية</strong><small>ملخص العمل</small></button>
+      <button onclick="openApp('crm')"><b>👥</b><strong>CRM العملاء</strong><small>العملاء والملفات</small></button>
+      <button onclick="openApp('reports')"><b>📊</b><strong>التقارير</strong><small>الأداء والتحصيل</small></button>
+      <button onclick="openApp('personal')"><b>💳</b><strong>القرض الشخصي</strong><small>SNB</small></button>
+      <button onclick="openApp('credit')"><b>💳</b><strong>Credit Card</strong><small>بطاقات الائتمان</small></button>
+      <button onclick="openApp('auto')"><b>🚗</b><strong>تمويل السيارة</strong><small>Auto Finance</small></button>
+      <button onclick="openApp('tools')"><b>⚡</b><strong>أدوات التحصيل</strong><small>الحاسبات والأدوات</small></button>
+      <button onclick="openApp('followup')"><b>📋</b><strong>Follow Up</strong><small>المتابعة والتحديثات</small></button>
+      <button onclick="openApp('externallinks')"><b>🔗</b><strong>روابط الاستعلام</strong><small>المواقع الخارجية</small></button>
+    </div>
+  </section>
 </div>
 <div class="container">
 <div class="prayer-bar">
@@ -1896,6 +1921,38 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <button class="tool-btn green" onclick="openDirectWhatsApp()">الدخول لمحادثة العميل</button>
 </div>
 </div>
+<!-- V6: Client Intelligence Hub -->
+<div class="page-card" id="linkedinFinderTool" style="margin-top:24px">
+<div class="page-header"><h2 class="page-title">🕵️ Client Intelligence Hub</h2><span class="badge-en">PUBLIC WEB INTELLIGENCE</span></div>
+<p class="v2-small" style="margin-bottom:14px">محرك بحث ذكي يجمع بيانات العميل ويبني عمليات بحث متعددة ويقيّم قوة التطابق من المعلومات العامة.</p>
+<div class="v3-email-grid">
+<div class="v2-field"><label>الاسم بالعربي</label><input id="liArabic" placeholder="نزار عثمان أحمد بابكر"></div>
+<div class="v2-field"><label>الاسم بالإنجليزي</label><input id="liEnglish" placeholder="Nizar Othman Ahmed Babiker"></div>
+<div class="v2-field"><label>الشركة / جهة العمل</label><input id="liCompany" placeholder="مؤسسة مكة المكرمة للطباعة والإعلام"></div>
+<div class="v2-field"><label>الدولة / المدينة</label><input id="liLocation" placeholder="Saudi Arabia / Makkah"></div>
+<div class="v2-field"><label>الجنسية</label><input id="liNationality" placeholder="Sudanese / سوداني"></div>
+<div class="v2-field"><label>السن أو سنة الميلاد</label><input id="liAge" placeholder="49 أو 1976"></div>
+<div class="v2-field"><label>المسمى الوظيفي</label><input id="liJob" placeholder="Administrative Assistant"></div>
+<div class="v2-field"><label>رقم الجوال</label><input id="liPhone" placeholder="0551962633"></div>
+<div class="v2-field"><label>البريد الإلكتروني</label><input id="liEmail" type="email" placeholder="name@example.com"></div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
+<button class="tool-btn green" onclick="liRunInvestigation()">🚀 فحص العميل بالكامل</button>
+<button class="tool-btn" onclick="liBuildSearches()">🔎 تجهيز عمليات البحث</button>
+<button class="tool-btn" onclick="liOpenPriority()">🌐 فتح أهم النتائج</button>
+<button class="tool-btn" onclick="liClear()" style="background:#64748b">مسح</button>
+</div>
+<div id="liIntelSummary" class="calc-result-box" style="margin-top:10px;display:none"></div>
+<div id="liEvidenceBoard" style="display:none;margin-top:12px"></div>
+<div id="liResults" class="calc-result-box" style="margin-top:12px">
+<div style="font-weight:900;margin-bottom:8px;color:#0369a1">مركز عمليات البحث</div>
+<div id="liSearchList" style="display:grid;gap:7px"><div style="color:#64748b">أدخل بيانات العميل ثم اضغط «فحص العميل بالكامل».</div></div>
+</div>
+<div style="margin-top:12px;padding:10px;border-radius:9px;background:rgba(2,132,199,.08);font-size:.82rem;line-height:1.7">
+<strong>تنبيه:</strong> الأداة لا تتجاوز تسجيل الدخول ولا تصل للبيانات الخاصة. هي تبني عمليات بحث للمعلومات العامة فقط. أي عمر أو جنسية معروضة كـ«مرجع محتمل» تحتاج مراجعة المصدر قبل اعتمادها.
+</div>
+</div>
+
 <div style="margin-top: 30px;">
 <div class="tool-box">
 <h3>📝 سجل ملاحظات المكالمة الحالية</h3>
@@ -2384,7 +2441,10 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
             buttons.forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabId).classList.add('active');
-            if(evt) evt.currentTarget.classList.add('active');
+            const appBtn = document.querySelector('.app-nav-btn[data-app="' + tabId + '"]');
+            if(appBtn) appBtn.classList.add('active');
+            if(evt && evt.currentTarget && evt.currentTarget.classList.contains('app-nav-btn')) evt.currentTarget.classList.add('active');
+            if(typeof toggleAppLauncher === 'function') toggleAppLauncher(false);
         }
 
         function copyText(text) {
@@ -2822,6 +2882,68 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 })();
 </script>
 
+
+<script>
+function liVal(id){return (document.getElementById(id)?.value||'').trim();}
+function liEsc(s){return encodeURIComponent(s);}
+function liData(){return {ar:liVal('liArabic'),en:liVal('liEnglish'),co:liVal('liCompany'),loc:liVal('liLocation'),nat:liVal('liNationality'),age:liVal('liAge'),job:liVal('liJob'),phone:liVal('liPhone'),email:liVal('liEmail')}}
+function liNames(d){return [...new Set([d.ar,d.en].filter(Boolean))]}
+function liNormalizePhone(p){const x=p.replace(/[^0-9+]/g,''); if(/^05/.test(x)) return ['"'+x+'"','"+966'+x.slice(1)+'"']; if(/^9665/.test(x)) return ['"'+x+'"','"+'+x+'"']; return x?['"'+x+'"']:[]}
+function liAgeQueries(age){if(!age)return []; const n=parseInt(age,10); if(!Number.isFinite(n)) return ['"'+age+'"']; const year=new Date().getFullYear(); const birth=year-n; return ['"'+n+'"','"'+birth+'"','"'+(birth-1)+'"','"'+(birth+1)+'"']}
+function liMakeQueries(d){
+ const names=liNames(d); const q=[]; const ages=liAgeQueries(d.age); const phones=liNormalizePhone(d.phone);
+ names.forEach(n=>{
+   if(d.co) q.push(`site:linkedin.com/in "${n}" "${d.co}"`);
+   if(d.co&&d.loc) q.push(`site:linkedin.com/in "${n}" "${d.co}" "${d.loc}"`);
+   if(d.job) q.push(`site:linkedin.com/in "${n}" "${d.job}"`);
+   if(d.nat) q.push(`site:linkedin.com/in "${n}" "${d.nat}"`);
+   if(d.loc) q.push(`site:linkedin.com/in "${n}" "${d.loc}"`);
+   q.push(`site:linkedin.com/in "${n}"`);
+   if(d.co) q.push(`"${n}" "${d.co}" ${d.loc?'"'+d.loc+'"':''}`.trim());
+   if(d.nat&&d.co) q.push(`"${n}" "${d.nat}" "${d.co}"`);
+   if(d.job&&d.co) q.push(`"${n}" "${d.job}" "${d.co}"`);
+   ages.forEach(a=>q.push(`"${n}" ${a} ${d.co?'"'+d.co+'"':''}`.replace(/\s+/g,' ').trim()));
+   if(d.email) q.push(`"${d.email}"`);
+ });
+ phones.forEach(ph=>q.push(`${ph} ${d.co?'"'+d.co+'"':''} ${d.ar?'"'+d.ar+'"':''}`.replace(/\s+/g,' ').trim()));
+ if(d.email) q.push(`"${d.email}" ${d.co?'"'+d.co+'"':''}`.replace(/\s+/g,' ').trim());
+ return [...new Set(q)].slice(0,30);
+}
+function liScore(d){
+ let score=0, reasons=[]; const fields=[['ar',30,'الاسم العربي'],['en',30,'الاسم الإنجليزي'],['co',25,'الشركة'],['loc',15,'الدولة/المدينة'],['job',10,'المسمى'],['nat',10,'الجنسية'],['age',10,'العمر/الميلاد'],['phone',5,'الجوال'],['email',5,'الإيميل']];
+ fields.forEach(([k,w,label])=>{if(d[k]){score+=w;reasons.push('✓ '+label)}}); return {score:Math.min(score,100),reasons};
+}
+function liProviderUrl(provider,q){return provider==='Google'?'https://www.google.com/search?q='+liEsc(q):provider==='Bing'?'https://www.bing.com/search?q='+liEsc(q):'https://search.brave.com/search?q='+liEsc(q)}
+function liBuildSearches(){
+ const d=liData(); if(!d.ar&&!d.en){alert('اكتب الاسم بالعربي أو الإنجليزي أولاً');return []}
+ const qs=liMakeQueries(d); window._liQueries=qs;
+ const box=document.getElementById('liSearchList');
+ box.innerHTML=qs.map((x,i)=>{const priority=i<8?'🟢 أولوية':'⚪ إضافي'; return `<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;border:1px solid #dbeafe;border-radius:8px;padding:8px;background:#fff"><span style="min-width:72px;font-weight:800;font-size:.78rem">${priority}</span><span style="flex:1;min-width:260px;font-size:.82rem">${i+1}. ${x}</span><a class="go-btn" href="${liProviderUrl('Google',x)}" target="_blank" rel="noopener">Google</a><a class="go-btn" href="${liProviderUrl('Bing',x)}" target="_blank" rel="noopener">Bing</a></div>`}).join(''); return qs;
+}
+function liRunInvestigation(){
+ const d=liData(); if(!d.ar&&!d.en){alert('اكتب الاسم بالعربي أو الإنجليزي أولاً');return}
+ const qs=liBuildSearches(); const sc=liScore(d);
+ const summary=document.getElementById('liIntelSummary'); summary.style.display='block';
+ summary.innerHTML=`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap"><div><div style="font-size:1.05rem;font-weight:950;color:#0f172a">تقرير أولي للعميل</div><div style="color:#64748b;font-size:.82rem">تم تجهيز ${qs.length} عملية بحث عامة</div></div><div style="font-size:1.5rem;font-weight:950;color:${sc.score>=75?'#16a34a':sc.score>=45?'#d97706':'#dc2626'}">${sc.score}%<div style="font-size:.68rem;text-align:center;color:#64748b">اكتمال بيانات الإدخال</div></div></div><div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">${sc.reasons.map(r=>`<span style="background:#f1f5f9;padding:4px 8px;border-radius:999px;font-size:.75rem">${r}</span>`).join('')}</div>`;
+ const board=document.getElementById('liEvidenceBoard'); board.style.display='block';
+ board.innerHTML=`<div style="font-weight:900;color:#0369a1;margin-bottom:8px">🧩 لوحة المطابقة — استخدمها لمراجعة النتائج العامة</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">${[
+ ['الاسم',d.ar||d.en||'—','مرتفع'],['الشركة',d.co||'—',d.co?'مرتفع':'غير متوفر'],['الموقع',d.loc||'—',d.loc?'متوسط':'غير متوفر'],['الجنسية',d.nat||'—',d.nat?'مرجع بحث':'غير متوفر'],['السن',d.age||'—',d.age?'مرجع بحث':'غير متوفر'],['الوظيفة',d.job||'—',d.job?'مرجع بحث':'غير متوفر'],['الجوال',d.phone||'—',d.phone?'مرجع بحث':'غير متوفر'],['الإيميل',d.email||'—',d.email?'مرجع بحث':'غير متوفر']
+].map(x=>`<div style="border:1px solid #e2e8f0;border-radius:10px;padding:10px;background:#fff"><div style="font-size:.72rem;color:#64748b">${x[0]}</div><div style="font-weight:900;margin:3px 0;word-break:break-word">${x[1]}</div><div style="font-size:.7rem;color:#475569">${x[2]}</div></div>`).join('')}</div>`;
+}
+function liOpenPriority(){if(!window._liQueries?.length)liBuildSearches();(window._liQueries||[]).slice(0,8).forEach((x,i)=>setTimeout(()=>window.open(liProviderUrl('Google',x),'_blank'),i*250));}
+function liClear(){['liArabic','liEnglish','liCompany','liLocation','liNationality','liAge','liJob','liPhone','liEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});window._liQueries=[];document.getElementById('liSearchList').innerHTML='<div style="color:#64748b">تم المسح.</div>';document.getElementById('liIntelSummary').style.display='none';document.getElementById('liEvidenceBoard').style.display='none';}
+</script>
+
+<script id="odoo-app-navigation-js">
+function toggleAppLauncher(force){
+ const el=document.getElementById('appLauncher'); if(!el)return;
+ const open=typeof force==='boolean'?force:!el.classList.contains('open');
+ el.classList.toggle('open',open); el.setAttribute('aria-hidden',String(!open));
+ if(open){document.body.classList.add('app-launcher-lock');}else{document.body.classList.remove('app-launcher-lock');}
+}
+function openApp(id){toggleAppLauncher(false); const btn=document.querySelector('.app-nav-btn[data-app="'+id+'"]'); switchTab(id,{currentTarget:btn||document.createElement('button')}); if(id==='dashboard'&&typeof renderDashboard==='function')renderDashboard(); if(id==='crm'&&typeof renderCrm==='function')renderCrm(); if(id==='reports'&&typeof renderReports==='function')renderReports(); window.scrollTo({top:0,behavior:'smooth'});}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleAppLauncher(false);});
+</script>
 </body>
 </html>
 <style id="remove-umbrella-virus-smoke-warnings">
@@ -2881,4 +3003,18 @@ body.dark-mode #themeScene{background:#010308 !important;}
 @keyframes beachWaveD{0%,100%{transform:translateX(7%) translateY(0) rotate(1deg) scaleX(1.05)}50%{transform:translateX(-7%) translateY(-10px) rotate(-1deg) scaleX(1.02)}}
 body.dark-mode .animated-ocean-waves{display:none!important;}
 @media(prefers-reduced-motion:reduce){.ocean-wave{animation:none!important;}}
+</style>
+
+<style id="odoo-app-navigation">
+/* Odoo-inspired compact application navigation */
+.app-dock{max-width:1180px!important;margin:14px auto 8px!important;padding:8px 14px!important;gap:7px!important;align-items:center!important;justify-content:center!important;flex-wrap:nowrap!important;border:1px solid rgba(14,165,233,.28);border-radius:18px;background:rgba(3,15,27,.76);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.06);position:relative;z-index:30}
+.app-dock .tab-btn.app-nav-btn{width:62px;height:62px;min-width:62px;padding:6px 4px!important;border:1px solid rgba(127,228,255,.16)!important;border-radius:14px!important;background:rgba(9,28,43,.82)!important;color:#bdefff!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:none!important;transition:transform .18s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}
+.app-dock .tab-btn.app-nav-btn:hover{transform:translateY(-2px);background:rgba(12,64,92,.95)!important;border-color:rgba(127,228,255,.52)!important;box-shadow:0 8px 20px rgba(0,170,255,.16)!important}
+.app-dock .tab-btn.app-nav-btn.active{background:linear-gradient(145deg,#0b79aa,#123a59)!important;color:#fff!important;border-color:#4fd8ff!important;box-shadow:0 0 0 2px rgba(79,216,255,.10),0 8px 22px rgba(0,150,220,.22)!important}
+.app-icon{font-size:1.45rem;line-height:1}.app-label{font-size:.65rem;font-weight:900;line-height:1;white-space:nowrap}.dock-divider{width:1px;height:42px;background:rgba(148,163,184,.25);margin:0 2px}.app-launcher-btn{width:62px;height:62px;min-width:62px;border:1px solid rgba(127,228,255,.32);border-radius:14px;background:linear-gradient(145deg,#142d40,#081722);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.18);transition:.2s}.app-launcher-btn:hover{transform:translateY(-2px);border-color:#58dcff;box-shadow:0 8px 24px rgba(0,170,255,.2)}
+.app-grid-icon{display:grid;grid-template-columns:repeat(3,6px);gap:4px}.app-grid-icon i{width:6px;height:6px;border-radius:2px;background:#8beaff;box-shadow:0 0 8px rgba(91,225,255,.45)}
+.app-launcher{position:fixed;inset:0;z-index:1000;display:none}.app-launcher.open{display:block}.app-launcher-backdrop{position:absolute;inset:0;background:rgba(2,8,15,.62);backdrop-filter:blur(7px)}.app-launcher-panel{position:relative;width:min(760px,calc(100% - 28px));margin:90px auto 0;background:linear-gradient(145deg,rgba(10,28,43,.98),rgba(5,15,25,.98));border:1px solid rgba(79,216,255,.35);border-radius:22px;padding:20px;box-shadow:0 30px 90px rgba(0,0,0,.5);color:#e6faff;animation:appPanelIn .18s ease-out}.app-launcher-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}.app-launcher-head strong{display:block;font-size:1.08rem}.app-launcher-head small{display:block;color:#8fb2c4;margin-top:4px}.app-close-btn{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:1.5rem;cursor:pointer}.app-launcher-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.app-launcher-grid button{min-height:125px;border:1px solid rgba(127,228,255,.14);border-radius:16px;background:rgba(12,34,49,.9);color:#fff;cursor:pointer;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:.18s}.app-launcher-grid button:hover{transform:translateY(-3px);border-color:#4fd8ff;background:rgba(14,66,93,.95);box-shadow:0 12px 25px rgba(0,170,255,.14)}.app-launcher-grid b{font-size:2rem}.app-launcher-grid strong{font-size:.9rem}.app-launcher-grid small{color:#91b5c6;font-size:.72rem}
+@keyframes appPanelIn{from{opacity:0;transform:translateY(-10px) scale(.98)}to{opacity:1;transform:none}}
+@media(max-width:900px){.app-dock{overflow-x:auto;justify-content:flex-start}.app-label{display:none}.app-dock .tab-btn.app-nav-btn,.app-launcher-btn{width:54px;height:54px;min-width:54px}.app-icon{font-size:1.3rem}.dock-divider{height:36px}.app-launcher-panel{margin-top:70px}}
+@media(max-width:560px){.app-launcher-grid{grid-template-columns:repeat(2,1fr)}.app-launcher-panel{padding:14px}.app-launcher-grid button{min-height:105px}}
 </style>
