@@ -2705,3 +2705,21 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
   display:none !important;
 }
 </style>
+<style id="final-beach-cleanup">
+/* Final cleanup: full-screen beach only in light mode; remove notification center. */
+.v2-notify-panel,
+.v2-notify-panel.open,
+#notificationPanel{display:none !important;visibility:hidden !important;pointer-events:none !important;}
+
+/* Hide buttons that only open the removed notification center. */
+button[onclick*="toggleNotifications"]{display:none !important;}
+
+/* One full-screen beach image — no split blue background. */
+#themeScene{position:fixed !important;inset:0 !important;width:100vw !important;height:100vh !important;background:#7ccbea url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=90') center center / cover no-repeat !important;}
+#themeScene:before{display:none !important;}
+#themeScene:after{background:linear-gradient(to bottom,rgba(255,255,255,.03),rgba(0,80,120,.10)) !important;}
+body:not(.dark-mode){background:transparent !important;}
+
+/* Keep dark mode independent. */
+body.dark-mode #themeScene{background:#010308 !important;}
+</style>
