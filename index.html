@@ -1264,6 +1264,7 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <input id="passInput" onkeypress="handleKeyPress(event)" placeholder="كود الموظف..." type="text" autocomplete="username"/>
 <input id="passPassword" onkeypress="handleKeyPress(event)" placeholder="كلمة المرور..." type="password" autocomplete="current-password" style="width:100%;padding:12px 15px;border:2px solid #cbd5e1;border-radius:10px;font-size:1rem;text-align:center;outline:none;margin-bottom:15px;font-weight:bold;letter-spacing:1px;"/>
 <button type="button" onclick="checkUserAuth()">دخول آمن</button>
+<div style="text-align:center;margin-top:10px"><button type="button" onclick="testHkhConnection()" style="background:transparent;border:1px solid #999;color:inherit;padding:6px 12px;border-radius:8px;font-size:12px">اختبار الاتصال</button></div>
 <div class="error-msg" id="errorMsg">يرجى إدخال رمز صحيح!</div>
 </div>
 </div>
@@ -2784,6 +2785,22 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 
   window.hkhSecureSaveNow=saveSecureData;
 
+  // Browser-side connection diagnostic: distinguishes network/CORS problems from Auth/Data API problems.
+  window.testHkhConnection = async function(){
+    clearAuthError();
+    const btn=[...document.querySelectorAll('#auth-overlay button')].find(x=>x.textContent.includes('اختبار الاتصال'));
+    if(btn){btn.disabled=true;btn.textContent='جارٍ الاختبار...';}
+    try{
+      const r=await fetch(SUPABASE_URL+'/auth/v1/settings',{method:'GET',headers:{apikey:SUPABASE_PUBLISHABLE_KEY}});
+      const body=await r.text();
+      if(!r.ok) throw new Error('HTTP '+r.status+(body?' | '+body.slice(0,180):''));
+      authError('الاتصال بـ Supabase يعمل ✅');
+    }catch(err){
+      console.error('Supabase connection test failed',err);
+      authError('اختبار الاتصال فشل: '+String(err?.message||err||'Unknown error'));
+    }finally{if(btn){btn.disabled=false;btn.textContent='اختبار الاتصال';}}
+  };
+
   // Replace the old local-only authentication.
   window.checkUserAuth = async function(){
     clearAuthError();
@@ -2816,10 +2833,11 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
     }catch(err){
       console.error('Secure login failed',err);
       const msg=String(err?.message||err||'');
+      const detail=[err?.name,err?.code,err?.status,err?.statusText,msg].filter(Boolean).join(' | ');
       if(/failed to fetch|network|fetch/i.test(msg)){
-        authError('تعذر الاتصال بـ Supabase. تأكد أن الموقع مفتوح من رابط HTTPS على GitHub Pages وأن جداول profiles و employee_data متاحة في Data API.');
+        authError('فشل الاتصال بالخادم. جرّب تحديث الصفحة مرة واحدة. إذا استمرت المشكلة فسيظهر هنا كود الخطأ الحقيقي: '+(detail||'Failed to fetch'));
       }else{
-        authError('بيانات الدخول غير صحيحة أو الحساب غير مُنشأ بعد.');
+        authError('تعذر تسجيل الدخول: '+(detail||'بيانات الدخول غير صحيحة أو الحساب غير مُنشأ بعد.'));
       }
     }finally{setBusy(false);}
   };
