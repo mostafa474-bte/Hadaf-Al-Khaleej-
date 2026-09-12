@@ -1203,6 +1203,11 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
   #themeScene .umbrella-outer-mark{right:1%;bottom:22%;}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style id="hkh-secure-auth-style">
+#auth-overlay .auth-box input[type="password"]{background:#fff;}
+#auth-overlay button:disabled{opacity:.65;cursor:wait;}
+</style>
 </head>
 <body>
 
@@ -1255,9 +1260,10 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <div id="auth-overlay">
 <div class="auth-box">
 <h2>🔑 دخول الموظف</h2>
-<p>أدخل كودك الخاص لبدء الجلسة.<br/><small style="color: #0284c7;">(يتم تسجيل وحفظ جميع بياناتك والتارجت الخاص بك برقمك تلقائياً لتدخل به دائماً)</small></p>
-<input id="passInput" onkeypress="handleKeyPress(event)" placeholder="أدخل كود الموظف..." type="text"/>
-<button onclick="checkUserAuth()">دخول النظام وحفظ الجلسة</button>
+<p>أدخل كود الموظف وكلمة المرور الخاصة بك.<br/><small style="color: #0284c7;">يتم التحقق من هويتك وحفظ بياناتك على الخادم بشكل آمن.</small></p>
+<input id="passInput" onkeypress="handleKeyPress(event)" placeholder="كود الموظف..." type="text" autocomplete="username"/>
+<input id="passPassword" onkeypress="handleKeyPress(event)" placeholder="كلمة المرور..." type="password" autocomplete="current-password" style="width:100%;padding:12px 15px;border:2px solid #cbd5e1;border-radius:10px;font-size:1rem;text-align:center;outline:none;margin-bottom:15px;font-weight:bold;letter-spacing:1px;"/>
+<button type="button" onclick="checkUserAuth()">دخول آمن</button>
 <div class="error-msg" id="errorMsg">يرجى إدخال رمز صحيح!</div>
 </div>
 </div>
@@ -2698,6 +2704,196 @@ document.getElementById('ksaClock').innerText = 'UAE (AE): ' + new Intl.DateTime
 })();
 </script>
 
+
+<!-- Hadaf Secure Supabase Layer -->
+<script>
+(function(){
+  'use strict';
+  const SUPABASE_URL = 'https://pjisesrtplpmhychvfgx.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_l0d8WjGWVab-d966DJHu3g_GJnWbWbQ';
+  const DATA_TABLE = 'employee_data';
+  const PROFILE_TABLE = 'profiles';
+  const syntheticEmail = code => `${String(code).trim().toLowerCase()}@hadaf.local`;
+
+  if (!window.supabase || typeof window.supabase.createClient !== 'function') {
+    console.error('Supabase JS library failed to load.');
+    return;
+  }
+
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+  });
+  window.hkhSupabase = sb;
+  window.hkhSecureMode = true;
+  window.hkhAuthReady = false;
+  window.hkhCurrentUser = null;
+
+  function authError(message){
+    const e=document.getElementById('errorMsg');
+    if(e){e.textContent=message;e.style.display='block';}
+  }
+  function clearAuthError(){const e=document.getElementById('errorMsg');if(e)e.style.display='none';}
+  function setBusy(b){
+    const btn=document.querySelector('#auth-overlay button');
+    if(btn){btn.disabled=b;btn.textContent=b?'جارٍ التحقق...':'دخول آمن';}
+  }
+  function defaultData(){return {target:0,collected:0,history:[],systemNotes:[],quickNotes:'',clients:[],callbacks:[],notifications:[]};}
+  function mergeData(remote){return Object.assign(defaultData(), remote && typeof remote==='object' ? remote : {});}
+  function codeFromUser(user){
+    const email=String(user?.email||'');
+    return email.includes('@') ? email.split('@')[0] : '';
+  }
+
+  async function ensureProfile(user, code){
+    const {data: existing,error: readErr}=await sb.from(PROFILE_TABLE).select('id,employee_code,role').eq('id',user.id).maybeSingle();
+    if(readErr) throw readErr;
+    if(existing){
+      if(String(existing.employee_code)!==String(code)) throw new Error('حساب الموظف غير متطابق مع الكود.');
+      return existing;
+    }
+    const row={id:user.id,employee_code:String(code),role:'employee'};
+    const {data,error}=await sb.from(PROFILE_TABLE).insert(row).select('id,employee_code,role').single();
+    if(error) throw error;
+    return data;
+  }
+
+  async function loadSecureData(){
+    if(!window.hkhCurrentUser) throw new Error('لا توجد جلسة دخول.');
+    const {data,error}=await sb.from(DATA_TABLE).select('data').eq('user_id',window.hkhCurrentUser.id).maybeSingle();
+    if(error) throw error;
+    userData=mergeData(data?.data||null);
+    updateTargetUI();
+    renderSystemNotes();
+    const q=document.getElementById('quickNotes'); if(q) q.value=userData.quickNotes||'';
+    if(typeof renderAllV2==='function') renderAllV2();
+  }
+
+  let saveTimer=null;
+  async function saveSecureData(){
+    if(!window.hkhCurrentUser) throw new Error('لا توجد جلسة دخول.');
+    const payload={user_id:window.hkhCurrentUser.id,data:mergeData(userData),updated_at:new Date().toISOString()};
+    const {error}=await sb.from(DATA_TABLE).upsert(payload,{onConflict:'user_id'});
+    if(error) throw error;
+  }
+  function saveSecureDataQuiet(){
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(async()=>{
+      try{await saveSecureData();}catch(err){console.error('Supabase save failed',err);showToast('تعذر حفظ البيانات على الخادم');}
+    },120);
+  }
+
+  window.hkhSecureSaveNow=saveSecureData;
+
+  // Replace the old local-only authentication.
+  window.checkUserAuth = async function(){
+    clearAuthError();
+    const code=document.getElementById('passInput')?.value.trim()||'';
+    const password=document.getElementById('passPassword')?.value||'';
+    if(code.length<2){authError('أدخل كود الموظف.');return;}
+    if(password.length<6){authError('كلمة المرور يجب أن تكون 6 أحرف/أرقام على الأقل.');return;}
+    setBusy(true);
+    try{
+      const {data,error}=await sb.auth.signInWithPassword({email:syntheticEmail(code),password});
+      if(error) throw error;
+      window.hkhCurrentUser=data.user;
+      const profile=await ensureProfile(data.user,code);
+      window.hkhUserProfile=profile;
+      currentUserCode=String(profile.employee_code);
+      window.currentUserCode=currentUserCode;
+      localStorage.removeItem('lastActiveUserCode');
+      await loadSecureData();
+      document.getElementById('auth-overlay').style.display='none';
+      document.getElementById('main-content').style.display='block';
+      const tag=document.getElementById('userDisplayTag'); if(tag) tag.innerText='👤 كود الموظف: '+currentUserCode;
+      if(profile.role==='admin'){
+        const p=document.getElementById('v3AdminPanel'); if(p)p.style.display='block';
+      } else {
+        const p=document.getElementById('v3AdminPanel'); if(p)p.style.display='none';
+      }
+      window.__hkhV3OpenedAt=Date.now();
+      if(typeof renderAllV2==='function') renderAllV2();
+      showToast('تم تسجيل الدخول بأمان');
+    }catch(err){
+      console.error('Secure login failed',err);
+      const msg=String(err?.message||err||'');
+      if(/failed to fetch|network|fetch/i.test(msg)){
+        authError('تعذر الاتصال بـ Supabase. تأكد أن الموقع مفتوح من رابط HTTPS على GitHub Pages وأن جداول profiles و employee_data متاحة في Data API.');
+      }else{
+        authError('بيانات الدخول غير صحيحة أو الحساب غير مُنشأ بعد.');
+      }
+    }finally{setBusy(false);}
+  };
+
+  window.loginUser = async function(code){
+    // Compatibility wrapper: secure mode never authenticates from a code alone.
+    const p=document.getElementById('passInput'); if(p && code) p.value=code;
+    authError('للدخول الآمن أدخل كلمة المرور أيضًا.');
+    document.getElementById('auth-overlay').style.display='flex';
+    document.getElementById('main-content').style.display='none';
+  };
+
+  window.logoutUser = async function(){
+    try{await sb.auth.signOut();}catch(err){console.error(err);}
+    window.hkhCurrentUser=null; window.hkhUserProfile=null; currentUserCode=''; window.currentUserCode='';
+    localStorage.removeItem('lastActiveUserCode');
+    location.reload();
+  };
+
+  window.handleKeyPress = function(e){if(e.key==='Enter') window.checkUserAuth();};
+
+  // Replace local persistence with RLS-protected server persistence.
+  window.saveUserData = function(){
+    if(!window.hkhCurrentUser){return;}
+    saveSecureDataQuiet();
+  };
+
+  // Keep existing UI functions but stop them from writing local user databases.
+  window.loadUserData = function(){
+    if(!window.hkhCurrentUser){userData=defaultData();return;}
+    loadSecureData().catch(err=>{console.error(err);authError('تعذر تحميل بيانات الموظف من الخادم.');});
+  };
+
+  async function bootSecureAuth(){
+    window.hkhAuthReady=true;
+    try{
+      const {data:{session}}=await sb.auth.getSession();
+      if(session?.user){
+        const code=codeFromUser(session.user);
+        if(!code) throw new Error('Invalid employee account.');
+        window.hkhCurrentUser=session.user;
+        try{
+          window.hkhUserProfile=await ensureProfile(session.user,code);
+          currentUserCode=String(window.hkhUserProfile.employee_code);window.currentUserCode=currentUserCode;
+          await loadSecureData();
+          document.getElementById('auth-overlay').style.display='none';
+          document.getElementById('main-content').style.display='block';
+          const tag=document.getElementById('userDisplayTag');if(tag)tag.innerText='👤 كود الموظف: '+currentUserCode;
+          const p=document.getElementById('v3AdminPanel');if(p)p.style.display=window.hkhUserProfile.role==='admin'?'block':'none';
+        }catch(err){console.error(err);await sb.auth.signOut();}
+      } else {
+        document.getElementById('auth-overlay').style.display='flex';
+        document.getElementById('main-content').style.display='none';
+      }
+    }catch(err){console.error('Auth boot failed',err);authError('تعذر الاتصال بنظام الدخول الآمن.');}
+  }
+
+  // Override the old window.onload so the old localStorage auto-login cannot bypass Auth.
+  window.onload=function(){
+    try{startClocks();startRotatingHadith();}catch(e){console.error(e);}
+    bootSecureAuth();
+  };
+
+  sb.auth.onAuthStateChange(async(event,session)=>{
+    if(event==='SIGNED_OUT'){
+      window.hkhCurrentUser=null;window.hkhUserProfile=null;currentUserCode='';window.currentUserCode='';
+      document.getElementById('auth-overlay').style.display='flex';document.getElementById('main-content').style.display='none';
+    }
+  });
+
+  // Make old V3 local admin/session controls non-authoritative.
+  window.isAllowed=function(){return true;};
+})();
+</script>
 </body>
 </html>
 <style id="remove-umbrella-virus-smoke-warnings">
