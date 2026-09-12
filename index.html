@@ -957,8 +957,163 @@ th{background:#0d2943!important;color:#9be9ff!important}td{color:#e5edf5!importa
 body.v3-alert-active header,body.v3-alert-active .controls-bar,body.v3-alert-active .container{filter:brightness(.8)}
 </style>
 
+
+<style id="theme-scenes-css">
+/* ===== Dynamic Light / Dark Background Scenes ===== */
+body{background:transparent!important;position:relative;overflow-x:hidden}
+#themeScene{
+  position:fixed;inset:0;z-index:-3;overflow:hidden;pointer-events:none;
+  background:#07111f;
+}
+#themeScene .scene-light,
+#themeScene .scene-dark{
+  position:absolute;inset:0;transition:opacity .7s ease;
+}
+#themeScene .scene-light{
+  opacity:1;
+  background:
+    linear-gradient(to bottom,rgba(0,119,190,.12),rgba(255,255,255,.04) 42%,rgba(255,255,255,.22)),
+    url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=90') center/cover no-repeat;
+}
+#themeScene .scene-dark{
+  opacity:0;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(12,45,72,.08),rgba(1,5,12,.72) 62%,rgba(0,0,0,.92)),
+    #02050b;
+}
+body.dark-mode #themeScene .scene-light{opacity:0}
+body.dark-mode #themeScene .scene-dark{opacity:1}
+
+/* Animated ocean waves in Light mode */
+.theme-waves{
+  position:absolute;left:-5%;right:-5%;bottom:-1px;height:52%;
+  overflow:hidden;opacity:.82;
+  filter:drop-shadow(0 -5px 10px rgba(255,255,255,.18));
+}
+.theme-wave{
+  position:absolute;left:-10%;width:120%;height:145px;
+  border-radius:50% 50% 0 0;
+  background:
+    radial-gradient(80px 30px at 10% 100%,rgba(255,255,255,.82) 0 28%,transparent 30%),
+    radial-gradient(110px 34px at 35% 100%,rgba(255,255,255,.55) 0 28%,transparent 30%),
+    radial-gradient(90px 28px at 62% 100%,rgba(255,255,255,.72) 0 28%,transparent 30%),
+    radial-gradient(120px 36px at 88% 100%,rgba(255,255,255,.52) 0 28%,transparent 30%);
+  background-size:360px 100px;
+  border-top:3px solid rgba(255,255,255,.78);
+  animation:themeWaveMove 7s linear infinite;
+}
+.theme-wave.w1{bottom:22px;opacity:.70;animation-duration:7s}
+.theme-wave.w2{bottom:78px;opacity:.55;animation-duration:10s;animation-direction:reverse;transform:scaleY(.8)}
+.theme-wave.w3{bottom:145px;opacity:.38;animation-duration:13s}
+@keyframes themeWaveMove{
+  from{transform:translateX(0) translateY(0)}
+  50%{transform:translateX(-7%) translateY(-18px)}
+  to{transform:translateX(-14%) translateY(-2px)}
+}
+
+/* Moving sun glow for Light mode */
+.theme-sun{
+  position:absolute;width:240px;height:240px;right:7%;top:10%;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,249,196,.95) 0 12%,rgba(255,211,91,.42) 28%,rgba(255,255,255,0) 70%);
+  filter:blur(2px);
+  animation:themeSunFloat 7s ease-in-out infinite alternate;
+}
+@keyframes themeSunFloat{
+  from{transform:translate3d(0,0,0);opacity:.72}
+  to{transform:translate3d(-20px,14px,0);opacity:.95}
+}
+
+/* Earth in Dark mode */
+.theme-earth-wrap{
+  position:absolute;left:50%;top:50%;
+  width:min(62vw,620px);height:min(62vw,620px);
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  box-shadow:
+    0 0 55px rgba(20,145,255,.24),
+    0 0 130px rgba(10,80,160,.18),
+    inset -45px -20px 70px rgba(0,0,0,.82);
+  overflow:hidden;
+}
+.theme-earth{
+  position:absolute;inset:-2%;
+  border-radius:50%;
+  background-image:
+    radial-gradient(circle at 32% 35%,rgba(255,255,255,.18),transparent 8%),
+    linear-gradient(90deg,rgba(0,0,0,.08),rgba(255,255,255,.04),rgba(0,0,0,.72)),
+    url('https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg');
+  background-size:auto,auto,200% 100%;
+  background-position:center,center,0% center;
+  background-repeat:no-repeat;
+  animation:earthRotate 28s linear infinite;
+  filter:saturate(1.15) contrast(1.08);
+}
+.theme-earth::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.20),transparent 25%,rgba(0,0,0,.12) 58%,rgba(0,0,0,.74) 100%);
+}
+@keyframes earthRotate{
+  from{background-position:center,center,0% center}
+  to{background-position:center,center,100% center}
+}
+.theme-stars{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(2px 2px at 12% 20%,rgba(255,255,255,.8),transparent 60%),
+    radial-gradient(1.5px 1.5px at 27% 72%,rgba(255,255,255,.65),transparent 60%),
+    radial-gradient(2px 2px at 74% 18%,rgba(255,255,255,.8),transparent 60%),
+    radial-gradient(1px 1px at 86% 64%,rgba(255,255,255,.7),transparent 60%),
+    radial-gradient(1.5px 1.5px at 55% 83%,rgba(255,255,255,.65),transparent 60%);
+  background-size:260px 220px;
+  animation:starsDrift 35s linear infinite;
+}
+@keyframes starsDrift{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-80px,30px,0)}
+}
+body:not(.dark-mode) .theme-earth-wrap,
+body:not(.dark-mode) .theme-stars{opacity:0}
+body.dark-mode .theme-earth-wrap,
+body.dark-mode .theme-stars{opacity:1;transition:opacity .7s ease}
+
+/* Keep the existing corporate grid, but make it work over the animated scenes */
+body:before{z-index:-2!important;opacity:.55}
+body.dark-mode .page-card,
+body.dark-mode .v2-card,
+body.dark-mode .tool-box,
+body.dark-mode .target-card{backdrop-filter:blur(14px)}
+@media(max-width:700px){
+  .theme-earth-wrap{width:78vw;height:78vw}
+  .theme-sun{width:170px;height:170px;right:-20px;top:7%}
+  .theme-waves{height:30%}
+}
+@media(prefers-reduced-motion:reduce){
+  .theme-wave,.theme-sun,.theme-earth,.theme-stars{animation:none!important}
+}
+</style>
+
 </head>
 <body>
+
+<!-- Dynamic theme background: Light = beach + moving waves, Dark = rotating Earth -->
+<div id="themeScene" aria-hidden="true">
+  <div class="scene-light">
+    <div class="theme-sun"></div>
+    <div class="theme-waves">
+      <div class="theme-wave w1"></div>
+      <div class="theme-wave w2"></div>
+      <div class="theme-wave w3"></div>
+    </div>
+  </div>
+  <div class="scene-dark">
+    <div class="theme-stars"></div>
+    <div class="theme-earth-wrap">
+      <div class="theme-earth"></div>
+    </div>
+  </div>
+</div>
+
 
 <div id="v3AlertIntro"><canvas class="v3-alert-matrix" id="v3AlertMatrix"></canvas><div class="v3-alert-core"><div class="v3-alert-emblem"><span></span><span></span><span></span><span></span></div><div class="v3-alert-title">UMBRELLA // SECURE CORE</div><div class="v3-alert-sub">GLOBAL COLLECTION SYSTEM // CONTAINMENT PROTOCOL</div><div class="v3-alert-status" id="v3AlertStatus"></div><div class="v3-alert-bar"><div></div></div></div></div>
 
@@ -1732,7 +1887,7 @@ body.v3-alert-active header,body.v3-alert-active .controls-bar,body.v3-alert-act
 <div class="followup-card color-found-cust"><span class="followup-text">Search by name of the customer on linked in and find has website</span><button class="copy-btn" onclick="copyText('Search by name of the customer on linked in and find has website')">Copy</button></div>
 <div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer on True caller and find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and find has name')">Copy</button></div>
 <div class="followup-card color-found-cust"><span class="followup-text">Search by number of the customer on True caller and find has email</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and find has email')">Copy</button></div>
-<div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on True caller and didn't has email or has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and didn\'t has email or has name')">Copy</button></div>
+<div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on True caller and didn't find has email or has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on True caller and didn\'t has email or has name')">Copy</button></div>
 <div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer on Eyecon and find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on Eyecon and find has name')">Copy</button></div>
 <div class="followup-card color-not-found-cust"><span class="followup-text">Search by number of the customer on Eyecon and didn't find has name</span><button class="copy-btn" onclick="copyText('Search by number of the customer on Eyecon and didn\'t find has name')">Copy</button></div>
 <div class="followup-card color-found-comp"><span class="followup-text">Search by number of the customer and find website and numbers</span><button class="copy-btn" onclick="copyText('Search by number of the customer and find website and numbers')">Copy</button></div>
