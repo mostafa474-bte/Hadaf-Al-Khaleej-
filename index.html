@@ -1903,10 +1903,10 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <div class="v2-field"><label>Subject</label><input id="v3EmailSubject" value="Payment Follow-up - Personal Loan"></div>
 </div>
 <div class="v3-template-row">
-<button class="v2-btn" onclick="v3GenerateEmail('standard')">Generate Standard</button>
-<button class="v2-btn purple" onclick="v3GenerateEmail('two')">Generate Two Accounts</button>
-<button class="v2-btn orange" onclick="v3GenerateEmail('reminder')">Generate Reminder</button>
-<button class="v2-btn green" onclick="v3CopyEmail()">Copy Email</button>
+<button type="button" class="v2-btn" onclick="v3GenerateEmail('standard')">Generate Standard</button>
+<button type="button" class="v2-btn purple" onclick="v3GenerateEmail('two')">Generate Two Accounts</button>
+<button type="button" class="v2-btn orange" onclick="v3GenerateEmail('reminder')">Generate Reminder</button>
+<button type="button" class="v2-btn green" onclick="v3CopyEmail()">Copy Email</button>
 </div>
 <textarea id="v3EmailResult" rows="15" placeholder="Generated email will appear here..."></textarea>
 </div>
@@ -2673,6 +2673,66 @@ function toggleAppLauncher(force){
 function openApp(id){toggleAppLauncher(false); const btn=document.querySelector('.app-nav-btn[data-app="'+id+'"]'); switchTab(id,{currentTarget:btn||document.createElement('button')}); window.scrollTo({top:0,behavior:'smooth'});}
 document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleAppLauncher(false);});
 </script>
+
+<script>
+/* ===== Email Center repair ===== */
+(function(){
+  function emailVal(id, fallback=''){
+    const el=document.getElementById(id);
+    return el ? String(el.value ?? '').trim() : fallback;
+  }
+  function productName(){
+    const v=emailVal('v3EmailProduct','personal');
+    return v==='credit' ? 'Credit Card' : v==='car' ? 'Auto Loan' : 'Personal Loan';
+  }
+  window.v3UpdateEmailSubject=function(){
+    const el=document.getElementById('v3EmailSubject');
+    if(el) el.value='Payment Follow-up - '+productName();
+  };
+  window.v3GenerateEmail=function(type){
+    const name=emailVal('v3EmailName','Customer') || 'Customer';
+    const iq=emailVal('v3EmailIqama');
+    const a1=emailVal('v3EmailAcc1');
+    const a2=emailVal('v3EmailAcc2');
+    const b1=Number(document.getElementById('v3EmailBal1')?.value)||0;
+    const b2=Number(document.getElementById('v3EmailBal2')?.value)||0;
+    const product=productName();
+    const subject=emailVal('v3EmailSubject') || ('Payment Follow-up - '+product);
+    const result=document.getElementById('v3EmailResult');
+    const template=document.getElementById('v3EmailTemplate');
+    if(!result) return;
+    if(template) template.value=type;
+    let text='';
+    if(type==='reminder'){
+      text=`Subject: ${subject}\n\nDear Mr. ${name},\n\nThis is a friendly reminder regarding your outstanding ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    }else if(type==='two'){
+      const total=b1+b2;
+      text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above for your ${product}. Please contact us to discuss the available payment options and clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    }else{
+      text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
+    }
+    result.value=text;
+    result.focus();
+  };
+  window.v3CopyEmail=function(){
+    const result=document.getElementById('v3EmailResult');
+    if(!result || !result.value) return;
+    const copied=()=>{ if(typeof window.showToast==='function') window.showToast('تم نسخ الإيميل'); };
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(result.value).then(copied).catch(()=>{result.select();document.execCommand('copy');copied();});
+    }else{
+      result.select();
+      document.execCommand('copy');
+      copied();
+    }
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    if(document.getElementById('v3EmailProduct')) window.v3UpdateEmailSubject();
+    document.querySelectorAll('.v3-template-row button').forEach(btn=>btn.setAttribute('type','button'));
+  });
+})();
+</script>
+
 </body>
 </html>
 <style id="remove-umbrella-virus-smoke-warnings">
