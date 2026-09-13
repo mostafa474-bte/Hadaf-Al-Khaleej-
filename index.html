@@ -1899,7 +1899,7 @@ body.dark-mode #themeScene .virus-dot{filter:drop-shadow(0 0 5px rgba(255,40,40,
 <div class="v2-field"><label>Balance 1 (SAR)</label><input id="v3EmailBal1" type="number" placeholder="50000"></div>
 <div class="v2-field"><label>Account 2 (optional)</label><input id="v3EmailAcc2" placeholder="Account 2"></div>
 <div class="v2-field"><label>Balance 2 (SAR)</label><input id="v3EmailBal2" type="number" placeholder="0"></div>
-<div class="v2-field"><label>Template</label><select id="v3EmailTemplate"><option value="standard">Standard collection</option><option value="two">Two accounts</option><option value="reminder">Reminder</option></select></div>
+<div class="v2-field"><label>Template</label><select id="v3EmailTemplate"><option value="standard" selected>Standard collection</option><option value="two">Two accounts</option><option value="reminder">Reminder</option></select></div>
 <div class="v2-field"><label>Subject</label><input id="v3EmailSubject" value="Payment Follow-up - Personal Loan"></div>
 </div>
 <div class="v3-template-row">
@@ -2712,7 +2712,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')toggleAppLau
       const total=b1+b2;
       text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\n\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nAccount Number: ${a2}\nOutstanding Balance: ${b2.toLocaleString()} SAR\n\nTotal Outstanding: ${total.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance shown above for your ${product}. Please contact us to discuss the available payment options and clarify any questions regarding your account.\n\nKind Regards,\nHadaf Al-Khaleej`;
     }else{
-      text=`Subject: ${subject}\n\nName: MR. ${name}\nIqama / Residency No.: ${iq}\nProduct: ${product}\nAccount Number: ${a1}\nOutstanding Balance: ${b1.toLocaleString()} SAR\n\nDear Mr. ${name},\n\nWe are contacting you regarding the outstanding balance on your ${product} account. Please contact us at your earliest convenience so we can review the account status and available payment options.\n\nKind Regards,\nHadaf Al-Khaleej`;
+      const balance = b1.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+      text=`Name: MR. **${name}**\n\nIqama (Work Residency) No.: **${iq}**\n\nAccount Number : **${a1}**\n\nOutstanding balance : **${balance}**\nSAR\n\n\nDear MR. **${name}**,\n\nWe are writing to inform you that you have an outstanding\nbalance of SAR **${balance}** with Saudi\nNational Bank. Please note that The National Commercial Bank (NCB) has merged\nwith Samba Financial Group and has become the Saudi National Bank (SNB).\n\nBe note that your file on critical situation due to\nnon-payment your debts and in case we not find your positive respond ASAP your\nfile will transfer to legal department to start legal actions inside KSA , home\ncountry and GCC Countries\n\nIn case you willing to pay your debts we can support you\nwith the special discount and special offer from the bank to settle your debts\nand close this matter permanently and take your clearance letter , clear your\nname from SAMA and clear any legal case or court case if found ..\n\nPlease revert to us with your direct contact number to\ndiscuss this matter amicably or contact us on 00201557119829 (Call and What’s\nup) / 0097165148719 (Call) for easy conversation ..\n\nNote : attached is our authority letter\n\nAppreciate your quick cooperate .`;
     }
     result.value=text;
     result.focus();
